@@ -15,8 +15,7 @@ public class TokenFactory {
                 .when()
                     .post(GetProperties.LOGIN_URI())
                 .then()
-                    .contentType(ContentType.JSON)
                     .statusCode(HttpStatus.SC_OK)
-                    .extract().as(String.class);
+                    .extract().response().asString();
     }
 }
