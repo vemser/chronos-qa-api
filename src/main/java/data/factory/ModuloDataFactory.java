@@ -27,8 +27,8 @@ public class ModuloDataFactory {
     public static ModuloRequestDTO moduloSemCamposNaoObrigatoriosPreenchidos() {
         ModuloRequestDTO moduloReq = new ModuloRequestDTO();
         moduloReq.setNome(Factory.FAKER.name().firstName());
-        moduloReq.setLoginResponsavel(StringUtils.EMPTY);
-        moduloReq.setConteudoProgramatico(StringUtils.EMPTY);
+        moduloReq.setLoginResponsavel("");
+        moduloReq.setConteudoProgramatico("");
         moduloReq.setStatus("ATIVO");
 
         return moduloReq;
@@ -36,7 +36,7 @@ public class ModuloDataFactory {
 
     public static ModuloRequestDTO moduloComNomeComCaracterAMenos() {
         ModuloRequestDTO moduloReq = new ModuloRequestDTO();
-        moduloReq.setNome(Factory.FAKER.lorem().sentence(1));
+        moduloReq.setNome("A");
         moduloReq.setLoginResponsavel("rafael.ramos");
         moduloReq.setConteudoProgramatico(Factory.FAKER.lorem().sentence());
         moduloReq.setStatus("ATIVO");
