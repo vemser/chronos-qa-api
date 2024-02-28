@@ -6,6 +6,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Locale;
 
+import static org.hamcrest.Matchers.hasLength;
+
 public class TrilhaDataFactory {
 
 
@@ -13,7 +15,7 @@ public class TrilhaDataFactory {
         TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
         trilhaReq.setNome(Factory.FAKER.name().firstName());
         trilhaReq.setDescricao(Factory.FAKER.lorem().sentence());
-        trilhaReq.setStatus(0);
+        trilhaReq.setStatus("INATIVO");
 
         return trilhaReq;
 
@@ -23,11 +25,52 @@ public class TrilhaDataFactory {
         TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
         trilhaReq.setNome(StringUtils.EMPTY);
         trilhaReq.setDescricao(Factory.FAKER.lorem().sentence());
-        trilhaReq.setStatus(null);
+        trilhaReq.setStatus(StringUtils.EMPTY);
 
         return trilhaReq;
 
-    }}
+    }
+    public static  TrilhaRequestDTO trilhaComCamposObrigatoriosPreenchidos(){
+        TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
+        trilhaReq.setNome(Factory.FAKER.name().firstName());
+        trilhaReq.setStatus(Factory.FAKER.lorem().sentence());
+
+        return trilhaReq;
+
+
+    }
+
+    public static  TrilhaRequestDTO trilhaComCampoNomeCom1Caracter(){
+        TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
+        trilhaReq.setNome("a");
+        trilhaReq.setDescricao(Factory.FAKER.lorem().sentence());
+        trilhaReq.setStatus("ATIVO");
+
+        return trilhaReq;
+    }
+
+    public static  TrilhaRequestDTO trilhaComCampoNomeCom51Caracteres(){
+        TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
+        trilhaReq.setNome(hasLength(51).toString());
+        trilhaReq.setDescricao(Factory.FAKER.lorem().sentence());
+        trilhaReq.setStatus("ATIVO");
+
+        return trilhaReq;
+    }
+
+    public static  TrilhaRequestDTO trilhaComCampoDescricaoCom256Caracteres(){
+        TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
+        trilhaReq.setNome(Factory.FAKER.name().firstName());
+        trilhaReq.setDescricao(hasLength(256).toString());
+        trilhaReq.setStatus("ATIVO");
+
+        return trilhaReq;
+    }
+
+}
+
+
+
 
 
 
