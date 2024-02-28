@@ -1,5 +1,5 @@
 /.idea
-
+src/main/java/utils/props/GetProperties.java
 /target
 
 /src/main/resources
