@@ -9,7 +9,7 @@ public class InicialSpecs {
 
     public static RequestSpecification setup() {
         return new RequestSpecBuilder()
-                .setBasePath(GetProperties.BASE_URI())
+                .setBaseUri(GetProperties.BASE_URI())
                 .setContentType(ContentType.JSON)
                 .build();
     }
