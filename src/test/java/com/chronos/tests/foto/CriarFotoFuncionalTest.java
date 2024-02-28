@@ -25,7 +25,7 @@ public class CriarFotoFuncionalTest {
     @ParameterizedTest
     @MethodSource("data.provider.FotoProvider#providerCadastrarFoto")
     @DisplayName("Testes: Cadastro de fotos")
-    public void testDeveCriarUmaFotoComSucesso201(File file, String typeImage, String nome) {
+    public void testDeveCriarUmaFotoComSucesso(File file, String typeImage, String nome) {
 
         // CRIAR MASSA
         FotoResponseDTO responseDTO = fotoClient.cadastrarFotoComSucesso(file, typeImage, nome)

@@ -5,6 +5,7 @@ import data.factory.FotoFactory;
 import io.restassured.response.Response;
 import specs.AuthSpec;
 import specs.FotoSpec;
+import specs.NoAuthSpec;
 import utils.image.ImageTypes;
 
 import java.io.File;
@@ -92,5 +93,13 @@ public class FotoClient {
                 .pathParam("idFoto", id)
                 .when()
                 .delete(FOTO_PATH_ID);
+    }
+
+    public Response deletarFotoPorIdSemToken(Integer id) {
+        return given()
+                    .spec(NoAuthSpec.setup())
+                    .pathParam("idFoto", id)
+                .when()
+                    .delete(FOTO_PATH_ID);
     }
 }

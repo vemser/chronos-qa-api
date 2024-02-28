@@ -34,4 +34,11 @@ public class DeletarFotoFuncionalTest {
                     .body("status", equalTo(HttpStatus.SC_BAD_REQUEST));
     }
 
+    @Test
+    public void testNaoDeveDeletarPoisTokenNaoEnviado() {
+        fotoClient.deletarFotoPorIdSemToken(-1)
+                .then()
+                    .statusCode(HttpStatus.SC_FORBIDDEN);
+    }
+
 }
