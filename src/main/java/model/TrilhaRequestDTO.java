@@ -12,8 +12,9 @@ import lombok.NoArgsConstructor;
 
 public class TrilhaRequestDTO {
     private String nome;
-    private Integer status;
+    private String status;
     private String descricao;
+
 
     @Override
     public String toString() {
