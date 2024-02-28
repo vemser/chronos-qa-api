@@ -41,7 +41,7 @@ public class GetProperties {
     private static Properties getProperties() {
         Properties propsResponse = new Properties();
         try {
-            propsResponse.load(new FileInputStream("PATH_APPLICATION_PROPERTIES"));
+            propsResponse.load(new FileInputStream("C:/Users/rapha/config.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
