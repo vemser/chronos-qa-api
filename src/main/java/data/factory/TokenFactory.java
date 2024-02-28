@@ -20,9 +20,8 @@ public class TokenFactory {
                 .when()
                 .post(GetProperties.LOGIN_URI())
                 .then()
-                .contentType(ContentType.JSON)
-                .statusCode(HttpStatus.SC_OK)
-                .extract().as(String.class);
+                    .statusCode(HttpStatus.SC_OK)
+                    .extract().response().asString();
     }
 
     public static String getToken(LoginRequestDTO loginRequestDTO) {
