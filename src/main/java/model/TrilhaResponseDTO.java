@@ -12,7 +12,7 @@ public class TrilhaResponseDTO extends TrilhaRequestDTO {
     private String nome;
     private String status;
     private String descricao;
-    private Integer id;
+    private Integer idTrilha;
     private String message;
 
 }

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 
 public class TrilhaFuncionalTest {
-TrilhaClient trilhaClient = new TrilhaClient();
+    private final TrilhaClient trilhaClient = new TrilhaClient();
 
     @Test
     public void testCriarUmaTrilhaComSucesso() {
@@ -21,7 +21,7 @@ TrilhaClient trilhaClient = new TrilhaClient();
                 .log().all()
                 .statusCode(200).extract().as(TrilhaResponseDTO.class);
 
-        trilhaClient.deletar(trilhaResponseDTO.getId()).then().statusCode(200);
+        trilhaClient.deletar(trilhaResponseDTO.getIdTrilha()).then().statusCode(204);
 
     }
 
@@ -34,7 +34,6 @@ TrilhaClient trilhaClient = new TrilhaClient();
                 .then()
                 .statusCode(400).extract().as(TrilhaResponseDTO.class);
 
-        trilhaClient.deletar(trilhaResponseDTO.getId()).then().statusCode(200);
     }
 
     @Test
@@ -46,7 +45,6 @@ TrilhaClient trilhaClient = new TrilhaClient();
                 .then()
                 .statusCode(400).extract().as(TrilhaResponseDTO.class);
 
-        trilhaClient.deletar(trilhaResponseDTO.getId()).then().statusCode(200);
 
     }
 
@@ -55,12 +53,10 @@ TrilhaClient trilhaClient = new TrilhaClient();
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCampoNomeCom51Caracteres();
-        TrilhaResponseDTO trilhaResponseDTO = trilhaClient.cadastrar(trilhaRequestDTO)
+        trilhaClient.cadastrar(trilhaRequestDTO)
                 .then()
-                .statusCode(400).extract().as(TrilhaResponseDTO.class);
-
-        trilhaClient.deletar(trilhaResponseDTO.getId()).then().statusCode(200);
-
+                .statusCode(400)
+                .extract().as(TrilhaResponseDTO.class);
     }
 
     @Test
@@ -71,8 +67,6 @@ TrilhaClient trilhaClient = new TrilhaClient();
         TrilhaResponseDTO trilhaResponseDTO = trilhaClient.cadastrar(trilhaRequestDTO)
                 .then()
                 .statusCode(400).extract().as(TrilhaResponseDTO.class);
-
-        trilhaClient.deletar(trilhaResponseDTO.getId()).then().statusCode(200);
 
     }
 

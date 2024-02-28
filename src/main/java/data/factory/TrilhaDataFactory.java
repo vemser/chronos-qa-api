@@ -51,7 +51,7 @@ public class TrilhaDataFactory {
 
     public static  TrilhaRequestDTO trilhaComCampoNomeCom51Caracteres(){
         TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
-        trilhaReq.setNome(hasLength(51).toString());
+        trilhaReq.setNome(Factory.FAKER.number().digits(51));
         trilhaReq.setDescricao(Factory.FAKER.lorem().sentence());
         trilhaReq.setStatus("ATIVO");
 
