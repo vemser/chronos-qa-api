@@ -61,7 +61,7 @@ public class TrilhaDataFactory {
     public static  TrilhaRequestDTO trilhaComCampoDescricaoCom256Caracteres(){
         TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
         trilhaReq.setNome(Factory.FAKER.name().firstName());
-        trilhaReq.setDescricao(hasLength(256).toString());
+        trilhaReq.setDescricao(Factory.FAKER.number().digits(256));
         trilhaReq.setStatus("ATIVO");
 
         return trilhaReq;

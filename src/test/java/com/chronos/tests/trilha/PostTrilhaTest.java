@@ -1,4 +1,4 @@
-package com.chronos.tests;
+package com.chronos.tests.trilha;
 
 import client.TrilhaClient;
 import data.factory.TokenFactory;
@@ -7,10 +7,13 @@ import model.TrilhaRequestDTO;
 import model.TrilhaResponseDTO;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class TrilhaFuncionalTest {
+public class PostTrilhaTest {
     private final TrilhaClient trilhaClient = new TrilhaClient();
 
+//BUG CAMPO DESCRICAO//
     @Test
     public void testCriarUmaTrilhaComSucesso() {
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
@@ -37,7 +40,7 @@ public class TrilhaFuncionalTest {
     }
 
     @Test
-    public void testCriarUmaTrilhaPreenchendoOsCamposObrigatorios(){
+    public void testCriarUmaTrilhaPreenchendoApenasOsCamposObrigatorios(){
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCamposObrigatoriosPreenchidos();
@@ -70,5 +73,25 @@ public class TrilhaFuncionalTest {
 
     }
 
+//BUG//
+    @Test
+    public void testTentarCriarTrilhaComNomeRepetido(){
 
+        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
+
+        TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComTodosOsCampos();
+        TrilhaRequestDTO trilhaRequestDTONomeRepetido = TrilhaDataFactory.trilhaComTodosOsCampos();
+        trilhaRequestDTONomeRepetido.setNome(trilhaRequestDTO.getNome());
+
+        TrilhaResponseDTO trilhaResponseDTO = trilhaClient.cadastrar(trilhaRequestDTO)
+                .then()
+                .statusCode(200).extract().as(TrilhaResponseDTO.class);
+
+        trilhaClient.cadastrar(trilhaRequestDTONomeRepetido)
+                .then()
+                .statusCode(400);
+
+
+        trilhaClient.deletar(trilhaResponseDTO.getIdTrilha()).then().statusCode(204);
+    }
 }
