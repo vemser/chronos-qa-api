@@ -89,6 +89,7 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
                         .header("Authorization", TOKEN)
                         .pathParam("_id",integer)
                         .pathParam("_idModulo",idModulo)
+                        .log().all()
                         .when()
                         .put(PATH_VINCULAR_TRILHA);
     }
