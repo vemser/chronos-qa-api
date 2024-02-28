@@ -25,6 +25,15 @@ public class ModuloClient {
                         .post(PATH_MODULO);
     }
 
+    public Response cadastrarSemAuth(ModuloRequestDTO body) {
+        return
+                given()
+                        .spec(InicialSpecs.setup())
+                        .body(body)
+                        .when()
+                        .post(PATH_MODULO);
+    }
+
 
     public Response buscarTudo(GetRequestDTO body) {
         return
@@ -32,7 +41,6 @@ public class ModuloClient {
                         .spec(AuthSpec.setup())
                         .body(body)
                         .when()
-                        .log().all()
                         .get(PATH_MODULO);
 
     }
@@ -43,7 +51,6 @@ public class ModuloClient {
                         .spec(InicialSpecs.setup())
                         .body(body)
                         .when()
-                        .log().all()
                         .get(PATH_MODULO);
 
     }
@@ -59,11 +66,33 @@ public class ModuloClient {
 
     }
 
+    public Response buscarPorIDSemAuth(Integer integer) {
+        return
+                given()
+                        .spec(InicialSpecs.setup())
+                        .pathParam("idModulo", integer)
+                        .when()
+                        .get(PATH_MODULO_ID);
+
+    }
+
 
     public Response atualizar(Integer integer, ModuloRequestDTO body) {
         return
                 given()
                         .spec(AuthSpec.setup())
+                        .pathParam("idModulo", integer)
+                        .body(body)
+
+                        .when()
+                        .put(PATH_MODULO_ID);
+    }
+
+
+    public Response atualizarSemAuth(Integer integer, ModuloRequestDTO body) {
+        return
+                given()
+                        .spec(InicialSpecs.setup())
                         .pathParam("idModulo", integer)
                         .body(body)
 
@@ -85,6 +114,15 @@ public class ModuloClient {
         return
                 given()
                         .spec(AuthSpec.setup())
+                        .pathParam("idModulo",integer)
+                        .when()
+                        .delete(PATH_DISABLE_MODULO);
+    }
+
+    public Response desabilitarSemAuth(Integer integer) {
+        return
+                given()
+                        .spec(InicialSpecs.setup())
                         .pathParam("idModulo",integer)
                         .when()
                         .delete(PATH_DISABLE_MODULO);

@@ -36,7 +36,7 @@ public class GetModuloFuncionalTest {
                 .statusCode(204);
     }
     @Test
-    public void testBuscarTodosOsModulos() {
+    public void testBuscarTodosOsModulosComSucesso() {
         GetRequestDTO getPadraoRequest = GetDataFactory.getPadrao();
         Response response =
                 moduloClient.buscarTudo(getPadraoRequest)
@@ -58,7 +58,7 @@ public class GetModuloFuncionalTest {
     }
 
     @Test
-    public void testBuscarPorModuloEspecifico() {
+    public void testBuscarPorModuloEspecificoIDValido() {
         ModuloResponseDTO moduloBuscado =
         moduloClient.buscarPorID(idModuloCadastrado)
                 .then()
@@ -71,5 +71,19 @@ public class GetModuloFuncionalTest {
         Assertions.assertEquals(moduloBuscado.getCargoResponsavel(), moduloCadastrado.getCargoResponsavel());
         Assertions.assertEquals(moduloBuscado.getIdModulo(), moduloCadastrado.getIdModulo());
         Assertions.assertEquals(moduloBuscado.getConteudoProgramatico(), moduloCadastrado.getConteudoProgramatico());
+    }
+
+    @Test
+    public void testBuscarPorModuloEspecificoIDInvalido() {
+                moduloClient.buscarPorID(0)
+                        .then()
+                        .statusCode(400);
+    }
+
+    @Test
+    public void testBuscarPorModuloEspecificoIDValidoSemAutorizacao() {
+                moduloClient.buscarPorIDSemAuth(idModuloCadastrado)
+                        .then()
+                        .statusCode(403);
     }
 }
