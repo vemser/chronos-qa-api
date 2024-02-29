@@ -6,7 +6,7 @@ import data.factory.FotoFactory;
 import io.restassured.http.ContentType;
 import model.foto.FotoResponseDTO;
 import org.apache.http.HttpStatus;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -3,12 +3,11 @@ package com.chronos.tests.modulo;
 import client.ModuloClient;
 import data.factory.ModuloDataFactory;
 import io.restassured.response.Response;
-import model.GetRequestDTO;
 import model.ModuloRequestDTO;
 import model.ModuloResponseDTO;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.List;

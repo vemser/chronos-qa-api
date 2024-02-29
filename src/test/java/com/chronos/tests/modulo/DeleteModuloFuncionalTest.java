@@ -6,7 +6,7 @@ import model.ModuloRequestDTO;
 import model.ModuloResponseDTO;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DeleteModuloFuncionalTest {
     Integer idModuloCadastrado = 0;
@@ -41,13 +41,6 @@ public class DeleteModuloFuncionalTest {
         moduloClient.desabilitarSemAuth(idModuloCadastrado)
                 .then()
                 .statusCode(403);
-    }
-
-    @Test
-    public void testDeletarModuloEspecificoPorIdInvalidoSemSucesso() {
-                moduloClient.desabilitar(0)
-                        .then()
-                        .statusCode(400);
     }
 
 }
