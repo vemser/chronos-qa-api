@@ -41,11 +41,15 @@ pipeline {
                             def branchName = env.BRANCH_NAME
                             def buildNumber = env.BUILD_NUMBER
 
+                            def allureReportUrl = "${buildUrl}allure"
+
+                            def screenshotPath = 'C:/Users/rapha/screenshot.png'
+                            bat "chrome --headless --screenshot=${screenshotPath} ${allureReportUrl}"
+
                             def message = "# Relatorio de Testes/API Chronos\n"
                             message += "**Branch:** RELEASE\n"
                             message += "**Build:** ${buildNumber}\n"
                             message += "**Status:** ${buildResult}\n"
-                            message += "**URL:** ${buildUrl}\n"
 
                             discordSend description: message,
                                         image: "https://imagizer.imageshack.com/img922/609/cSyy7S.png",
