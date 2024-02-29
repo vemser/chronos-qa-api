@@ -41,13 +41,15 @@ pipeline {
                             def branchName = env.BRANCH_NAME
                             def buildNumber = env.BUILD_NUMBER
 
+                            def captureOutput = bat(script: 'cd C:\\Users\\rapha && node capture.js ${env.BUILD_NUMBER}', returnStdout: true).trim()
+
                             def message = "# Relatorio de Testes/API Chronos\n"
                             message += "**Branch:** RELEASE\n"
                             message += "**Build:** ${buildNumber}\n"
                             message += "**Status:** ${buildResult}\n"
 
                             discordSend description: message,
-                                        image: "https://imagizer.imageshack.com/img922/609/cSyy7S.png",
+                                        image: "${captureOutput}",
                                         webhookURL: "https://discord.com/api/webhooks/1212470165044731904/ySidL1sT1nHztTrTruu1SsT0HOZdnQ4ccS0FFAUvJ4vppmLRw5BwISDrdcCbKHBgxH4v"
                         }
         }
