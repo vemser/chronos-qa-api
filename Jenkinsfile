@@ -41,7 +41,8 @@ pipeline {
                 def buildNumber = env.BUILD_NUMBER
 
                 def printAllure = bat(script: "cd C:\\Users\\rapha && node capture.js ${env.BUILD_NUMBER}", returnStdout: true).trim()
-                def link = (printAllure =~ /https?:\/\/[^\s]+/)?.get(0);
+                def matcher = (printAllure =~ /https?:\/\/[^\s]+/)
+                def link = matcher.find() ? matcher.group() : "Link não encontrado"
 
                 def message = "# Relatorio de Testes/API Chronos\n"
                 message += "**Branch:** RELEASE\n"
