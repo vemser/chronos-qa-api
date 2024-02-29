@@ -4,8 +4,8 @@ import client.ModuloClient;
 import data.factory.ModuloDataFactory;
 import model.ModuloRequestDTO;
 import model.ModuloResponseDTO;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class PutModuloFuncionalTest {
@@ -13,19 +13,19 @@ public class PutModuloFuncionalTest {
     ModuloClient moduloClient = new ModuloClient();
     ModuloResponseDTO moduloCadastrado;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         ModuloRequestDTO moduloACadastrar = ModuloDataFactory.moduloComTodosOsCampos();
         moduloCadastrado =
                 moduloClient.cadastrar(moduloACadastrar)
                         .then()
-                        .statusCode(200)
+                        .statusCode(201)
                         .extract().as(ModuloResponseDTO.class);
 
         idModuloCadastrado = moduloCadastrado.getIdModulo();
     }
 
-    @After
+    @AfterEach
     public void cleanUp() {
         if (idModuloCadastrado != 0) {
             moduloClient.deletar(idModuloCadastrado)
