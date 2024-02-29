@@ -22,8 +22,8 @@ public class EdicaoProvider {
     private static Stream<Arguments> criarEdicaoSemSucessoProvider() {
         return Stream.of(
                 Arguments.of(EdicaoFactory.edicaoComNomeVazio(), HttpStatus.SC_BAD_REQUEST),
-//                Arguments.of(EdicaoFactory.edicaoComNomeTamanhoTres(), HttpStatus.SC_BAD_REQUEST),
-//                Arguments.of(EdicaoFactory.edicaoComDescricao256(), HttpStatus.SC_BAD_REQUEST),
+                Arguments.of(EdicaoFactory.edicaoComNomeTamanhoTres(), HttpStatus.SC_BAD_REQUEST),
+                Arguments.of(EdicaoFactory.edicaoComDescricao256(), HttpStatus.SC_BAD_REQUEST),
                 Arguments.of(EdicaoFactory.edicaoComDataInicialNulo(), HttpStatus.SC_BAD_REQUEST),
                 Arguments.of(EdicaoFactory.edicaoComNomeJaExistente(), HttpStatus.SC_CONFLICT)
         );

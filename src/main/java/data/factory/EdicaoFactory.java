@@ -11,6 +11,7 @@ public class EdicaoFactory {
                 .dataInicial(Factory.dataInicial())
                 .dataFinal(Factory.dataFinal())
                 .descricao(Factory.descricao())
+                .status("ATIVO")
                 .build();
     }
 
@@ -20,6 +21,7 @@ public class EdicaoFactory {
                 .dataInicial(Factory.dataInicial())
                 .dataFinal(Factory.dataFinal())
                 .descricao(StringUtils.EMPTY)
+                .status("ATIVO")
                 .build();
     }
 
@@ -29,6 +31,7 @@ public class EdicaoFactory {
                 .dataInicial(Factory.dataInicial())
                 .dataFinal(null)
                 .descricao(Factory.descricao())
+                .status("ATIVO")
                 .build();
     }
     public static EdicaoRequestDTO edicaoComDataFinalVazio() {
@@ -36,6 +39,7 @@ public class EdicaoFactory {
                 .nome(Factory.evento())
                 .dataInicial(Factory.dataInicial())
                 .descricao(Factory.descricao())
+                .status("ATIVO")
                 .build();
     }
 
@@ -45,6 +49,7 @@ public class EdicaoFactory {
                 .dataInicial(Factory.dataInicial())
                 .dataInicial(Factory.dataFinal())
                 .descricao(Factory.descricao())
+                .status("ATIVO")
                 .build();
     }
 
@@ -54,6 +59,7 @@ public class EdicaoFactory {
                 .dataInicial(Factory.dataInicial())
                 .dataInicial(Factory.dataFinal())
                 .descricao(Factory.descricao())
+                .status("ATIVO")
                 .build();
     }
 
@@ -63,6 +69,7 @@ public class EdicaoFactory {
                 .dataInicial(Factory.dataInicial())
                 .dataInicial(Factory.dataFinal())
                 .descricao(Factory.descricao256())
+                .status("ATIVO")
                 .build();
     }
 
@@ -72,16 +79,18 @@ public class EdicaoFactory {
                 .dataInicial(null)
                 .dataFinal(Factory.dataFinal())
                 .descricao(Factory.descricao())
+                .status("ATIVO")
                 .build();
     }
 
 
-    public static Object edicaoComNomeJaExistente() {
+    public static EdicaoRequestDTO edicaoComNomeJaExistente() {
         return EdicaoRequestDTO.builder()
-                .nome("vs1")
-                .dataInicial(null)
-                .dataInicial(Factory.dataFinal())
+                .nome("Vem Ser 15")
+                .dataInicial(Factory.dataInicial())
+                .dataFinal(Factory.dataFinal())
                 .descricao(Factory.descricao())
+                .status("ATIVO")
                 .build();
     }
 }
