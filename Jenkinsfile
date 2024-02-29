@@ -44,7 +44,7 @@ pipeline {
                 def link = ""
                 try {
                     def matcher = (printAllure =~ /https?:\/\/[^\s]+/)
-                    link = matcher.group()
+                    link = matcher.find() ? matcher.group() : "Link não encontrado"
                 } catch (Exception e) {
                     echo "Erro ao extrair o link da saída do comando: ${e.message}"
                 }
