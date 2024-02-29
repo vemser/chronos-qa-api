@@ -53,7 +53,6 @@ pipeline {
                 message += "**Branch:** RELEASE\n"
                 message += "**Build:** ${buildNumber}\n"
                 message += "**Status:** ${buildResult}\n"
-                message += "**Allure Report:**\n${link}"
 
                 discordSend description: message,
                     image: "${link}",
