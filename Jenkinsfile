@@ -39,6 +39,7 @@ pipeline {
                             def jobName = env.JOB_NAME
                             def buildUrl = env.BUILD_URL
                             def buildResult = currentBuild.currentResult
+                            def branchName = env.BRANCH_NAME
 
                             def message = "Relatório de Testes/API ${jobName}\n"
                             message += "Branch: ${branchName}\n"
