@@ -1,18 +1,18 @@
 package client;
 
 import io.restassured.response.Response;
-import model.EdicaoRequestDTO;
+import model.edicao.EdicaoRequestDTO;
 import specs.AuthSpec;
+import specs.NoAuthSpec;
 
 import static io.restassured.RestAssured.given;
 
-public class EdicaoClient implements ClientInterface<Integer, EdicaoRequestDTO> {
+public class EdicaoClient {
 
-    private final static String PATH_EDICAO = "/";
-    private final static String PATH_EDICAO_ID = PATH_EDICAO + "/{idEdicao}";
+    private final static String PATH_EDICAO = "/edicao";
+    private final static String PATH_EDICAO_ID = PATH_EDICAO + "/edicao/{idEdicao}";
 
-    @Override
-    public Response cadastrar(EdicaoRequestDTO body) {
+    public Response cadastrarEdicao(EdicaoRequestDTO body) {
         return given()
                 .spec(AuthSpec.setup())
                     .body(body)
@@ -20,7 +20,14 @@ public class EdicaoClient implements ClientInterface<Integer, EdicaoRequestDTO> 
                     .post(PATH_EDICAO);
     }
 
-    @Override
+    public Response cadastrarEdicaoSemToken(EdicaoRequestDTO body) {
+        return given()
+                    .spec(NoAuthSpec.setup())
+                    .body(body)
+                .when()
+                    .post(PATH_EDICAO);
+    }
+
     public Response buscarTudo() {
         return given()
                     .spec(AuthSpec.setup())
@@ -28,7 +35,6 @@ public class EdicaoClient implements ClientInterface<Integer, EdicaoRequestDTO> 
                     .post(PATH_EDICAO);
     }
 
-    @Override
     public Response buscarPorID(Integer id) {
         return given()
                     .spec(AuthSpec.setup())
@@ -37,7 +43,6 @@ public class EdicaoClient implements ClientInterface<Integer, EdicaoRequestDTO> 
                     .post(PATH_EDICAO);
     }
 
-    @Override
     public Response atualizar(Integer id, EdicaoRequestDTO body) {
         return given()
                     .spec(AuthSpec.setup())
@@ -47,12 +52,11 @@ public class EdicaoClient implements ClientInterface<Integer, EdicaoRequestDTO> 
                     .put(PATH_EDICAO_ID);
     }
 
-    @Override
     public Response deletar(Integer id) {
         return given()
                     .spec(AuthSpec.setup())
-                    .pathParam("_id", id)
+                    .pathParam("idEdicao", id)
                 .when()
-                    .post(PATH_EDICAO_ID);
+                    .delete(PATH_EDICAO_ID);
     }
 }
