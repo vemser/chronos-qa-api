@@ -40,11 +40,13 @@ pipeline {
                 def branchName = env.BRANCH_NAME
                 def buildNumber = env.BUILD_NUMBER
 
+                def printAllure = bat "cd C:\\Users\\rapha && node capture.js ${env.BUILD_NUMBER}"
+
                 def message = "# Relatorio de Testes/API Chronos\n"
                 message += "**Branch:** RELEASE\n"
                 message += "**Build:** ${buildNumber}\n"
                 message += "**Status:** ${buildResult}\n"
-                message += "**Allure Output:**\n${bat "cd C:\\Users\\rapha && node capture.js ${env.BUILD_NUMBER}"}"
+                message += "**Allure Output:**\n${printAllure}"
 
                 discordSend description: message,
                     webhookURL: "https://discord.com/api/webhooks/1212470165044731904/ySidL1sT1nHztTrTruu1SsT0HOZdnQ4ccS0FFAUvJ4vppmLRw5BwISDrdcCbKHBgxH4v"
