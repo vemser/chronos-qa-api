@@ -49,7 +49,7 @@ pipeline {
                             message += "**Status:** ${buildResult}\n"
 
                             discordSend description: message,
-                                        image: "https://imagizer.imageshack.com/img922/609/cSyy7S.png",
+                                        image: "https://i.imgur.com/q1kkUPz.png",
                                         webhookURL: "https://discord.com/api/webhooks/1212470165044731904/ySidL1sT1nHztTrTruu1SsT0HOZdnQ4ccS0FFAUvJ4vppmLRw5BwISDrdcCbKHBgxH4v"
                         }
         }
