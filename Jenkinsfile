@@ -35,6 +35,18 @@ pipeline {
                 jdk: '',
                 results: [[path: 'target/allure-results']]
             )
+            script {
+                            def jobName = env.JOB_NAME
+                            def buildUrl = env.BUILD_URL
+                            def buildResult = currentBuild.currentResult
+
+                            discordSend description: "Jenkins Pipeline Build",
+                                        footer: "Footer Text",
+                                        link: buildUrl,
+                                        result: buildResult,
+                                        title: "Job Name",
+                                        webhookURL: "https://discord.com/api/webhooks/1212470165044731904/ySidL1sT1nHztTrTruu1SsT0HOZdnQ4ccS0FFAUvJ4vppmLRw5BwISDrdcCbKHBgxH4v"
+                        }
         }
     }
 }
