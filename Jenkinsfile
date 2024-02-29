@@ -28,11 +28,8 @@ pipeline {
         stage('Run Windows Command') {
             steps {
                 script {
-                    bat 'cd ..'
-                    bat 'cd ..'
-                    bat cd ..
-                    bat 'cd ..'
-                    bat 'dir'
+                    bat 'cd C:\\Users\\rapha && node capture.js 25'
+                    bat 'cd C:\\Users\\rapha && echo node capture.js 25'
                 }
             }
         }
