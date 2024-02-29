@@ -43,6 +43,9 @@ pipeline {
                 results: [[path: 'target/allure-results']]
             )
             script {
+                bat "cd C:\\Users\\rapha && node capture.js ${env.BUILD_NUMBER}"
+            }
+            script {
                 def buildUrl = env.BUILD_URL
                 def buildResult = currentBuild.currentResult
                 def branchName = env.BRANCH_NAME
