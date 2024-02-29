@@ -13,11 +13,11 @@ import java.util.Properties;
 public class GetProperties {
 
     public static String LOGIN_URI() {
-        return getProperties().getProperty("uri_usuarios_login");
+        return getProperties().getProperty("uri_usuarios_login_alt");
     }
 
     public static String BASE_URI() {
-        return getProperties().getProperty("uri_server");
+        return getProperties().getProperty("uri_server_alt");
     }
 
     public static LoginRequestDTO getProperties(String user, String pass) {
@@ -75,7 +75,7 @@ public class GetProperties {
     private static Properties getProperties() {
         Properties propsResponse = new Properties();
         try {
-            propsResponse.load(new FileInputStream("C:\\desenvolvimento\\login.properties"));
+            propsResponse.load(new FileInputStream("src/main/resources/config.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
