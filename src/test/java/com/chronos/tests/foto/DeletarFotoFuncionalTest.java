@@ -4,7 +4,7 @@ import client.FotoClient;
 import data.factory.Factory;
 import data.factory.FotoFactory;
 import org.apache.http.HttpStatus;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import utils.image.ImageTypes;
 
 import static org.hamcrest.CoreMatchers.equalTo;

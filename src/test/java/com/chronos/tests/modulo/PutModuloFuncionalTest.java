@@ -6,7 +6,7 @@ import model.ModuloRequestDTO;
 import model.ModuloResponseDTO;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class PutModuloFuncionalTest {
     Integer idModuloCadastrado = 0;

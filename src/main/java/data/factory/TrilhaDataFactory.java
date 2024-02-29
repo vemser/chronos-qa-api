@@ -28,7 +28,8 @@ public class TrilhaDataFactory {
     public static  TrilhaRequestDTO trilhaComCamposObrigatoriosPreenchidos(){
         TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
         trilhaReq.setNome(Factory.FAKER.name().firstName());
-        trilhaReq.setStatus(Factory.FAKER.lorem().sentence());
+        trilhaReq.setDescricao(Factory.FAKER.lorem().sentence());
+        trilhaReq.setStatus("ATIVO");
 
         return trilhaReq;
 

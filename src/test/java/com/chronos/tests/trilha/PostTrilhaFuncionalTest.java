@@ -33,7 +33,7 @@ public class PostTrilhaFuncionalTest {
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaSemCampoObrigatorioPreenchido();
-         trilhaClient.cadastrar(trilhaRequestDTO)
+        trilhaClient.cadastrar(trilhaRequestDTO)
                 .then()
                 .statusCode(400);
 
@@ -46,7 +46,7 @@ public class PostTrilhaFuncionalTest {
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCamposObrigatoriosPreenchidos();
         trilhaClient.cadastrar(trilhaRequestDTO)
                 .then()
-                .statusCode(400);
+                .statusCode(200).extract().as(TrilhaResponseDTO.class);
 
 
     }
@@ -59,7 +59,6 @@ public class PostTrilhaFuncionalTest {
         trilhaClient.cadastrar(trilhaRequestDTO)
                 .then()
                 .statusCode(400);
-
     }
 
     @Test

@@ -5,7 +5,7 @@ import data.factory.ModuloDataFactory;
 import model.ModuloRequestDTO;
 import model.ModuloResponseDTO;
 import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 public class PostModuloFuncionalTest {

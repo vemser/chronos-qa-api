@@ -1,4 +1,4 @@
-package model;
+package model.edicao;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,5 +16,5 @@ public class EdicaoRequestDTO {
     private String descricao;
     private LocalDate dataInicial;
     private LocalDate dataFinal;
-    private Integer status;
+    private String status;
 }
