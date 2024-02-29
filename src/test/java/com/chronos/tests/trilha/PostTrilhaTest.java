@@ -22,7 +22,6 @@ public class PostTrilhaTest {
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComTodosOsCampos();
         TrilhaResponseDTO trilhaResponseDTO = trilhaClient.cadastrar(trilhaRequestDTO)
                 .then()
-                .log().all()
                 .statusCode(200).extract().as(TrilhaResponseDTO.class);
 
         trilhaClient.deletar(trilhaResponseDTO.getIdTrilha()).then().statusCode(204);

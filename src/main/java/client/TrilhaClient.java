@@ -30,7 +30,6 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
                         .spec(InicialSpecs.setup())
                         .header("Authorization", TOKEN)
                         .body(body)
-                        .log().all()
 
                 .when()
                         .post(PATH_TRILHA);
@@ -42,7 +41,7 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
                 given()
                         .spec(InicialSpecs.setup())
                         .header("Authorization", TOKEN)
-                        .when()
+                .when()
                         .get(PATH_TRILHA_MODULO);
     }
 
@@ -89,8 +88,7 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
                         .header("Authorization", TOKEN)
                         .pathParam("_id",integer)
                         .pathParam("_idModulo",idModulo)
-                        .log().all()
-                        .when()
+                .when()
                         .put(PATH_VINCULAR_TRILHA);
     }
     public Response desvincularModulo(Integer integer, Integer idModulo) {
