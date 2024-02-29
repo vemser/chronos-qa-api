@@ -39,9 +39,6 @@ pipeline {
                 def buildResult = currentBuild.currentResult
                 def branchName = env.BRANCH_NAME
                 def buildNumber = env.BUILD_NUMBER
-                def buildTag = env.BUILD_TAG
-                def gitCommit = env.GIT_COMMIT
-                def changeAuthor = bat(script: "git log -1 --pretty=format:\"%%an\" ${gitCommit}", returnStdout: true).trim()
 
                 def printAllure = bat(script: "cd C:\\Users\\rapha && node capture.js ${env.BUILD_NUMBER}", returnStdout: true).trim()
                 def link = "abc"
@@ -55,7 +52,6 @@ pipeline {
                 def message = "# Relatorio de Testes/API Chronos\n"
                 message += "**Branch:** RELEASE\n"
                 message += "**Build:** ${buildNumber}\n"
-                message += "**Autor da Ultima Mudança:** ${changeAuthor}\n"
                 message += "**Status:** ${buildResult}\n"
 
                 discordSend description: message,
