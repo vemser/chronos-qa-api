@@ -15,7 +15,7 @@ public class Factory {
     public static String nomeTamanhoTres() {
         return FAKER.letterify("1a2");
     }
-    public static String evento() { return FAKER.company().name(); }
+    public static String evento() { return FAKER.company().name().substring(0, 10); }
     public static LocalDate dataInicial() { return LocalDate.now(); }
     public static LocalDate dataFinal() { return LocalDate.now().plusMonths(2); }
     public static String descricao() { return FAKER.lorem().sentence(); }
