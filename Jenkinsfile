@@ -45,6 +45,7 @@ pipeline {
                             message += "**Branch:** RELEASE\n"
                             message += "**Build:** ${buildNumber}\n"
                             message += "**Status:** ${buildResult}\n"
+                            message += "**URL:** ${buildUrl}\n"
 
                             discordSend description: message,
                                         image: "https://imagizer.imageshack.com/img922/609/cSyy7S.png",
