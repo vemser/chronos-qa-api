@@ -12,14 +12,14 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    bat 'mvn clean test'
+                    sh 'mvn clean test'
                 }
             }
         }
         stage('Publish Allure Report') {
             steps {
                 script {
-                    bat 'allure generate target/allure-results -o target/allure-report'
+                    sh 'allure generate target/allure-results -o target/allure-report'
 
                     archiveArtifacts 'target/allure-report/**'
                 }
