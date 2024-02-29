@@ -6,6 +6,10 @@ pipeline {
             steps {
                 script {
                     checkout scm
+
+                    bat dir
+                    bat echo dir
+                    bat echo Hello World
                 }
             }
         }
@@ -40,10 +44,6 @@ pipeline {
                             def buildResult = currentBuild.currentResult
                             def branchName = env.BRANCH_NAME
                             def buildNumber = env.BUILD_NUMBER
-
-                            bat dir
-                            bat echo dir
-                            bat echo Hello World
 
                             def message = "# Relatorio de Testes/API Chronos\n"
                             message += "**Branch:** RELEASE\n"
