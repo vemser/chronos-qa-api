@@ -6,10 +6,6 @@ pipeline {
             steps {
                 script {
                     checkout scm
-
-                    bat dir
-                    bat echo dir
-                    bat echo Hello World
                 }
             }
         }
@@ -29,7 +25,13 @@ pipeline {
                 }
             }
         }
-
+        stage('Run Windows Command') {
+            steps {
+                script {
+                    bat 'echo "Running Windows Command"'
+                }
+            }
+        }
     }
 
     post {
@@ -40,20 +42,20 @@ pipeline {
                 results: [[path: 'target/allure-results']]
             )
             script {
-                            def buildUrl = env.BUILD_URL
-                            def buildResult = currentBuild.currentResult
-                            def branchName = env.BRANCH_NAME
-                            def buildNumber = env.BUILD_NUMBER
+                def buildUrl = env.BUILD_URL
+                def buildResult = currentBuild.currentResult
+                def branchName = env.BRANCH_NAME
+                def buildNumber = env.BUILD_NUMBER
 
-                            def message = "# Relatorio de Testes/API Chronos\n"
-                            message += "**Branch:** RELEASE\n"
-                            message += "**Build:** ${buildNumber}\n"
-                            message += "**Status:** ${buildResult}\n"
+                def message = "# Relatorio de Testes/API Chronos\n"
+                message += "**Branch:** RELEASE\n"
+                message += "**Build:** ${buildNumber}\n"
+                message += "**Status:** ${buildResult}\n"
 
-                            discordSend description: message,
-                                        image: "https://i.imgur.com/q1kkUPz.png",
-                                        webhookURL: "https://discord.com/api/webhooks/1212470165044731904/ySidL1sT1nHztTrTruu1SsT0HOZdnQ4ccS0FFAUvJ4vppmLRw5BwISDrdcCbKHBgxH4v"
-                        }
+                discordSend description: message,
+                    image: "https://i.imgur.com/q1kkUPz.png",
+                    webhookURL: "https://discord.com/api/webhooks/1212470165044731904/ySidL1sT1nHztTrTruu1SsT0HOZdnQ4ccS0FFAUvJ4vppmLRw5BwISDrdcCbKHBgxH4v"
+            }
         }
     }
 }
