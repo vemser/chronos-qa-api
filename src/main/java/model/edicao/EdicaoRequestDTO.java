@@ -16,4 +16,5 @@ public class EdicaoRequestDTO {
     private String descricao;
     private LocalDate dataInicial;
     private LocalDate dataFinal;
+    private String status;
 }

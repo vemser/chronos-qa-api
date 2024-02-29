@@ -10,7 +10,8 @@ import static io.restassured.RestAssured.given;
 public class EdicaoClient {
 
     private final static String PATH_EDICAO = "/edicao";
-    private final static String PATH_EDICAO_ID = PATH_EDICAO + "/edicao/{idEdicao}";
+    private final static String PATH_EDICAO_BUSCAR = PATH_EDICAO + "/listar";
+    private final static String PATH_EDICAO_ID = PATH_EDICAO + "/{idEdicao}";
 
     public Response cadastrarEdicao(EdicaoRequestDTO body) {
         return given()
@@ -32,7 +33,7 @@ public class EdicaoClient {
         return given()
                     .spec(AuthSpec.setup())
                 .when()
-                    .post(PATH_EDICAO);
+                    .get(PATH_EDICAO_BUSCAR);
     }
 
     public Response buscarPorID(Integer id) {
