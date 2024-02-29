@@ -53,9 +53,10 @@ pipeline {
                 message += "**Branch:** RELEASE\n"
                 message += "**Build:** ${buildNumber}\n"
                 message += "**Status:** ${buildResult}\n"
-                message += "**Allure Output:**\n${link}"
+                message += "**Allure Report:**\n${link}"
 
                 discordSend description: message,
+                    image: "${link}"
                     webhookURL: "https://discord.com/api/webhooks/1212470165044731904/ySidL1sT1nHztTrTruu1SsT0HOZdnQ4ccS0FFAUvJ4vppmLRw5BwISDrdcCbKHBgxH4v"
             }
         }
