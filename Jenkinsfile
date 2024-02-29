@@ -40,7 +40,12 @@ pipeline {
                 def branchName = env.BRANCH_NAME
                 def buildNumber = env.BUILD_NUMBER
 
-                def printAllure = bat(script: "cd C:\\Users\\rapha && node capture.js ${env.BUILD_NUMBER}", returnStdout: true).trim()
+                bat "cd C:\\Users\\rapha && node capture.js ${buildNumber} > ${tempLogFile}"
+
+
+                def printAllure = readFile(tempLogFile).trim()
+
+
                 def linkStartIndex = printAllure.indexOf('http')
                 def linkEndIndex = printAllure.indexOf(' ', linkStartIndex)
                 def link = (linkStartIndex >= 0 && linkEndIndex > linkStartIndex) ? printAllure.substring(linkStartIndex, linkEndIndex) : null
