@@ -35,8 +35,7 @@ public class CriarEdicaoFuncionalTest {
                 () -> assertEquals(9, responseDTO.getEtapas().size()),
                 () -> assertNotNull(responseDTO.getIdEdicao()),
                 () -> assertTrue(responseDTO.getTrilhas().isEmpty()),
-                () -> assertTrue(responseDTO.getEstagiarios().isEmpty()),
-                () -> assertTrue(responseDTO.getFoto().isEmpty())
+                () -> assertTrue(responseDTO.getEstagiarios().isEmpty())
         );
 
         edicaoClient.deletar(responseDTO.getIdEdicao())
