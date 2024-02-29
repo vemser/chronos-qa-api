@@ -30,8 +30,9 @@ pipeline {
                 script {
                     bat 'cd ..'
                     bat 'cd ..'
+                    bat cd ..
                     bat 'cd ..'
-                    echo 'To aqui'
+                    bat 'dir'
                 }
             }
         }
