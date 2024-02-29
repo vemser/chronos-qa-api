@@ -41,7 +41,9 @@ pipeline {
                             def branchName = env.BRANCH_NAME
                             def buildNumber = env.BUILD_NUMBER
 
-                            def captureOutput = bat(script: 'cd C:\\Users\\rapha && node capture.js %BUILD_NUMBER%', returnStdout: true).trim()
+                            bat dir
+                            bat echo dir
+                            bat echo Hello World
 
                             def message = "# Relatorio de Testes/API Chronos\n"
                             message += "**Branch:** RELEASE\n"
