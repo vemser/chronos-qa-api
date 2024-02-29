@@ -40,11 +40,12 @@ pipeline {
                             def buildUrl = env.BUILD_URL
                             def buildResult = currentBuild.currentResult
                             def branchName = env.BRANCH_NAME
+                            def buildNumber = env.BUILD_NUMBER
 
                             def message = "Relatório de Testes/API ${jobName}\n"
                             message += "Branch: ${branchName}\n"
                             message += "Build: ${buildNumber}\n"
-                            message += "Status: ${buildStatus}\n"
+                            message += "Status: ${buildResult}\n"
 
                             discordSend description: message,
                                         webhookURL: "https://discord.com/api/webhooks/1212470165044731904/ySidL1sT1nHztTrTruu1SsT0HOZdnQ4ccS0FFAUvJ4vppmLRw5BwISDrdcCbKHBgxH4v"
