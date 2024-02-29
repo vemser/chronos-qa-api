@@ -7,12 +7,12 @@ import data.factory.TokenFactory;
 import data.factory.TrilhaDataFactory;
 import model.ModuloRequestDTO;
 import model.ModuloResponseDTO;
-import model.TrilhaRequestDTO;
-import model.TrilhaResponseDTO;
+import model.trilha.TrilhaRequestDTO;
+import model.trilha.TrilhaResponseDTO;
 import org.junit.jupiter.api.Test;
 
 
-public class PutTrilhaTest {
+public class PutTrilhaFuncionalTest {
 
 
     private final TrilhaClient trilhaClient = new TrilhaClient();
@@ -96,7 +96,7 @@ public class PutTrilhaTest {
     }
 
     @Test
-    public void testVincularModulo() {
+    public void testVincularModuloATrilha() {
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
 
@@ -104,17 +104,44 @@ public class PutTrilhaTest {
         ModuloRequestDTO moduloRequestDTO = ModuloDataFactory.moduloComTodosOsCampos();
 
         TrilhaResponseDTO trilhaResponseDTO = trilhaClient.cadastrar(trilhaRequestDTO)
-                .then()
+                .then().log().all()
                 .statusCode(200).extract().as(TrilhaResponseDTO.class);
 
         ModuloResponseDTO moduloResponseDTO = moduloClient.cadastrar(moduloRequestDTO).then().log().all().statusCode(200).extract().as(ModuloResponseDTO.class);
-        trilhaClient.vincularModulo(trilhaResponseDTO.getIdTrilha(), moduloResponseDTO.getIdModulo());
 
-
-        TrilhaResponseDTO trilhaResponseDTOEditado = trilhaClient.vincularModulo(trilhaResponseDTO.getIdTrilha(), moduloResponseDTO.getIdModulo())
+        TrilhaResponseDTO trilhaResponseDTOVinculado = trilhaClient.vincularModulo(trilhaResponseDTO.getIdTrilha(), moduloResponseDTO.getIdModulo())
                 .then().log().all()
                 .statusCode(200).extract().as(TrilhaResponseDTO.class);
 
         trilhaClient.deletar(trilhaResponseDTO.getIdTrilha()).then().statusCode(204);
+    }
+
+    @Test
+    public void testTentarDesvingularModuloTrilha(){
+        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
+
+        TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComTodosOsCampos();
+        ModuloRequestDTO moduloRequestDTO = ModuloDataFactory.moduloComTodosOsCampos();
+
+        TrilhaResponseDTO trilhaResponseDTO = trilhaClient.cadastrar(trilhaRequestDTO)
+                .then().log().all()
+                .statusCode(200).extract().as(TrilhaResponseDTO.class);
+
+        ModuloResponseDTO moduloResponseDTO = moduloClient.cadastrar(moduloRequestDTO).then().statusCode(200).extract().as(ModuloResponseDTO.class);
+
+        TrilhaResponseDTO trilhaResponseDTOVinculado = trilhaClient.vincularModulo(trilhaResponseDTO.getIdTrilha(), moduloResponseDTO.getIdModulo())
+                .then().log().all()
+                .statusCode(200).extract().as(TrilhaResponseDTO.class);
+
+        TrilhaResponseDTO trilhaResponseDTODesvincular = trilhaClient.desvincularModulo(trilhaResponseDTO.getIdTrilha(), moduloResponseDTO.getIdModulo())
+                .then().log().all()
+                .statusCode(200).extract().as(TrilhaResponseDTO.class);
+
+        trilhaClient.deletar(trilhaResponseDTO.getIdTrilha()).then().statusCode(204);
+
+
+
+
+
     }
 }

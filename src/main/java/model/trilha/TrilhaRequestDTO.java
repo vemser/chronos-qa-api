@@ -1,4 +1,4 @@
-package model;
+package model.trilha;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

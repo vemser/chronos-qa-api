@@ -7,6 +7,7 @@ import model.ModuloResponseDTO;
 import org.junit.After;
 import org.junit.Test;
 
+
 public class PostModuloFuncionalTest {
     Integer idModuloCadastrado = 0;
     ModuloClient moduloClient = new ModuloClient();
@@ -25,7 +26,7 @@ public class PostModuloFuncionalTest {
         ModuloRequestDTO moduloACadastrar = ModuloDataFactory.moduloComTodosOsCampos();
         moduloCadastrado =
                 moduloClient.cadastrar(moduloACadastrar)
-                        .then()
+                        .then().log().all()
                         .statusCode(200)
                         .extract().as(ModuloResponseDTO.class);
 

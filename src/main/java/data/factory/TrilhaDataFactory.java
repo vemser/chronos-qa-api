@@ -1,12 +1,7 @@
 package data.factory;
 
-import model.TrilhaRequestDTO;
-import net.datafaker.Faker;
+import model.trilha.TrilhaRequestDTO;
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.Locale;
-
-import static org.hamcrest.Matchers.hasLength;
 
 public class TrilhaDataFactory {
 
@@ -66,7 +61,9 @@ public class TrilhaDataFactory {
 
         return trilhaReq;
     }
-
+   public static Integer idInvalido(){
+        return Integer.getInteger(Factory.FAKER.number().digits(10));
+   }
 }
 
 

@@ -3,14 +3,14 @@ package com.chronos.tests.trilha;
 import client.TrilhaClient;
 import data.factory.TokenFactory;
 import data.factory.TrilhaDataFactory;
-import model.TrilhaRequestDTO;
-import model.TrilhaResponseDTO;
+import model.trilha.TrilhaRequestDTO;
+import model.trilha.TrilhaResponseDTO;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class PostTrilhaTest {
+public class PostTrilhaFuncionalTest {
     private final TrilhaClient trilhaClient = new TrilhaClient();
 
 //BUG CAMPO DESCRICAO//
@@ -33,9 +33,9 @@ public class PostTrilhaTest {
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaSemCampoObrigatorioPreenchido();
-        TrilhaResponseDTO trilhaResponseDTO = trilhaClient.cadastrar(trilhaRequestDTO)
+         trilhaClient.cadastrar(trilhaRequestDTO)
                 .then()
-                .statusCode(400).extract().as(TrilhaResponseDTO.class);
+                .statusCode(400);
 
     }
 
@@ -44,9 +44,9 @@ public class PostTrilhaTest {
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCamposObrigatoriosPreenchidos();
-        TrilhaResponseDTO trilhaResponseDTO = trilhaClient.cadastrar(trilhaRequestDTO)
+        trilhaClient.cadastrar(trilhaRequestDTO)
                 .then()
-                .statusCode(400).extract().as(TrilhaResponseDTO.class);
+                .statusCode(400);
 
 
     }
@@ -58,8 +58,8 @@ public class PostTrilhaTest {
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCampoNomeCom51Caracteres();
         trilhaClient.cadastrar(trilhaRequestDTO)
                 .then()
-                .statusCode(400)
-                .extract().as(TrilhaResponseDTO.class);
+                .statusCode(400);
+
     }
 
     @Test
@@ -67,9 +67,9 @@ public class PostTrilhaTest {
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCampoNomeCom1Caracter();
-        TrilhaResponseDTO trilhaResponseDTO = trilhaClient.cadastrar(trilhaRequestDTO)
+        trilhaClient.cadastrar(trilhaRequestDTO)
                 .then()
-                .statusCode(400).extract().as(TrilhaResponseDTO.class);
+                .statusCode(400);
 
     }
 
@@ -89,7 +89,7 @@ public class PostTrilhaTest {
 
         trilhaClient.cadastrar(trilhaRequestDTONomeRepetido)
                 .then()
-                .statusCode(400);
+                .statusCode(409);
 
 
         trilhaClient.deletar(trilhaResponseDTO.getIdTrilha()).then().statusCode(204);
