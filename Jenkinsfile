@@ -43,13 +43,12 @@ pipeline {
                 results: [[path: 'target/allure-results']]
             )
             script {
-                bat "cd C:\\Users\\rapha && node capture.js ${env.BUILD_NUMBER}"
-            }
-            script {
                 def buildUrl = env.BUILD_URL
                 def buildResult = currentBuild.currentResult
                 def branchName = env.BRANCH_NAME
                 def buildNumber = env.BUILD_NUMBER
+
+                def printAllure = bat "cd C:\\Users\\rapha && node capture.js ${env.BUILD_NUMBER}"
 
                 def message = "# Relatorio de Testes/API Chronos\n"
                 message += "**Branch:** RELEASE\n"
@@ -57,7 +56,7 @@ pipeline {
                 message += "**Status:** ${buildResult}\n"
 
                 discordSend description: message,
-                    image: "https://i.imgur.com/q1kkUPz.png",
+                    image: "${printAllure}",
                     webhookURL: "https://discord.com/api/webhooks/1212470165044731904/ySidL1sT1nHztTrTruu1SsT0HOZdnQ4ccS0FFAUvJ4vppmLRw5BwISDrdcCbKHBgxH4v"
             }
         }
