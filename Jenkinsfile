@@ -46,10 +46,8 @@ pipeline {
                             message += "**Build:** ${buildNumber}\n"
                             message += "**Status:** ${buildResult}\n"
 
-                            def imagePath = 'C:/Users/rapha/screenshot.png'
-
                             discordSend description: message,
-                                        image: [file: imagePath],
+                                        image: "https://imagizer.imageshack.com/img922/609/cSyy7S.png",
                                         webhookURL: "https://discord.com/api/webhooks/1212470165044731904/ySidL1sT1nHztTrTruu1SsT0HOZdnQ4ccS0FFAUvJ4vppmLRw5BwISDrdcCbKHBgxH4v"
                         }
         }
