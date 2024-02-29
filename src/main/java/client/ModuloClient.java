@@ -1,7 +1,6 @@
 package client;
 
 import io.restassured.response.Response;
-import model.GetRequestDTO;
 import model.ModuloRequestDTO;
 import specs.AuthSpec;
 import specs.InicialSpecs;
@@ -35,21 +34,19 @@ public class ModuloClient {
     }
 
 
-    public Response buscarTudo(GetRequestDTO body) {
+    public Response buscarTudo() {
         return
                 given()
                         .spec(AuthSpec.setup())
-                        .body(body)
                         .when()
                         .get(PATH_MODULO);
 
     }
 
-    public Response buscarTudoSemAuth(GetRequestDTO body) {
+    public Response buscarTudoSemAuth() {
         return
                 given()
                         .spec(InicialSpecs.setup())
-                        .body(body)
                         .when()
                         .get(PATH_MODULO);
 

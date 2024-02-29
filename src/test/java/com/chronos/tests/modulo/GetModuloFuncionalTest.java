@@ -1,7 +1,6 @@
 package com.chronos.tests.modulo;
 
 import client.ModuloClient;
-import data.factory.GetDataFactory;
 import data.factory.ModuloDataFactory;
 import io.restassured.response.Response;
 import model.GetRequestDTO;
@@ -37,9 +36,8 @@ public class GetModuloFuncionalTest {
     }
     @Test
     public void testBuscarTodosOsModulosComSucesso() {
-        GetRequestDTO getPadraoRequest = GetDataFactory.getPadrao();
         Response response =
-                moduloClient.buscarTudo(getPadraoRequest)
+                moduloClient.buscarTudo()
                         .then()
                         .statusCode(201)
                         .extract().response();
@@ -51,8 +49,7 @@ public class GetModuloFuncionalTest {
 
     @Test
     public void testBuscarTodosOsModulosSemAutorizacao() {
-        GetRequestDTO getPadraoRequest = GetDataFactory.getPadrao();
-                moduloClient.buscarTudoSemAuth(getPadraoRequest)
+                moduloClient.buscarTudoSemAuth()
                         .then()
                         .statusCode(403);
     }
