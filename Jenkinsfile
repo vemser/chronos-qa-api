@@ -45,9 +45,6 @@ pipeline {
                 try {
                     def matcher = (printAllure =~ /https?:\/\/[^\s]+/)
                     link = matcher.find() ? matcher.group() : "Link não encontrado"
-                } catch (Exception e) {
-                    echo "Erro ao extrair o link da saída do comando: ${e.message}"
-                }
 
                 def message = "# Relatorio de Testes/API Chronos\n"
                 message += "**Branch:** RELEASE\n"
@@ -56,8 +53,11 @@ pipeline {
                 message += "**Allure Report:**\n${link}"
 
                 discordSend description: message,
-                    image: "https://imagizer.imageshack.com/img922/609/cSyy7S.png"
+                    image: "${link}"
                     webhookURL: "https://discord.com/api/webhooks/1212470165044731904/ySidL1sT1nHztTrTruu1SsT0HOZdnQ4ccS0FFAUvJ4vppmLRw5BwISDrdcCbKHBgxH4v"
+                } catch (Exception e) {
+                echo "Erro ao extrair o link da saída do comando: ${e.message}"
+                }
             }
         }
     }
