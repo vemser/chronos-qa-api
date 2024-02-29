@@ -28,8 +28,8 @@ pipeline {
         stage('Run Windows Command') {
             steps {
                 script {
-                    bat 'cd C:\\Users\\rapha && node capture.js ${env.BUILD_NUMBER}'
-                    bat 'cd C:\\Users\\rapha && echo node capture.js ${env.BUILD_NUMBER}'
+                    bat "cd C:\\Users\\rapha && node capture.js ${env.BUILD_NUMBER}"
+                    bat "cd C:\\Users\\rapha && echo node capture.js ${env.BUILD_NUMBER}"
                 }
             }
         }
