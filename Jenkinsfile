@@ -28,7 +28,10 @@ pipeline {
         stage('Run Windows Command') {
             steps {
                 script {
-                    bat 'echo "Running Windows Command"'
+                    bat 'cd ..'
+                    bat 'cd ..'
+                    bat 'cd ..'
+                    echo 'To aqui'
                 }
             }
         }
