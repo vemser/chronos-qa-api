@@ -1,13 +1,8 @@
 package client;
 
-import data.factory.Factory;
-import data.factory.TokenFactory;
 import io.restassured.response.Response;
-import lombok.Data;
-import lombok.Getter;
 import lombok.Setter;
-import model.TrilhaRequestDTO;
-import specs.AuthSpec;
+import model.trilha.TrilhaRequestDTO;
 import specs.InicialSpecs;
 
 
@@ -15,6 +10,7 @@ import static io.restassured.RestAssured.given;
 
 @Setter
 public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
+
     private static final String PATH_TRILHA = "/trilha";
     private static final String PATH_DELETE_TRILHA = "/trilha/{_id}/delete";
     private static final String PATH_TRILHA_ID = "/trilha/{_id}";
@@ -77,6 +73,7 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
                 given()
                         .spec(InicialSpecs.setup())
                         .header("Authorization", TOKEN)
+                        .log().all()
                         .pathParam("_id",integer)
                 .when()
                         .delete(PATH_DELETE_TRILHA);
