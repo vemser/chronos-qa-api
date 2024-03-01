@@ -4,6 +4,7 @@ import io.restassured.response.Response;
 import lombok.Setter;
 import model.AreaEnvolvidaRequestDTO;
 import model.trilha.TrilhaRequestDTO;
+import specs.AuthSpec;
 import specs.InicialSpecs;
 
 
@@ -24,8 +25,7 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
     public Response cadastrar(TrilhaRequestDTO body) {
         return
                 given()
-                        .spec(InicialSpecs.setup())
-                        .header("Authorization", TOKEN)
+                        .spec(AuthSpec.setup())
                         .body(body)
 
                 .when()
@@ -36,9 +36,8 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
     public Response buscarTudo() {
         return
                 given()
-                        .spec(InicialSpecs.setup())
-                        .header("Authorization", TOKEN)
-                        .when()
+                        .spec(AuthSpec.setup())
+                .when()
                         .get(PATH_TRILHA_MODULO);
     }
 
@@ -46,8 +45,7 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
     public Response buscarPorID(Integer integer) {
         return
                 given()
-                        .spec(InicialSpecs.setup())
-                        .header("Authorization", TOKEN)
+                        .spec(AuthSpec.setup())
                         .pathParam("_id", integer)
                 .when()
                         .get(PATH_TRILHA_ID);
@@ -58,8 +56,7 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
     public Response atualizar(Integer integer, TrilhaRequestDTO body) {
         return
                 given()
-                        .spec(InicialSpecs.setup())
-                        .header("Authorization", TOKEN)
+                        .spec(AuthSpec.setup())
                         .pathParam("_id", integer)
                         .body(body)
 
@@ -71,8 +68,7 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
     public Response deletar(Integer integer) {
         return
                 given()
-                        .spec(InicialSpecs.setup())
-                        .header("Authorization", TOKEN)
+                        .spec(AuthSpec.setup())
                         .log().all()
                         .pathParam("_id",integer)
                 .when()
@@ -82,22 +78,19 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
     public Response vincularModulo(Integer integer, Integer idModulo) {
         return
                 given()
-                        .spec(InicialSpecs.setup())
-                        .header("Authorization", TOKEN)
+                        .spec(AuthSpec.setup())
                         .pathParam("_id",integer)
                         .pathParam("_idModulo",idModulo)
-                        .log().all()
-                        .when()
+                .when()
                         .put(PATH_VINCULAR_TRILHA);
     }
     public Response desvincularModulo(Integer integer, Integer idModulo) {
         return
                 given()
-                        .spec(InicialSpecs.setup())
-                        .header("Authorization", TOKEN)
+                        .spec(AuthSpec.setup())
                         .pathParam("_id",integer)
                         .pathParam("_idModulo",idModulo)
-                        .when()
+                    .when()
                         .put(PATH_VINCULAR_TRILHA);
     }
 }
