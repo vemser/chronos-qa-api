@@ -31,9 +31,9 @@ public class DeleteModuloFuncionalTest {
     }
     @Test
     public void testDeletarModuloEspecificoPorIdComSucesso() {
-                moduloClient.desabilitar(idModuloCadastrado)
-                        .then()
-                        .statusCode(204);
+        moduloClient.desabilitar(idModuloCadastrado)
+                .then()
+                .statusCode(204);
     }
 
     @Test
