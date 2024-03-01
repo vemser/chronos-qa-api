@@ -4,7 +4,7 @@ import client.ModuloClient;
 import data.factory.ModuloDataFactory;
 import model.ModuloRequestDTO;
 import model.ModuloResponseDTO;
-import org.junit.After;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 
@@ -13,7 +13,7 @@ public class PostModuloFuncionalTest {
     ModuloClient moduloClient = new ModuloClient();
     ModuloResponseDTO moduloCadastrado;
 
-    @After
+    @AfterEach
     public void cleanUp() {
         if (idModuloCadastrado != 0) {
             moduloClient.deletar(idModuloCadastrado)
@@ -26,8 +26,8 @@ public class PostModuloFuncionalTest {
         ModuloRequestDTO moduloACadastrar = ModuloDataFactory.moduloComTodosOsCampos();
         moduloCadastrado =
                 moduloClient.cadastrar(moduloACadastrar)
-                        .then().log().all()
-                        .statusCode(200)
+                        .then()
+                        .statusCode(201)
                         .extract().as(ModuloResponseDTO.class);
 
         idModuloCadastrado = moduloCadastrado.getIdModulo();
@@ -38,7 +38,7 @@ public class PostModuloFuncionalTest {
         ModuloRequestDTO moduloACadastrar = ModuloDataFactory.moduloSemCamposNaoObrigatoriosPreenchidos();
                 moduloClient.cadastrar(moduloACadastrar)
                         .then()
-                        .statusCode(400);
+                        .statusCode(201);
     }
 
     @Test

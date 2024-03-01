@@ -5,8 +5,8 @@ import data.factory.ModuloDataFactory;
 import io.restassured.response.Response;
 import model.ModuloRequestDTO;
 import model.ModuloResponseDTO;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -16,18 +16,18 @@ public class GetModuloFuncionalTest {
     Integer idModuloCadastrado = 0;
     ModuloClient moduloClient = new ModuloClient();
     ModuloResponseDTO moduloCadastrado;
-    @Before
+    @BeforeEach
     public void setUp() {
         ModuloRequestDTO moduloACadastrar = ModuloDataFactory.moduloComTodosOsCampos();
         moduloCadastrado =
                 moduloClient.cadastrar(moduloACadastrar)
                         .then()
-                        .statusCode(200)
+                        .statusCode(201)
                         .extract().as(ModuloResponseDTO.class);
 
         idModuloCadastrado = moduloCadastrado.getIdModulo();
     }
-    @After
+    @AfterEach
     public void cleanUp() {
         moduloClient.deletar(idModuloCadastrado)
                 .then()
@@ -38,7 +38,7 @@ public class GetModuloFuncionalTest {
         Response response =
                 moduloClient.buscarTudo()
                         .then()
-                        .statusCode(201)
+                        .statusCode(200)
                         .extract().response();
         List<ModuloResponseDTO> modulos = response.jsonPath().getList("content", ModuloResponseDTO.class);
 
