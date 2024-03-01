@@ -14,8 +14,7 @@ public class EtapaClient {
     private static final String PATH_ETAPA_ATUALIZAR = "/etapa" + "/{idEtapa}";
     private static final String PATH_ETAPA = "/etapa";
     private static final String PATH_ETAPA_POR_EDICAO = "/etapa" + "/{idEdicao}";
-    private static final String PATH_DELETE_ETAPA = "/etapa" + "/{idEtapa}" + "/delete";
-    private static final String PATH_DISABLE_ETAPA = "/etapa" + "/{idEtapa}" + "/disable";
+    private static final String PATH_DELETE_ETAPA = "/etapa" + "/{idEtapa}";
     private static final String PATH_ETAPA_ID = "/etapa" + "/{idEtapa}" + "/etapa";
 
 
@@ -49,19 +48,21 @@ public class EtapaClient {
 
     }
 
-    public Response buscarTudoPorEdicao() {
+    public Response buscarTudoPorEdicao(Integer integer) {
         return
                 given()
                         .spec(AuthSpec.setup())
+                        .pathParam("idEdicao", integer)
                         .when()
                         .get(PATH_ETAPA_POR_EDICAO);
 
     }
 
-    public Response buscarTudoPorEdicaoSemAuth() {
+    public Response buscarTudoPorEdicaoSemAuth(Integer integer) {
         return
                 given()
                         .spec(InicialSpecs.setup())
+                        .pathParam("idEdicao", integer)
                         .when()
                         .get(PATH_ETAPA_POR_EDICAO);
 
