@@ -23,7 +23,6 @@ public class EtapaClient {
                 given()
                         .spec(AuthSpec.setup())
                         .pathParam("idEdicao", integer)
-                        .log().all()
                         .body(body)
                         .when()
                         .post(PATH_ETAPA_CRIAR);

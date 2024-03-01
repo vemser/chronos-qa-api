@@ -16,7 +16,6 @@ public class EdicaoClient {
     public Response cadastrarEdicao(EdicaoRequestDTO body) {
         return given()
                 .spec(AuthSpec.setup())
-                .log().all()
                     .body(body)
                 .when()
                     .post(PATH_EDICAO);
