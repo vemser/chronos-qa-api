@@ -1,8 +1,7 @@
 package data.provider;
 
 import data.factory.EdicaoFactory;
-import data.factory.Factory;
-import org.apache.commons.lang3.StringUtils;
+import data.factory.TrilhaDataFactory;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.params.provider.Arguments;
 

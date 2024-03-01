@@ -17,7 +17,6 @@ public class PostTrilhaFuncionalTest {
 
     @Test
     public void testCriarUmaTrilhaComSucesso() {
-        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComTodosOsCampos();
         TrilhaResponseDTO trilhaResponseDTO = trilhaClient.cadastrar(trilhaRequestDTO)
@@ -30,7 +29,6 @@ public class PostTrilhaFuncionalTest {
 
     @Test
     public void testCriarUmaTrilhaSemPreencherOsCamposObrigatorios(){
-        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaSemCampoObrigatorioPreenchido();
         trilhaClient.cadastrar(trilhaRequestDTO)
@@ -53,7 +51,6 @@ public class PostTrilhaFuncionalTest {
 
     @Test
     public void testCriarUmaTrilhaPreenchendoOCampoNomeCom51Caracteres(){
-        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCampoNomeCom51Caracteres();
         trilhaClient.cadastrar(trilhaRequestDTO)
@@ -63,7 +60,6 @@ public class PostTrilhaFuncionalTest {
 
     @Test
     public void testCriarUmaTrilhaPreenchendoOCampoNomeCom1Caracter(){
-        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCampoNomeCom1Caracter();
         trilhaClient.cadastrar(trilhaRequestDTO)
@@ -75,8 +71,6 @@ public class PostTrilhaFuncionalTest {
 
     @Test
     public void testTentarCriarTrilhaComNomeRepetido(){
-
-        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComTodosOsCampos();
         TrilhaRequestDTO trilhaRequestDTONomeRepetido = TrilhaDataFactory.trilhaComTodosOsCampos();
@@ -99,10 +93,9 @@ public class PostTrilhaFuncionalTest {
 
     @Test
     public void testCriarUmaTrilhaPreenchendoOCampoDescricaoCom255Caracteres(){
-        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
        TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCampoDescricaoCom255();
-        TrilhaResponseDTO trilhaResponseDTO= trilhaClient.cadastrar(trilhaRequestDTO)
+       TrilhaResponseDTO trilhaResponseDTO= trilhaClient.cadastrar(trilhaRequestDTO)
                 .then()
                 .statusCode(200).extract().as(TrilhaResponseDTO.class);
 
@@ -121,7 +114,6 @@ public class PostTrilhaFuncionalTest {
 
     @Test
     public void testCriarUmaTrilhaPreenchendoOCampoDescricaovazio(){
-        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCampoDescricaoVazio();
         TrilhaResponseDTO trilhaResponseDTO= trilhaClient.cadastrar(trilhaRequestDTO)
@@ -141,7 +133,6 @@ public class PostTrilhaFuncionalTest {
 
     @Test
     public void testCriarUmaTrilhaPreenchendoOCampoNomeCom256Caracteres(){
-        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCampoDescricaoCom256Caracteres();
         trilhaClient.cadastrar(trilhaRequestDTO)

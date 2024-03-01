@@ -3,6 +3,8 @@ package data.factory;
 import model.edicao.EdicaoRequestDTO;
 import org.apache.commons.lang3.StringUtils;
 
+import java.time.LocalDate;
+
 public class EdicaoFactory {
 
     public static EdicaoRequestDTO edicaoValida() {
@@ -83,6 +85,15 @@ public class EdicaoFactory {
                 .build();
     }
 
+    public static EdicaoRequestDTO edicaoAlterada() {
+        return EdicaoRequestDTO.builder()
+                .nome("Rinha de Frangos")
+                .dataInicial(LocalDate.of(2024, 12, 23))
+                .dataFinal(LocalDate.of(2025, 9, 1))
+                .descricao("A maior rinha de frangos que o planeta já viu")
+                .status("INATIVO")
+                .build();
+    }
 
     public static EdicaoRequestDTO edicaoComNomeJaExistente() {
         return EdicaoRequestDTO.builder()
