@@ -37,7 +37,7 @@ public class TokenFactory {
     }
 
     public static String getTokenAdmin() {
-        return getToken(GetProperties.LOGIN_DATA_ADMIN());
+        return getToken(GetProperties.LOGIN_DATA());
     }
 
     public static String getTokenGestor() {
