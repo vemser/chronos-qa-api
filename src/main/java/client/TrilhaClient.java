@@ -30,7 +30,6 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
                         .spec(InicialSpecs.setup())
                         .header("Authorization", TOKEN)
                         .body(body)
-                        .log().all()
 
                 .when()
                         .post(PATH_TRILHA);
