@@ -63,7 +63,7 @@ public class PutDiaNaoUtilFuncionalTest {
 
         diaNaoUtilClient.cadastrar(diaNaoUtilRequestDTOEditado)
                 .then()
-                .statusCode(400);
+                .statusCode(409);
 
     }
 

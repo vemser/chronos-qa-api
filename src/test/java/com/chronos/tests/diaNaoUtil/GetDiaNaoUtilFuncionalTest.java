@@ -4,6 +4,7 @@ import client.DiaNaoUtilClient;
 import data.factory.TokenFactory;
 import io.restassured.response.Response;
 import model.ModuloResponseDTO;
+import model.diaNaoUtil.DiaNaoUtilResposeDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,7 @@ DiaNaoUtilClient diaNaoUtilClient = new DiaNaoUtilClient();
                         .then()
                         .statusCode(200).log().all() .extract().response();
 
-        List<ModuloResponseDTO> diaNaoUtil = response.jsonPath().getList("content", ModuloResponseDTO.class);
+        List<DiaNaoUtilResposeDTO> diaNaoUtil = response.jsonPath().getList("content", DiaNaoUtilResposeDTO.class);
 
         Assertions.assertNotNull(diaNaoUtil);
         Assertions.assertFalse(diaNaoUtil.isEmpty());

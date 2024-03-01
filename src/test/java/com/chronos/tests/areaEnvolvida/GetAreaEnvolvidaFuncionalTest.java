@@ -22,10 +22,10 @@ public class GetAreaEnvolvidaFuncionalTest {
                         .then()
                         .statusCode(200) .extract().response();
 
-        List<AreaEnvolvidaResponseDTO> areaEnvolvidaResponseDTOS = response.jsonPath().getList("content", AreaEnvolvidaResponseDTO.class);
+        List<AreaEnvolvidaResponseDTO> area= response.jsonPath().getList("content", AreaEnvolvidaResponseDTO.class);
 
-        Assertions.assertNotNull(areaEnvolvidaResponseDTOS);
-        Assertions.assertFalse(areaEnvolvidaResponseDTOS.isEmpty());
+        Assertions.assertNotNull(area);
+        Assertions.assertFalse(area.isEmpty());
 
     }
 }

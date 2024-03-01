@@ -42,11 +42,11 @@ public class PostTrilhaFuncionalTest {
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCamposObrigatoriosPreenchidos();
-        trilhaClient.cadastrar(trilhaRequestDTO)
+        TrilhaResponseDTO trilhaResponseDTO = trilhaClient.cadastrar(trilhaRequestDTO)
                 .then()
                 .statusCode(200).extract().as(TrilhaResponseDTO.class);
 
-
+        trilhaClient.deletar(trilhaResponseDTO.getIdTrilha()).then().statusCode(204);
     }
 
     @Test

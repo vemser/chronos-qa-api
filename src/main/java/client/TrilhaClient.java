@@ -18,6 +18,8 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
     private static final String PATH_TRILHA_ID = "/trilha/{_id}";
     private static final String PATH_TRILHA_MODULO = "/trilha/listar-com-modulo";
     private static final String PATH_VINCULAR_TRILHA ="/trilha/vincular-modulo/{_id}/{_idModulo}";
+    private static final String PATH_DESVINCULAR_TRILHA ="/trilha/desvincular-trilha/{_id}/{_idModulo}";
+
     private String TOKEN = null;
 
 
@@ -90,7 +92,8 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
                         .spec(AuthSpec.setup())
                         .pathParam("_id",integer)
                         .pathParam("_idModulo",idModulo)
-                    .when()
-                        .put(PATH_VINCULAR_TRILHA);
+                        .when()
+                        .put(PATH_DESVINCULAR_TRILHA);
+                    
     }
 }

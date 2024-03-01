@@ -28,7 +28,7 @@ public class PutAreaEnvolvidaFuncionalTest {
 
         areaEnvolvidaClient.atualizar(areaEnvolvidaResponseDTO.getIdAreaEnvolvida(), areaEnvolvidaRequestDTOEditavel)
                 .then()
-                .statusCode(200);
+                .statusCode(202);
 
         areaEnvolvidaClient.deletar(areaEnvolvidaResponseDTO.getIdAreaEnvolvida()).then().statusCode(204);
 
