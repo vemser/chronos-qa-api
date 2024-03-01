@@ -26,21 +26,16 @@ public class PostCurriculoMoldeFuncionalTest {
 
     @BeforeEach
     public void setUp() {
-        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
-        TrilhaRequestDTO trilhaACadastrar = TrilhaDataFactory.trilhaComTodosOsCampos();
-        trilhaCadastrada =
-                trilhaClient.cadastrar(trilhaACadastrar)
-                        .then()
-                        .statusCode(200)
-                        .extract().as(TrilhaResponseDTO.class);
-
-        idTrilhaCadastrada = trilhaCadastrada.getIdTrilha();
-    }
-    @AfterEach
-    public void cleanUp() {
-        trilhaClient.deletar(idTrilhaCadastrada)
-                .then()
-                .statusCode(204);
+//        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
+//        TrilhaRequestDTO trilhaACadastrar = TrilhaDataFactory.trilhaComTodosOsCampos();
+//        trilhaCadastrada =
+//                trilhaClient.cadastrar(trilhaACadastrar)
+//                        .then()
+//                        .statusCode(200)
+//                        .extract().as(TrilhaResponseDTO.class);
+//
+//        idTrilhaCadastrada = trilhaCadastrada.getIdTrilha();
+        idTrilhaCadastrada = 93;
     }
 
     @Test

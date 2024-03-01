@@ -26,15 +26,16 @@ public class PutCurriculoMoldeFuncionalTest {
 
     @BeforeEach
     public void setUp() {
-        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
-        TrilhaRequestDTO trilhaACadastrar = TrilhaDataFactory.trilhaComTodosOsCampos();
-        trilhaCadastrada =
-                trilhaClient.cadastrar(trilhaACadastrar)
-                        .then()
-                        .statusCode(200)
-                        .extract().as(TrilhaResponseDTO.class);
-
-        idTrilhaCadastrada = trilhaCadastrada.getIdTrilha();
+//        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
+//        TrilhaRequestDTO trilhaACadastrar = TrilhaDataFactory.trilhaComTodosOsCampos();
+//        trilhaCadastrada =
+//                trilhaClient.cadastrar(trilhaACadastrar)
+//                        .then()
+//                        .statusCode(200)
+//                        .extract().as(TrilhaResponseDTO.class);
+//
+//        idTrilhaCadastrada = trilhaCadastrada.getIdTrilha();
+        idTrilhaCadastrada = 93;
 
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCampos();
         curriculoMoldeCadastrado =
@@ -53,13 +54,6 @@ public class PutCurriculoMoldeFuncionalTest {
 
         idCurriculoMoldeDOCXCadastrado = curriculoMoldeDOCXCadastrado.getIdCurriculoMolde();
     }
-    @AfterEach
-    public void cleanUp() {
-        trilhaClient.deletar(idTrilhaCadastrada)
-                .then()
-                .statusCode(204);
-    }
-
     @Test
     public void testAtualizarCurriculoMoldeComTodosOsCamposValidosComSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCampos();

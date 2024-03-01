@@ -1,7 +1,6 @@
 /.idea
-/src/main/java/utils/props/GetProperties.java
 /target
 
 /src/main/resources/config.properties
-/src/main/resources/login.properties
+/src/main/resources/config.properties
 /allure-results

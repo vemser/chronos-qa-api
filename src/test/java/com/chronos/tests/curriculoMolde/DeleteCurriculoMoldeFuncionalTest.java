@@ -26,15 +26,17 @@ public class DeleteCurriculoMoldeFuncionalTest {
 
     @BeforeEach
     public void setUp() {
-        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
-        TrilhaRequestDTO trilhaACadastrar = TrilhaDataFactory.trilhaComTodosOsCampos();
-        trilhaCadastrada =
-                trilhaClient.cadastrar(trilhaACadastrar)
-                        .then()
-                        .statusCode(200)
-                        .extract().as(TrilhaResponseDTO.class);
+//        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
+//        TrilhaRequestDTO trilhaACadastrar = TrilhaDataFactory.trilhaComTodosOsCampos();
+//        trilhaCadastrada =
+//                trilhaClient.cadastrar(trilhaACadastrar)
+//                        .then()
+//                        .statusCode(200)
+//                        .extract().as(TrilhaResponseDTO.class);
+//
+//        idTrilhaCadastrada = trilhaCadastrada.getIdTrilha();
 
-        idTrilhaCadastrada = trilhaCadastrada.getIdTrilha();
+        idTrilhaCadastrada = 93;
 
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCampos();
         curriculoMoldeCadastrado =
@@ -52,12 +54,6 @@ public class DeleteCurriculoMoldeFuncionalTest {
                         .extract().as(CurriculoMoldeDOCXResponseDTO.class);
 
         idCurriculoMoldeDOCXCadastrado = curriculoMoldeDOCXCadastrado.getIdCurriculoMolde();
-    }
-    @AfterEach
-    public void cleanUp() {
-        trilhaClient.deletar(idTrilhaCadastrada)
-                .then()
-                .statusCode(204);
     }
 
     @Test
