@@ -1,14 +1,10 @@
 package com.chronos.tests.areaEnvolvida;
 
 import client.AreaEnvolvidaClient;
-import client.TrilhaClient;
 import data.factory.AreaEnvovidaDataFactory;
 import data.factory.TokenFactory;
-import data.factory.TrilhaDataFactory;
 import model.AreaEnvolvidaRequestDTO;
 import model.AreaEnvolvidaResponseDTO;
-import model.trilha.TrilhaRequestDTO;
-import model.trilha.TrilhaResponseDTO;
 import org.junit.jupiter.api.Test;
 
 public class DeleteAreaEnvolvidaFuncionalTes {

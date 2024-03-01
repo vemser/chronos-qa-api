@@ -147,7 +147,7 @@ public class PutTrilhaFuncionalTest {
                 .then().log().all()
                 .statusCode(200).extract().as(TrilhaResponseDTO.class);
 
-        ModuloResponseDTO moduloResponseDTO = moduloClient.cadastrar(moduloRequestDTO).then().statusCode(200).extract().as(ModuloResponseDTO.class);
+        ModuloResponseDTO moduloResponseDTO = moduloClient.cadastrar(moduloRequestDTO).then().statusCode(201).extract().as(ModuloResponseDTO.class);
 
         TrilhaResponseDTO trilhaResponseDTOVinculado = trilhaClient.vincularModulo(trilhaResponseDTO.getIdTrilha(), moduloResponseDTO.getIdModulo())
                 .then().log().all()
@@ -167,7 +167,7 @@ public class PutTrilhaFuncionalTest {
                 .then().log().all()
                 .statusCode(200).extract().as(TrilhaResponseDTO.class);
 
-        ModuloResponseDTO moduloResponseDTO = moduloClient.cadastrar(moduloRequestDTO).then().statusCode(200).extract().as(ModuloResponseDTO.class);
+        ModuloResponseDTO moduloResponseDTO = moduloClient.cadastrar(moduloRequestDTO).then().log().all().statusCode(201).extract().as(ModuloResponseDTO.class);
 
         TrilhaResponseDTO trilhaResponseDTOVinculado = trilhaClient.vincularModulo(trilhaResponseDTO.getIdTrilha(), moduloResponseDTO.getIdModulo())
                 .then().log().all()

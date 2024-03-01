@@ -8,7 +8,7 @@ public class TrilhaDataFactory {
 
     public static TrilhaRequestDTO trilhaComTodosOsCampos(){
         TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
-        trilhaReq.setNome(Factory.FAKER.name().firstName());
+        trilhaReq.setNome(Factory.FAKER.animal().name() + Factory.FAKER.name().fullName());
         trilhaReq.setDescricao(Factory.FAKER.lorem().sentence());
         trilhaReq.setStatus("INATIVO");
 
