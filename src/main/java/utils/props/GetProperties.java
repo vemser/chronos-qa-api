@@ -75,7 +75,7 @@ public class GetProperties {
     private static Properties getProperties() {
         Properties propsResponse = new Properties();
         try {
-            propsResponse.load(new FileInputStream("src/main/resources/config.properties"));
+            propsResponse.load(new FileInputStream("C://Users//rapha/login.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }

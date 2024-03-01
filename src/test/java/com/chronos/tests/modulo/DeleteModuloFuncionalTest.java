@@ -4,26 +4,26 @@ import client.ModuloClient;
 import data.factory.ModuloDataFactory;
 import model.ModuloRequestDTO;
 import model.ModuloResponseDTO;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class DeleteModuloFuncionalTest {
     Integer idModuloCadastrado = 0;
     ModuloClient moduloClient = new ModuloClient();
     ModuloResponseDTO moduloCadastrado;
-    @Before
+    @BeforeEach
     public void setUp() {
         ModuloRequestDTO moduloACadastrar = ModuloDataFactory.moduloComTodosOsCampos();
         moduloCadastrado =
                 moduloClient.cadastrar(moduloACadastrar)
                         .then()
-                        .statusCode(200)
+                        .statusCode(201)
                         .extract().as(ModuloResponseDTO.class);
 
         idModuloCadastrado = moduloCadastrado.getIdModulo();
     }
-    @After
+    @AfterEach
     public void cleanUp() {
         moduloClient.deletar(idModuloCadastrado)
                 .then()
@@ -31,9 +31,9 @@ public class DeleteModuloFuncionalTest {
     }
     @Test
     public void testDeletarModuloEspecificoPorIdComSucesso() {
-                moduloClient.desabilitar(idModuloCadastrado)
-                        .then()
-                        .statusCode(204);
+        moduloClient.desabilitar(idModuloCadastrado)
+                .then()
+                .statusCode(204);
     }
 
     @Test
