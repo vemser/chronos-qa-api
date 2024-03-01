@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import model.trilha.TrilhaResponseDTO;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,5 +20,5 @@ public class CurriculoMoldeResponseDTO {
     private String empresa;
     private String descricao;
     private String cargo;
-    private String conhecimento;
+    private List<String> conhecimentosList;
 }

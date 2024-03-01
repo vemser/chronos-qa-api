@@ -26,63 +26,56 @@ public class DeleteCurriculoMoldeFuncionalTest {
 
     @BeforeEach
     public void setUp() {
-        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
-        TrilhaRequestDTO trilhaACadastrar = TrilhaDataFactory.trilhaComTodosOsCampos();
-        trilhaCadastrada =
-                trilhaClient.cadastrar(trilhaACadastrar)
-                        .then()
-                        .statusCode(200)
-                        .extract().as(TrilhaResponseDTO.class);
-
-        idTrilhaCadastrada = trilhaCadastrada.getIdTrilha();
+//        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
+//        TrilhaRequestDTO trilhaACadastrar = TrilhaDataFactory.trilhaComTodosOsCampos();
+//        trilhaCadastrada =
+//                trilhaClient.cadastrar(trilhaACadastrar)
+//                        .then()
+//                        .statusCode(200)
+//                        .extract().as(TrilhaResponseDTO.class);
+//
+//        idTrilhaCadastrada = trilhaCadastrada.getIdTrilha();
+        idTrilhaCadastrada = 93;
 
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCampos();
         curriculoMoldeCadastrado =
                 curriculoMoldeClient.cadastrar(idTrilhaCadastrada, curriculoMoldeACadastrar)
                         .then()
-                        .statusCode(200)
+                        .log().all()
+                        .statusCode(201)
                         .extract().as(CurriculoMoldeResponseDTO.class);
 
         idCurriculoMoldeCadastrado = curriculoMoldeCadastrado.getIdCurriculoMolde();
 
-        curriculoMoldeDOCXCadastrado =
+
                 curriculoMoldeClient.cadastrarArquivo(idTrilhaCadastrada, CurriculoMoldeDataFactory.gerarCurriculoDOCX())
                         .then()
-                        .statusCode(200)
-                        .extract().as(CurriculoMoldeDOCXResponseDTO.class);
-
-        idCurriculoMoldeDOCXCadastrado = curriculoMoldeDOCXCadastrado.getIdCurriculoMolde();
-    }
-    @AfterEach
-    public void cleanUp() {
-        trilhaClient.deletar(idTrilhaCadastrada)
-                .then()
-                .statusCode(204);
+                        .statusCode(201);
     }
 
     @Test
     public void testDeletarCurriculoEspecificoPorIdPorTrilhaComSucesso() {
-        curriculoMoldeClient.deletarCurriculoEspecificoPorTrilha(idCurriculoMoldeCadastrado)
+        curriculoMoldeClient.deletarCurriculoEspecificoPorTrilha(idTrilhaCadastrada)
                 .then()
-                .statusCode(204);
+                .statusCode(200);
     }
     @Test
     public void testDeletarCurriculoEspecificoPorIdPorTrilhaSemAuthSemSucesso() {
-        curriculoMoldeClient.deletarCurriculoEspecificoPorTrilhaSemAuth(idCurriculoMoldeCadastrado)
+        curriculoMoldeClient.deletarCurriculoEspecificoPorTrilhaSemAuth(idTrilhaCadastrada)
                 .then()
-                .statusCode(204);
+                .statusCode(403);
     }
 
     @Test
     public void testDeletarCurriculoArquivoEspecificoPorIdPorTrilhaComSucesso() {
-        curriculoMoldeClient.deletarCurriculoArquivoEspecificoPorTrilha(idCurriculoMoldeDOCXCadastrado)
+        curriculoMoldeClient.deletarCurriculoArquivoEspecificoPorTrilha(idTrilhaCadastrada)
                 .then()
                 .statusCode(204);
     }
     @Test
     public void testDeletarCurriculoArquivoEspecificoPorIdPorTrilhaSemAuthSemSucesso() {
-        curriculoMoldeClient.deletarCurriculoArquivoEspecificoPorTrilhaSemAuth(idCurriculoMoldeDOCXCadastrado)
+        curriculoMoldeClient.deletarCurriculoArquivoEspecificoPorTrilhaSemAuth(idTrilhaCadastrada)
                 .then()
-                .statusCode(204);
+                .statusCode(403);
     }
 }

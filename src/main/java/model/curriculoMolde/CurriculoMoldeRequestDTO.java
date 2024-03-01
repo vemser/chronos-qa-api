@@ -14,5 +14,5 @@ public class CurriculoMoldeRequestDTO {
     private String empresa;
     private String descricao;
     private String cargo;
-    private String conhecimento;
+    private String conhecimentos;
 }

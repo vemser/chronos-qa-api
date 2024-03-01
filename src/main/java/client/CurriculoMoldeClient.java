@@ -19,6 +19,7 @@ public class CurriculoMoldeClient {
                 given()
                         .spec(AuthSpec.setup())
                         .body(body)
+                        .log().all()
                         .pathParam("idTrilha", integer)
                         .when()
                         .post(PATH_CURRICULO);
