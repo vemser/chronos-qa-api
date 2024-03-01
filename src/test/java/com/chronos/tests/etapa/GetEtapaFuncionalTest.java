@@ -29,16 +29,18 @@ public class GetEtapaFuncionalTest {
         edicaoCadastrada =
                 edicaoClient.cadastrarEdicao(edicaoACadastrar)
                         .then()
-                        .statusCode(201)
+                        .log().all()
+                        .statusCode(200)
                         .extract().as(EdicaoResponseDTO.class);
 
-        idEdicaoCadastrado = etapaCadastrada.getIdEtapa();
+        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
 
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComTodosOsCampos();
         etapaCadastrada =
                 etapaClient.cadastrar(idEdicaoCadastrado, etapaACadastrar)
                         .then()
-                        .statusCode(201)
+                        .log().all()
+                        .statusCode(200)
                         .extract().as(EtapaResponseDTO.class);
 
         idEtapaCadastrada = etapaCadastrada.getIdEtapa();

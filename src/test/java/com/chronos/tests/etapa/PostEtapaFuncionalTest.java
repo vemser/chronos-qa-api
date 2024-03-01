@@ -26,10 +26,11 @@ public class PostEtapaFuncionalTest {
         edicaoCadastrada =
                 edicaoClient.cadastrarEdicao(edicaoACadastrar)
                         .then()
-                        .statusCode(201)
+                        .log().all()
+                        .statusCode(200)
                         .extract().as(EdicaoResponseDTO.class);
 
-        idEdicaoCadastrado = etapaCadastrada.getIdEtapa();
+        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
     }
     @AfterEach
     public void cleanUp() {
@@ -44,7 +45,7 @@ public class PostEtapaFuncionalTest {
         etapaCadastrada =
                 etapaClient.cadastrar(idEdicaoCadastrado, etapaACadastrar)
                         .then()
-                        .statusCode(201)
+                        .statusCode(200)
                         .extract().as(EtapaResponseDTO.class);
 
         idEtapaCadastrada = etapaCadastrada.getIdEtapa();
@@ -53,13 +54,9 @@ public class PostEtapaFuncionalTest {
     @Test
     public void testCriarEtapaComTodosOsCamposValidosSemAuthSemSucesso() {
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComTodosOsCampos();
-        etapaCadastrada =
                 etapaClient.cadastrarSemAuth(idEdicaoCadastrado, etapaACadastrar)
                         .then()
-                        .statusCode(201)
-                        .extract().as(EtapaResponseDTO.class);
-
-        idEtapaCadastrada = etapaCadastrada.getIdEtapa();
+                        .statusCode(403);
     }
 
     @Test

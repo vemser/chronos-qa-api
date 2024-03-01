@@ -11,7 +11,7 @@ public class EtapaDataFactory {
         EtapaRequestDTO etapaReq = new EtapaRequestDTO();
         etapaReq.setNome(Factory.FAKER.name().firstName());
         etapaReq.setDuracaoDiaUtil(RANDOM.nextInt(100));
-        etapaReq.setOrdemExecucao(RANDOM.nextInt(3));
+        etapaReq.setOrdemExecucao(RANDOM.nextInt(3) + 1);
         return etapaReq;
     }
 
@@ -24,7 +24,7 @@ public class EtapaDataFactory {
         EtapaRequestDTO etapaReq = new EtapaRequestDTO();
         etapaReq.setNome(Factory.FAKER.lorem().sentence(52));
         etapaReq.setDuracaoDiaUtil(RANDOM.nextInt(100));
-        etapaReq.setOrdemExecucao(RANDOM.nextInt(3));
+        etapaReq.setOrdemExecucao(RANDOM.nextInt(3) + 1);
         return etapaReq;
     }
 
@@ -32,7 +32,7 @@ public class EtapaDataFactory {
         EtapaRequestDTO etapaReq = new EtapaRequestDTO();
         etapaReq.setNome(Factory.FAKER.lorem().sentence(52));
         etapaReq.setDuracaoDiaUtil(-1);
-        etapaReq.setOrdemExecucao(RANDOM.nextInt(3));
+        etapaReq.setOrdemExecucao(RANDOM.nextInt(3) + 1);
         return etapaReq;
     }
 

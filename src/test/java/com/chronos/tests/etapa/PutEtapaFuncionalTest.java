@@ -25,16 +25,18 @@ public class PutEtapaFuncionalTest {
         edicaoCadastrada =
                 edicaoClient.cadastrarEdicao(edicaoACadastrar)
                         .then()
-                        .statusCode(201)
+                        .statusCode(200)
+                        .log().all()
                         .extract().as(EdicaoResponseDTO.class);
 
-        idEdicaoCadastrado = etapaCadastrada.getIdEtapa();
+        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
 
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComTodosOsCampos();
         etapaCadastrada =
                 etapaClient.cadastrar(idEdicaoCadastrado, etapaACadastrar)
                         .then()
-                        .statusCode(201)
+                        .statusCode(200)
+                        .log().all()
                         .extract().as(EtapaResponseDTO.class);
 
         idEtapaCadastrada = etapaCadastrada.getIdEtapa();
@@ -59,7 +61,7 @@ public class PutEtapaFuncionalTest {
         EtapaRequestDTO etapaParaAtualizar = EtapaDataFactory.etapaComTodosOsCampos();
                 etapaClient.atualizarSemAuth(idEtapaCadastrada, etapaParaAtualizar)
                         .then()
-                        .statusCode(200);
+                        .statusCode(403);
     }
 
     @Test

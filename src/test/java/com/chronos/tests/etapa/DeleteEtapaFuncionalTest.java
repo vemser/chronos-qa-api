@@ -26,25 +26,19 @@ public class DeleteEtapaFuncionalTest {
         edicaoCadastrada =
                 edicaoClient.cadastrarEdicao(edicaoACadastrar)
                         .then()
-                        .statusCode(201)
+                        .statusCode(200)
                         .extract().as(EdicaoResponseDTO.class);
 
-        idEdicaoCadastrado = etapaCadastrada.getIdEtapa();
+        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
 
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComTodosOsCampos();
         etapaCadastrada =
                 etapaClient.cadastrar(idEdicaoCadastrado, etapaACadastrar)
                         .then()
-                        .statusCode(201)
+                        .statusCode(200)
                         .extract().as(EtapaResponseDTO.class);
 
         idEtapaCadastrada = etapaCadastrada.getIdEtapa();
-    }
-    @AfterEach
-    public void cleanUp() {
-        edicaoClient.deletar(idEdicaoCadastrado)
-                .then()
-                .statusCode(204);
     }
     @Test
     public void testDeletarEtapaEspecificoPorIdComSucesso() {
