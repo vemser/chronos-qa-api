@@ -49,19 +49,21 @@ public class EtapaClient {
 
     }
 
-    public Response buscarTudoPorEdicao() {
+    public Response buscarTudoPorEdicao(Integer integer) {
         return
                 given()
                         .spec(AuthSpec.setup())
+                        .pathParam("idEdicao", integer)
                         .when()
                         .get(PATH_ETAPA_POR_EDICAO);
 
     }
 
-    public Response buscarTudoPorEdicaoSemAuth() {
+    public Response buscarTudoPorEdicaoSemAuth(Integer integer) {
         return
                 given()
                         .spec(InicialSpecs.setup())
+                        .pathParam("idEdicao", integer)
                         .when()
                         .get(PATH_ETAPA_POR_EDICAO);
 
