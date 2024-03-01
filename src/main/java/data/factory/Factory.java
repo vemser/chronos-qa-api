@@ -19,10 +19,10 @@ public class Factory {
         return FAKER.name().firstName();
     }
 
-    public static String dataFutura(int inicio){
+    public static String dataFutura(int inicio, int fim){
 
         LocalDate localDate = LocalDate.now();
-        localDate = localDate.plusDays(FAKER.number().numberBetween(inicio, 366));
+        localDate = localDate.plusDays(FAKER.number().numberBetween(inicio, fim));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return localDate.format(formatter);
     }

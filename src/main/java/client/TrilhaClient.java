@@ -73,6 +73,7 @@ public class TrilhaClient implements ClientInterface<Integer, TrilhaRequestDTO>{
                 given()
                         .spec(InicialSpecs.setup())
                         .header("Authorization", TOKEN)
+                        .log().all()
                         .pathParam("_id",integer)
                 .when()
                         .delete(PATH_DELETE_TRILHA);

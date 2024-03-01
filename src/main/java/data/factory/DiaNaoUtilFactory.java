@@ -15,8 +15,8 @@ public class DiaNaoUtilFactory {
     public static DiaNaoUtilRequestDTO diaNaoUtilTodosOsCampos(){
         DiaNaoUtilRequestDTO diaNaoUtilRequestDTO = new DiaNaoUtilRequestDTO();
        diaNaoUtilRequestDTO.setDescricao(Factory.FAKER.lorem().sentence());
-       diaNaoUtilRequestDTO.setDataInicial(Factory.dataFutura(1));
-       diaNaoUtilRequestDTO.setDataFinal(Factory.dataFutura(10));
+       diaNaoUtilRequestDTO.setDataInicial(Factory.dataFutura(1, 60));
+       diaNaoUtilRequestDTO.setDataFinal(Factory.dataFutura(61,120));
        diaNaoUtilRequestDTO.setRepeticaoAnual("INATIVO");
 
         return diaNaoUtilRequestDTO;
@@ -26,7 +26,7 @@ public class DiaNaoUtilFactory {
     public static DiaNaoUtilRequestDTO diaNaoUtilSemDataFinal(){
         DiaNaoUtilRequestDTO diaNaoUtilRequestDTO = new DiaNaoUtilRequestDTO();
         diaNaoUtilRequestDTO.setDescricao(Factory.FAKER.lorem().sentence());
-        diaNaoUtilRequestDTO.setDataInicial(Factory.dataFutura(1));
+        diaNaoUtilRequestDTO.setDataInicial(Factory.dataFutura(1, 60));
         diaNaoUtilRequestDTO.setRepeticaoAnual("ATIVO");
 
         return diaNaoUtilRequestDTO;
@@ -46,8 +46,12 @@ public class DiaNaoUtilFactory {
 
     public static DiaNaoUtilRequestDTO diaNaoUtilCampoOpcional(){
         DiaNaoUtilRequestDTO diaNaoUtilRequestDTO = new DiaNaoUtilRequestDTO();
-        diaNaoUtilRequestDTO.setDataFinal(Factory.dataFutura(1));
+        diaNaoUtilRequestDTO.setDataFinal(Factory.dataFutura(1, 60));
 
 
         return diaNaoUtilRequestDTO;
-}}
+}
+    public static Integer idInvalido(){
+        return Factory.FAKER.number().numberBetween(999,9999);
+    }
+}

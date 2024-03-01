@@ -25,8 +25,9 @@ public class DeleteTrilhaFuncionalTest {
     }
     @Test
     public void testTentarDeletarTrilhaComIdInvalido() {
+        int idInvalido = TrilhaDataFactory.idInvalido();
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
-        trilhaClient.deletar(TrilhaDataFactory.idInvalido()).then().statusCode(204);
+        trilhaClient.deletar(idInvalido).then().statusCode(400);
 
     }
 }

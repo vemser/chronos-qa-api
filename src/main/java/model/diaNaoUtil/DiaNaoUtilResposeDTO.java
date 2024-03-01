@@ -12,5 +12,5 @@ public class DiaNaoUtilResposeDTO {
     private String dataInicial;
     private String dataFinal;
     private String repeticaoAnual;
-    private Integer _id;
+    private Integer idDiaNaoUtil;
 }

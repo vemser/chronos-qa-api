@@ -3,6 +3,8 @@ import client.TrilhaClient;
 import data.factory.TokenFactory;
 import io.restassured.response.Response;
 import model.ModuloResponseDTO;
+import model.trilha.TrilhaRequestDTO;
+import model.trilha.TrilhaResponseDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +24,7 @@ public class GetTrilhaFuncionalTest {
                 .then()
                 .statusCode(200) .extract().response();
 
-        List<ModuloResponseDTO> trilha = response.jsonPath().getList("content", ModuloResponseDTO.class);
+        List<TrilhaResponseDTO> trilha = response.jsonPath().getList("content", TrilhaResponseDTO.class);
 
         Assertions.assertNotNull(trilha);
         Assertions.assertFalse(trilha.isEmpty());

@@ -96,6 +96,46 @@ public class PutTrilhaFuncionalTest {
     }
 
     @Test
+    public void testEditarTrilhaPreenchendoCampoDescricaoCom255Caracteres() {
+        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
+
+        TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComTodosOsCampos();
+        TrilhaRequestDTO trilhaRequestDTOEditado = TrilhaDataFactory.trilhaComCampoDescricaoCom255();
+
+        TrilhaResponseDTO trilhaResponseDTO = trilhaClient.cadastrar(trilhaRequestDTO)
+                .then()
+                .statusCode(200).extract().as(TrilhaResponseDTO.class);
+
+        trilhaClient.atualizar(trilhaResponseDTO.getIdTrilha(), trilhaRequestDTOEditado)
+                .then()
+                .statusCode(200);
+
+        trilhaClient.deletar(trilhaResponseDTO.getIdTrilha()).then().statusCode(204);
+
+    }
+
+    @Test
+    public void testEditarTrilhaPreenchendoCampoDescricaoVazio() {
+        trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
+
+        TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComTodosOsCampos();
+        TrilhaRequestDTO trilhaRequestDTOEditado = TrilhaDataFactory.trilhaComCampoDescricaoVazio();
+
+        TrilhaResponseDTO trilhaResponseDTO = trilhaClient.cadastrar(trilhaRequestDTO)
+                .then()
+                .statusCode(200).extract().as(TrilhaResponseDTO.class);
+
+        trilhaClient.atualizar(trilhaResponseDTO.getIdTrilha(), trilhaRequestDTOEditado)
+                .then()
+                .statusCode(200);
+
+        trilhaClient.deletar(trilhaResponseDTO.getIdTrilha()).then().statusCode(204);
+
+    }
+
+
+
+    @Test
     public void testVincularModuloATrilha() {
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
@@ -107,7 +147,7 @@ public class PutTrilhaFuncionalTest {
                 .then().log().all()
                 .statusCode(200).extract().as(TrilhaResponseDTO.class);
 
-        ModuloResponseDTO moduloResponseDTO = moduloClient.cadastrar(moduloRequestDTO).then().log().all().statusCode(200).extract().as(ModuloResponseDTO.class);
+        ModuloResponseDTO moduloResponseDTO = moduloClient.cadastrar(moduloRequestDTO).then().statusCode(200).extract().as(ModuloResponseDTO.class);
 
         TrilhaResponseDTO trilhaResponseDTOVinculado = trilhaClient.vincularModulo(trilhaResponseDTO.getIdTrilha(), moduloResponseDTO.getIdModulo())
                 .then().log().all()

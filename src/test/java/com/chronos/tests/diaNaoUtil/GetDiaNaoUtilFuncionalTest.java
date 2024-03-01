@@ -14,12 +14,12 @@ DiaNaoUtilClient diaNaoUtilClient = new DiaNaoUtilClient();
 
 
     @Test
-    public void testBuscarTrilhaComSucesso() {
+    public void testBuscarDiaNaoUtilComSucesso() {
         diaNaoUtilClient.setTOKEN((TokenFactory.getTokenAdmin()));
         Response response =
                 diaNaoUtilClient.buscarTudo()
                         .then()
-                        .statusCode(200) .extract().response();
+                        .statusCode(200).log().all() .extract().response();
 
         List<ModuloResponseDTO> diaNaoUtil = response.jsonPath().getList("content", ModuloResponseDTO.class);
 

@@ -63,8 +63,27 @@ public class TrilhaDataFactory {
         return trilhaReq;
     }
    public static Integer idInvalido(){
-        return Integer.getInteger(Factory.FAKER.number().digits(10));
+        return Factory.FAKER.number().numberBetween(999,9999);
    }
+    public static  TrilhaRequestDTO trilhaComCampoDescricaoCom255(){
+        TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
+        trilhaReq.setNome(Factory.FAKER.name().firstName());
+        trilhaReq.setDescricao(Factory.FAKER.number().digits(255));
+        trilhaReq.setStatus("ATIVO");
+
+        return trilhaReq;
+    }
+
+    public static  TrilhaRequestDTO trilhaComCampoDescricaoVazio(){
+        TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
+        trilhaReq.setNome(Factory.FAKER.name().firstName());
+        trilhaReq.setDescricao("");
+        trilhaReq.setStatus("ATIVO");
+
+        return trilhaReq;
+    }
+
+
 }
 
 

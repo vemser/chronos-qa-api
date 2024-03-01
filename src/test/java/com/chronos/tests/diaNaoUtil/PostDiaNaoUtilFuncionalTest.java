@@ -15,11 +15,13 @@ public class PostDiaNaoUtilFuncionalTest {
         diaNaoUtilClient.setTOKEN((TokenFactory.getTokenAdmin()));
         DiaNaoUtilRequestDTO diaNaoUtilRequestDTO  = DiaNaoUtilFactory.diaNaoUtilTodosOsCampos();
 
-        diaNaoUtilClient.cadastrar(diaNaoUtilRequestDTO)
+        DiaNaoUtilResposeDTO diaNaoUtilResposeDTO = diaNaoUtilClient.cadastrar(diaNaoUtilRequestDTO)
                 .then()
-                .statusCode(200);
+                .statusCode(200)
+                .extract().as(DiaNaoUtilResposeDTO.class);
 
 
+        diaNaoUtilClient.deletar(diaNaoUtilResposeDTO.getIdDiaNaoUtil());
 
     }
 
@@ -29,8 +31,10 @@ public class PostDiaNaoUtilFuncionalTest {
         DiaNaoUtilRequestDTO diaNaoUtilRequestDTO  = DiaNaoUtilFactory.diaNaoUtilSemDataFinal();
         DiaNaoUtilResposeDTO diaNaoUtilResposeDTO = diaNaoUtilClient.cadastrar(diaNaoUtilRequestDTO)
                 .then()
-                .statusCode(200).extract().as(DiaNaoUtilResposeDTO.class);
+                .statusCode(200)
+                .extract().as(DiaNaoUtilResposeDTO.class);
 
+        diaNaoUtilClient.deletar(diaNaoUtilResposeDTO.getIdDiaNaoUtil());
 
     }
 
@@ -41,8 +45,6 @@ public class PostDiaNaoUtilFuncionalTest {
         diaNaoUtilClient.cadastrar(diaNaoUtilRequestDTO)
                 .then()
                 .statusCode(400);
-
-
     }
 
     @Test
@@ -51,7 +53,6 @@ public class PostDiaNaoUtilFuncionalTest {
         DiaNaoUtilRequestDTO diaNaoUtilRequestDTO  = DiaNaoUtilFactory.diaNaoUtilTodosOsCampos();
         DiaNaoUtilRequestDTO diaNaoUtilRequestDTOJaCadastrado  = DiaNaoUtilFactory.diaNaoUtilTodosOsCampos();
         diaNaoUtilRequestDTOJaCadastrado.setDataInicial(diaNaoUtilRequestDTO.getDataInicial());
-
 
         DiaNaoUtilResposeDTO diaNaoUtilResposeDTO = diaNaoUtilClient.cadastrar(diaNaoUtilRequestDTO)
                 .then().log().all()

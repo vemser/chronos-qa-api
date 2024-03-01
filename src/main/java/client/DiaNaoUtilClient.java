@@ -12,7 +12,7 @@ import static io.restassured.RestAssured.given;
 public class DiaNaoUtilClient  implements ClientInterface<Integer, DiaNaoUtilRequestDTO>  {
     private String TOKEN = null;
     private String PATH_DIA_NAO_UTIL = "/dia-nao-util";
-    private String PATH_DIA_NAO_UTIL_ID = "/dia-nao-util{_id}";
+    private String PATH_DIA_NAO_UTIL_ID = "/dia-nao-util/{_id}";
 
     private String PATH_DIA_NAO_UTIL_FILTRO = "/dia-nao-util/filtro-dia-nao-util";
 
@@ -34,6 +34,7 @@ public class DiaNaoUtilClient  implements ClientInterface<Integer, DiaNaoUtilReq
                 given()
                 .spec(InicialSpecs.setup())
                 .header("Authorization", TOKEN)
+                        .log().all()
                 .when()
                 .get(PATH_DIA_NAO_UTIL);
     }
