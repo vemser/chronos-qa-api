@@ -1,0 +1,85 @@
+package com.chronos.tests.areaEnvolvida;
+
+import client.AreaEnvolvidaClient;
+import data.factory.AreaEnvovidaDataFactory;
+import data.factory.TokenFactory;
+import model.AreaEnvolvidaRequestDTO;
+import model.AreaEnvolvidaResponseDTO;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.Assert.assertEquals;
+
+public class PutAreaEnvolvidaFuncionalTest {
+
+
+    AreaEnvolvidaClient areaEnvolvidaClient = new AreaEnvolvidaClient();
+
+
+    @Test
+    public void testAtualizarAreaEnvolvidaComSucesso() {
+        areaEnvolvidaClient.setTOKEN(TokenFactory.getTokenAdmin());
+
+        AreaEnvolvidaRequestDTO areaEnvolvidaRequestDTO = AreaEnvovidaDataFactory.areaEnvolvidaComSucesso();
+        AreaEnvolvidaRequestDTO areaEnvolvidaRequestDTOEditavel = AreaEnvovidaDataFactory.areaEnvolvidaComSucesso();
+
+        AreaEnvolvidaResponseDTO areaEnvolvidaResponseDTO = areaEnvolvidaClient.cadastrar(areaEnvolvidaRequestDTO)
+                .then()
+                .statusCode(200).extract().as(AreaEnvolvidaResponseDTO.class);
+
+        areaEnvolvidaClient.atualizar(areaEnvolvidaResponseDTO.getIdAreaEnvolvida(), areaEnvolvidaRequestDTOEditavel)
+                .then()
+                .statusCode(200);
+
+        areaEnvolvidaClient.deletar(areaEnvolvidaResponseDTO.getIdAreaEnvolvida()).then().statusCode(204);
+
+    }
+
+    @Test
+    public void testAtualizarAreaEnvolvidaComNomeRepetido() {
+        areaEnvolvidaClient.setTOKEN(TokenFactory.getTokenAdmin());
+
+        AreaEnvolvidaRequestDTO areaEnvolvidaRequestDTO = AreaEnvovidaDataFactory.areaEnvolvidaComSucesso();
+        AreaEnvolvidaRequestDTO areaEnvolvidaRequestDTO2 = AreaEnvovidaDataFactory.areaEnvolvidaComSucesso();
+
+        AreaEnvolvidaRequestDTO areaEnvolvidaRequestDTORepetido = AreaEnvovidaDataFactory.areaEnvolvidaComSucesso();
+        areaEnvolvidaRequestDTORepetido.setNome(areaEnvolvidaRequestDTO.getNome());
+
+        AreaEnvolvidaResponseDTO areaEnvolvidaResponseDTO = areaEnvolvidaClient.cadastrar(areaEnvolvidaRequestDTO)
+                .then()
+                .statusCode(200).extract().as(AreaEnvolvidaResponseDTO.class);
+
+        AreaEnvolvidaResponseDTO areaEnvolvidaResponseDTO2 = areaEnvolvidaClient.cadastrar(areaEnvolvidaRequestDTO2)
+                .then()
+                .statusCode(200).extract().as(AreaEnvolvidaResponseDTO.class);
+
+        String message = areaEnvolvidaClient.atualizar(areaEnvolvidaResponseDTO2.getIdAreaEnvolvida(), areaEnvolvidaRequestDTORepetido)
+                .then()
+                .statusCode(409).extract().jsonPath().getString("message");
+
+        assertEquals("Restrição de valor único violada - nome.",message);
+
+        areaEnvolvidaClient.deletar(areaEnvolvidaResponseDTO.getIdAreaEnvolvida()).then().statusCode(204);
+
+    }
+
+@Test
+    public void testTentarAtualizarAreaEnvolvidaComNomeVazio() {
+        areaEnvolvidaClient.setTOKEN(TokenFactory.getTokenAdmin());
+
+        AreaEnvolvidaRequestDTO areaEnvolvidaRequestDTO = AreaEnvovidaDataFactory.areaEnvolvidaComSucesso();
+        AreaEnvolvidaRequestDTO areaEnvolvidaRequestDTOEditavel = AreaEnvovidaDataFactory.comNomeVazio();
+
+        AreaEnvolvidaResponseDTO areaEnvolvidaResponseDTO = areaEnvolvidaClient.cadastrar(areaEnvolvidaRequestDTO)
+                .then()
+                .statusCode(200).extract().as(AreaEnvolvidaResponseDTO.class);
+
+        areaEnvolvidaClient.atualizar(areaEnvolvidaResponseDTO.getIdAreaEnvolvida(), areaEnvolvidaRequestDTOEditavel)
+                .then()
+                .statusCode(400);
+
+        areaEnvolvidaClient.deletar(areaEnvolvidaResponseDTO.getIdAreaEnvolvida()).then().statusCode(204);
+
+    }
+
+    }
+
