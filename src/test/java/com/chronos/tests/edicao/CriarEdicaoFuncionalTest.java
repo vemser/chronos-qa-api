@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CriarEdicaoFuncionalTest {
@@ -38,7 +38,7 @@ public class CriarEdicaoFuncionalTest {
                 () -> assertTrue(responseDTO.getEstagiarios().isEmpty())
         );
 
-        edicaoClient.deletar(responseDTO.getIdEdicao())
+        edicaoClient.deletarPorID(responseDTO.getIdEdicao())
                 .then()
                 .statusCode(HttpStatus.SC_NO_CONTENT);
     }

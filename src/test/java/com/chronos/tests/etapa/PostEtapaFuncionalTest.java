@@ -34,7 +34,7 @@ public class PostEtapaFuncionalTest {
     }
     @AfterEach
     public void cleanUp() {
-        edicaoClient.deletar(idEdicaoCadastrado)
+        edicaoClient.deletarPorID(idEdicaoCadastrado)
                 .then()
                 .statusCode(204);
     }

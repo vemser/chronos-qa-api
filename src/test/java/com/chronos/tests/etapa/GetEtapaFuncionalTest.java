@@ -47,7 +47,7 @@ public class GetEtapaFuncionalTest {
     }
     @AfterEach
     public void cleanUp() {
-        edicaoClient.deletar(idEdicaoCadastrado)
+        edicaoClient.deletarPorID(idEdicaoCadastrado)
                 .then()
                 .statusCode(204);
     }
