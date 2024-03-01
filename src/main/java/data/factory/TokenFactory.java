@@ -1,6 +1,7 @@
 package data.factory;
 
 import io.restassured.http.ContentType;
+import model.EstagiarioRequestDTO;
 import model.LoginRequestDTO;
 import org.apache.http.HttpStatus;
 import specs.AuthSpec;
@@ -50,5 +51,31 @@ public class TokenFactory {
 
     public static String getTokenGp() {
         return getToken(GetProperties.LOGIN_DATA_GP());
+    }
+    public static String getTokenEstagiario() {
+        // Supondo que você tenha um método para obter os dados de login do estagiário
+        EstagiarioRequestDTO estagiarioRequestDTO = getEstagiarioRequestDTO();
+
+        return getToken(estagiarioRequestDTO);
+    }
+
+    private static String getToken(EstagiarioRequestDTO estagiarioRequestDTO) {
+        return BEARER + given()
+                .spec(NoAuthSpec.setup())
+                .body(estagiarioRequestDTO)
+                .when()
+                .post(GetProperties.LOGIN_URI())
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .extract().response().asString();
+    }
+
+    private static EstagiarioRequestDTO getEstagiarioRequestDTO() {
+
+        EstagiarioRequestDTO estagiarioRequestDTO = new EstagiarioRequestDTO();
+        estagiarioRequestDTO.setCpf("56389338082");
+        estagiarioRequestDTO.setNome("Gabriel Felipe");
+
+        return estagiarioRequestDTO;
     }
 }
