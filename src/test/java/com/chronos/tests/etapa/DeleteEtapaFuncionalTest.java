@@ -23,15 +23,14 @@ public class DeleteEtapaFuncionalTest {
     EdicaoResponseDTO edicaoCadastrada;
     @BeforeEach
     public void setUp() {
-//        EdicaoRequestDTO edicaoACadastrar = EdicaoFactory.edicaoValida();
-//        edicaoCadastrada =
-//                edicaoClient.cadastrarEdicao(edicaoACadastrar)
-//                        .then()
-//                        .statusCode(200)
-//                        .extract().as(EdicaoResponseDTO.class);
-//
-//        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
-        idEdicaoCadastrado = 229;
+        EdicaoRequestDTO edicaoACadastrar = EdicaoFactory.edicaoValida();
+        edicaoCadastrada =
+                edicaoClient.cadastrarEdicao(edicaoACadastrar)
+                        .then()
+                        .statusCode(200)
+                        .extract().as(EdicaoResponseDTO.class);
+
+        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
 
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComTodosOsCampos();
         etapaCadastrada =
