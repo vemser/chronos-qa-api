@@ -1,7 +1,6 @@
 package data.factory;
 
-import model.ModuloRequestDTO;
-import org.apache.commons.lang3.StringUtils;
+import model.modulo.ModuloRequestDTO;
 
 public class ModuloDataFactory {
     public static ModuloRequestDTO moduloComTodosOsCampos(){

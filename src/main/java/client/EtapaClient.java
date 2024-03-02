@@ -1,7 +1,7 @@
 package client;
 
 import io.restassured.response.Response;
-import model.EtapaRequestDTO;
+import model.etapa.EtapaRequestDTO;
 import specs.AuthSpec;
 import specs.InicialSpecs;
 

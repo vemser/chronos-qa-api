@@ -4,8 +4,8 @@ import client.AreaEnvolvidaClient;
 import data.factory.AreaEnvovidaDataFactory;
 import data.factory.TokenFactory;
 import io.qameta.allure.*;
-import model.AreaEnvolvidaRequestDTO;
-import model.AreaEnvolvidaResponseDTO;
+import model.areaEnvolvida.AreaEnvolvidaRequestDTO;
+import model.areaEnvolvida.AreaEnvolvidaResponseDTO;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;

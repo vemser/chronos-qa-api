@@ -2,8 +2,7 @@ package client;
 
 import io.restassured.response.Response;
 import lombok.Setter;
-import model.AreaEnvolvidaRequestDTO;
-import model.trilha.TrilhaRequestDTO;
+import model.areaEnvolvida.AreaEnvolvidaRequestDTO;
 import specs.InicialSpecs;
 
 import static io.restassured.RestAssured.given;

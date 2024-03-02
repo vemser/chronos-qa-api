@@ -4,12 +4,10 @@ import client.EdicaoClient;
 import client.EtapaClient;
 import data.factory.EdicaoFactory;
 import data.factory.EtapaDataFactory;
-import io.qameta.allure.*;
-import model.EtapaRequestDTO;
-import model.EtapaResponseDTO;
+import model.etapa.EtapaRequestDTO;
+import model.etapa.EtapaResponseDTO;
 import model.edicao.EdicaoRequestDTO;
 import model.edicao.EdicaoResponseDTO;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

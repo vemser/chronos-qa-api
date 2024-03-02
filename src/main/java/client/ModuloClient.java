@@ -1,7 +1,7 @@
 package client;
 
 import io.restassured.response.Response;
-import model.ModuloRequestDTO;
+import model.modulo.ModuloRequestDTO;
 import specs.AuthSpec;
 import specs.InicialSpecs;
 

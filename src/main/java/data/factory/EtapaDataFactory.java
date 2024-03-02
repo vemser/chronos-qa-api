@@ -1,7 +1,6 @@
 package data.factory;
 
-import model.EtapaRequestDTO;
-import org.apache.commons.lang3.StringUtils;
+import model.etapa.EtapaRequestDTO;
 
 import static data.factory.Factory.RANDOM;
 

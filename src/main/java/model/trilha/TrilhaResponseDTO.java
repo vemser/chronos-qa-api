@@ -3,9 +3,7 @@ package model.trilha;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import model.ModuloResponseDTO;
-import model.foto.FotoResponseDTO;
-import model.trilha.TrilhaRequestDTO;
+import model.modulo.ModuloResponseDTO;
 
 import java.util.List;
 

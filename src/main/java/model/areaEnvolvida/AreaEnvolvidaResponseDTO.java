@@ -1,8 +1,9 @@
-package model;
+package model.areaEnvolvida;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import model.modulo.ModuloResponseDTO;
 
 import java.util.List;
 
