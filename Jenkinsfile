@@ -53,12 +53,12 @@ pipeline {
 
     post {
         always {
-            allure(
+            allure([
                 includeProperties: false,
                 jdk: '',
                 results: [[path: 'allure-results']],
                [path: 'repo_ui/allure-results']]
-            )
+            ])
             echo 'Pós-processamento concluído.'
             script {
                 try {
