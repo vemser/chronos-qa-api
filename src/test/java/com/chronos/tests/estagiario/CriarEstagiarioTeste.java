@@ -1,6 +1,7 @@
 package com.chronos.tests.estagiario;
 
 import client.EstagiarioClient;
+import io.qameta.allure.*;
 import io.restassured.http.ContentType;
 import model.EstagiarioRequestDTO;
 import net.datafaker.Faker;
@@ -16,6 +17,10 @@ public class CriarEstagiarioTeste {
     private final EstagiarioClient estagiarioClient = new EstagiarioClient();
 
 
+    @Feature("Estagiario")
+    @Story("Atualizar um Estagiario com sucesso")
+    @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarNovoEstagiario() {
 
@@ -54,6 +59,11 @@ public class CriarEstagiarioTeste {
                 .then()
                 .statusCode(200);
     }
+
+    @Feature("Estagiario")
+    @Story("Atualizar um Estagiario com sucesso")
+    @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarEstagiarioComCPFInvalido() {
         EstagiarioRequestDTO estagiarioRequestDTO = new EstagiarioRequestDTO();
@@ -68,6 +78,11 @@ public class CriarEstagiarioTeste {
                 .then()
                 .statusCode(400);
     }
+
+    @Feature("Estagiario")
+    @Story("Atualizar um Estagiario com sucesso")
+    @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarEstagiarioComCPFNulo() {
         EstagiarioRequestDTO estagiarioRequestDTO = new EstagiarioRequestDTO();
@@ -82,6 +97,11 @@ public class CriarEstagiarioTeste {
                 .then()
                 .statusCode(400);
     }
+
+    @Feature("Estagiario")
+    @Story("Atualizar um Estagiario com sucesso")
+    @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarEstagiarioComCPFSemToken() {
         EstagiarioRequestDTO estagiarioRequestDTO = new EstagiarioRequestDTO();

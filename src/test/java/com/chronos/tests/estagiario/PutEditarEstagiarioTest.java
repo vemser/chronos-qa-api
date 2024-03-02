@@ -1,6 +1,7 @@
 package com.chronos.tests.estagiario;
 
 import client.EstagiarioClient;
+import io.qameta.allure.*;
 import io.restassured.http.ContentType;
 import model.EstagiarioRequestDTO;
 import org.junit.Test;
@@ -12,6 +13,11 @@ import static io.restassured.RestAssured.given;
 public class PutEditarEstagiarioTest {
     private final EstagiarioClient estagiarioClient = new EstagiarioClient();
 
+
+    @Feature("Estagiario")
+    @Story("Atualizar um Estagiario com sucesso")
+    @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarEstagiario() {
 
@@ -44,6 +50,11 @@ public class PutEditarEstagiarioTest {
                 .then()
                 .statusCode(200);
     }
+
+    @Feature("Estagiario")
+    @Story("Atualizar um Estagiario com sucesso")
+    @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarEstagiarioComCpfNulo() {
 
@@ -78,6 +89,10 @@ public class PutEditarEstagiarioTest {
                 .statusCode(400);
     }
 
+    @Feature("Estagiario")
+    @Story("Atualizar um Estagiario com sucesso")
+    @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarEstagiarioSemTokenValido() {
 
