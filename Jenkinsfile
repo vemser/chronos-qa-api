@@ -54,6 +54,7 @@ pipeline {
                                 message += "**Branch:** RELEASE\n"
                                 message += "**Build:** ${buildNumber}\n"
                                 message += "**Status:** ${buildResult}\n"
+                                message += "[https://bear-above-mole.ngrok-free.app/job/chronos-qa-api-pipeline/${buildNumber}/allure/]**Allure Report:**"
 
                                 discordSend description: message,
                                     image: "${link}",
