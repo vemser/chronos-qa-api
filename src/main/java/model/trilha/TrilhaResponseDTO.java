@@ -20,6 +20,6 @@ public class TrilhaResponseDTO extends TrilhaRequestDTO {
     private List<ModuloResponseDTO> modulos;
     private String timestamp;
     private String errors;
-    private String foto;
+    private FotoResponseDTO foto;
 
 }

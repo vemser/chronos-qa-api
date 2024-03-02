@@ -1,6 +1,6 @@
 package data.factory;
 
-import model.EstagiarioRequestDTO;
+import model.estagiario.EstagiarioRequestDTO;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;

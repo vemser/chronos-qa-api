@@ -6,8 +6,9 @@ import client.TrilhaClient;
 import data.factory.EdicaoFactory;
 import data.factory.EstagiarioFactory;
 import data.factory.TrilhaDataFactory;
+import io.qameta.allure.*;
 import io.restassured.http.ContentType;
-import model.EstagiarioRequestDTO;
+import model.estagiario.EstagiarioRequestDTO;
 import model.edicao.EdicaoResponseDTO;
 import model.estagiario.EstagiarioResponseDTO;
 import model.trilha.TrilhaResponseDTO;
@@ -17,11 +18,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import specs.AuthSpec;
-import specs.InicialSpecs;
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasItem;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 @DisplayName("ESTAGIÁRIO: CRIAÇÃO")
@@ -31,6 +28,11 @@ public class CriarEstagiarioTest {
     private final EdicaoClient edicaoClient = new EdicaoClient();
     private final TrilhaClient trilhaClient = new TrilhaClient();
 
+
+    @Feature("Estagiario")
+    @Story("Criar um Estagiario com sucesso")
+    @Description("Testa se a requisição consegue criar um estagiário e de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     @DisplayName("Deve criar um Estagiário com sucesso e retornar 201")
     public void testCriarNovoEstagiario() {
@@ -90,6 +92,10 @@ public class CriarEstagiarioTest {
 
     }
 
+    @Feature("Estagiario")
+    @Story("Criar um Estagiario sem sucesso")
+    @Description("Testa se a requisição consegue invalidar a criação de um estagiário por conta de não atender os critérios de aceite")
+    @Severity(SeverityLevel.CRITICAL)
     @ParameterizedTest
     @MethodSource("data.provider.EstagiarioProvider#providerCadastroComCamposObrigatoriosNaoPreenchidos")
     @DisplayName("Teste: não deve cadastrar novos usuários pois campos obrigatórios não foram preenchidos")
@@ -102,17 +108,21 @@ public class CriarEstagiarioTest {
                 .body("errors[0]", equalTo(message));
     }
 
+    @Feature("Estagiario")
+    @Story("Criar um Estagiario sem sucesso")
+    @Description("Testa se a requisição consegue invalidar a criação de um estagiário por falta de autenticação")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testNaoDeveCadastrarEstagiarioPoisTokenInvalido() {
 
         estagiarioClient.cadastrarSemToken(EstagiarioFactory.estagiarioComCpfNulo())
                 .then()
-                    .log().body()
                     .contentType(ContentType.JSON)
                     .statusCode(HttpStatus.SC_FORBIDDEN)
                     .body("status", equalTo(HttpStatus.SC_FORBIDDEN))
                     .body("error", equalTo("Forbidden"));
 
     }
+
 
 }
