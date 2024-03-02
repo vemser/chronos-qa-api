@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,5 +15,5 @@ public class FotoResponseDTO {
     private Integer idFoto;
     private String nome;
     private String tipo;
-    private String arquivo;
+    private List<String> arquivo;
 }

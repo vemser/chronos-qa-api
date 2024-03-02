@@ -1,15 +1,30 @@
 package com.chronos.tests.estagiario;
 
+import client.EdicaoClient;
 import client.EstagiarioClient;
+import client.TrilhaClient;
+import data.factory.EdicaoFactory;
+import data.factory.EstagiarioFactory;
+import data.factory.TrilhaDataFactory;
 import io.qameta.allure.*;
+import io.restassured.http.ContentType;
+import model.edicao.EdicaoResponseDTO;
+import model.estagiario.EstagiarioRequestDTO;
+import model.estagiario.EstagiarioResponseDTO;
+import model.trilha.TrilhaResponseDTO;
+import org.apache.http.HttpStatus;
 import org.junit.Test;
 import specs.AuthSpec;
 import specs.NoAuthSpec;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.useRelaxedHTTPSValidation;
+import static org.hamcrest.Matchers.equalTo;
 
 public class DelEstagiarioTest {
     private final EstagiarioClient estagiarioClient = new EstagiarioClient();
+    private final EdicaoClient edicaoClient = new EdicaoClient();
+    private final TrilhaClient trilhaClient = new TrilhaClient();
 
     @Feature("Estagiario")
     @Story("Atualizar um Estagiario com sucesso")
@@ -17,14 +32,40 @@ public class DelEstagiarioTest {
     @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testExcluirEstagiario() {
-        int estagiarioID = 5;
-
-        given()
-                .spec(AuthSpec.setup())
-                .when()
-                .delete("/estagiario/" + estagiarioID + "/delete")
+        Integer idEdicao = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
                 .then()
-                .statusCode(204);
+                .statusCode(HttpStatus.SC_OK)
+                .extract().as(EdicaoResponseDTO.class).getIdEdicao();
+
+        Integer idTrilha = trilhaClient.cadastrar(TrilhaDataFactory.trilhaComTodosOsCampos())
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .extract().as(TrilhaResponseDTO.class).getIdTrilha();
+
+        edicaoClient.vincularTrilha(idEdicao, idTrilha)
+                .then()
+                .statusCode(HttpStatus.SC_OK);
+
+        EstagiarioRequestDTO bodyRequest = EstagiarioFactory.estagiarioValido(idTrilha, idEdicao);
+
+        Integer createdEstagiarioID = estagiarioClient.cadastrar(bodyRequest)
+                .then()
+                .contentType(ContentType.JSON)
+                .statusCode(HttpStatus.SC_CREATED)
+                .extract().as(EstagiarioResponseDTO.class).getIdEstagiario();
+
+        estagiarioClient.desabilitar(createdEstagiarioID)
+                .then()
+                    .statusCode(HttpStatus.SC_NO_CONTENT);
+
+        estagiarioClient.deletar(createdEstagiarioID)
+                .then()
+                .statusCode(HttpStatus.SC_NO_CONTENT);
+
+        trilhaClient.deletar(idTrilha)
+                .then()
+                .log().body()
+                .statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
     @Feature("Estagiario")
@@ -33,14 +74,12 @@ public class DelEstagiarioTest {
     @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testExcluirEstagiarioSemToken() {
-        int estagiarioID = 4;
-
-        given()
-                .spec(NoAuthSpec.setup())
-                .when()
-                .delete("/estagiario/" + estagiarioID + "/delete")
+        estagiarioClient.desabilitarSemToken(-1)
                 .then()
-                .statusCode(403);
+                .contentType(ContentType.JSON)
+                .statusCode(HttpStatus.SC_FORBIDDEN)
+                .body("status", equalTo(HttpStatus.SC_FORBIDDEN))
+                .body("error", equalTo("Forbidden"));
     }
 
     @Feature("Estagiario")
@@ -49,13 +88,9 @@ public class DelEstagiarioTest {
     @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testExcluirEstagiarioQueNãoExiste() {
-        int estagiarioID = 4;
-
-        given()
-                .spec(AuthSpec.setup())
-                .when()
-                .delete("/estagiario/" + estagiarioID + "/delete")
+        estagiarioClient.desabilitar(-1)
                 .then()
-                .statusCode(400);
+                .statusCode(HttpStatus.SC_BAD_REQUEST);
+
     }
 }

@@ -1,10 +1,8 @@
 package data.factory;
 
-import io.restassured.http.ContentType;
-import model.EstagiarioRequestDTO;
+import model.estagiario.EstagiarioRequestDTO;
 import model.LoginRequestDTO;
 import org.apache.http.HttpStatus;
-import specs.AuthSpec;
 import specs.NoAuthSpec;
 import utils.props.GetProperties;
 
