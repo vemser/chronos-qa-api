@@ -2,6 +2,7 @@ package com.chronos.tests.modulo;
 
 import client.ModuloClient;
 import data.factory.ModuloDataFactory;
+import io.qameta.allure.*;
 import model.ModuloRequestDTO;
 import model.ModuloResponseDTO;
 import org.junit.jupiter.api.AfterEach;
@@ -29,6 +30,11 @@ public class DeleteModuloFuncionalTest {
                 .then()
                 .statusCode(204);
     }
+
+    @Feature("Modulo")
+    @Story("Deletar um modulo com sucesso")
+    @Description("Testa se a requisição consegue deletar um modulo deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testDeletarModuloEspecificoPorIdComSucesso() {
         moduloClient.desabilitar(idModuloCadastrado)
@@ -36,6 +42,10 @@ public class DeleteModuloFuncionalTest {
                 .statusCode(204);
     }
 
+    @Feature("Modulo")
+    @Story("Deletar um modulo sem sucesso")
+    @Description("Testa se a requisição não consegue deletar um modulo deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testDeletarModuloEspecificoPorIdSemAutorizacaoSemSucesso() {
         moduloClient.desabilitarSemAuth(idModuloCadastrado)
