@@ -98,7 +98,7 @@ public class PostModuloFuncionalTest {
     @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarModuloComCampoConteudoProgramaticoComCaracteresAMenosSemSucesso() {
-        ModuloRequestDTO moduloACadastrar = ModuloDataFactory.moduloComConteudoProgramaticoComCaracterAMenos();
+        ModuloRequestDTO moduloACadastrar = ModuloDataFactory.moduloComConteudoProgramaticoComCaracterAMais();
         moduloClient.cadastrar(moduloACadastrar)
                 .then()
                 .statusCode(400);
