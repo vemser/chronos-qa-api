@@ -22,7 +22,7 @@ pipeline {
         stage('Checkout UI Repository') {
             steps {
                 script {
-                    bat 'rm -f repo_ui'
+                    bat 'rmdir /s /q repo_ui'
                     bat 'git clone -b dev https://github.com/vemser/chronos-qa-ui.git repo_ui'
                 }
             }
