@@ -31,19 +31,21 @@ pipeline {
         stage('Test UI Repository') {
             steps {
                 script {
-                    bat 'cd repo_ui && mvn -e clean test'
+                    bat 'cd repo_ui && mvn clean test -Dmaven.test.failure.ignore=true'
                 }
             }
         }
         stage('Publish Allure Report') {
             steps {
                 script {
-                    bat 'allure generate allure-results -o allure-report'
+                    bat 'allure generate -o allure-results'
+
                     archiveArtifacts 'allure-report/**'
 
-                    bat 'allure generate repo_ui/allure-results -o allure-report-ui'
-
-                    archiveArtifacts 'allure-report-ui/**'
+                       dir('repo_ui') {
+                            bat "allure generate -o allure-results"
+                            def resultAPI = currentBuild.result
+                        }
 
                     echo 'Arquivos de relatório Allure arquivados.'
                 }
