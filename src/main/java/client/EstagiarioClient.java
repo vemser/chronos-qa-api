@@ -1,8 +1,16 @@
 package client;
 
 
+import data.factory.EdicaoFactory;
+import data.factory.EstagiarioFactory;
+import data.factory.TrilhaDataFactory;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import model.EstagiarioRequestDTO;
+import model.edicao.EdicaoResponseDTO;
+import model.estagiario.EstagiarioResponseDTO;
+import model.trilha.TrilhaResponseDTO;
+import org.apache.http.HttpStatus;
 import specs.AuthSpec;
 import specs.InicialSpecs;
 import specs.NoAuthSpec;
@@ -10,7 +18,7 @@ import specs.NoAuthSpec;
 import static io.restassured.RestAssured.given;
 
 
-public class EstagiarioClient implements ClientInterface<Integer, EstagiarioRequestDTO> {
+public class EstagiarioClient {
         private static final String PATH_ESTAGIARIO = "/estagiario";
 
         private static final String PATH_ID_ESTAGIARIO = "/estagiario" + "/{idEstagiario}";
@@ -20,6 +28,9 @@ public class EstagiarioClient implements ClientInterface<Integer, EstagiarioRequ
         private static final String PATH_DISABLE_ESTAGIARIO = "/estagiario" + "/{idEstagiario}}" + "/disable";
 
         private String TOKEN;
+
+        private final TrilhaClient trilhaClient = new TrilhaClient();
+        private final EdicaoClient edicaoClient = new EdicaoClient();
 
         public Response cadastrar(EstagiarioRequestDTO body) {
             return given()
@@ -42,16 +53,37 @@ public class EstagiarioClient implements ClientInterface<Integer, EstagiarioRequ
 
 
         public Response buscarTudo() {
-            return
-                    given()
-                            .spec(AuthSpec.setup())
-                            .when()
-                            .post(PATH_ESTAGIARIO);
+            return given()
+                        .spec(AuthSpec.setup())
+                        .when()
+                    .get(PATH_ESTAGIARIO);
         }
 
-    @Override
     public Response buscarPorID(Integer integer) {
         return null;
+    }
+
+    public Response criarMassaDeDados() {
+        Integer idEdicao = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .extract().as(EdicaoResponseDTO.class).getIdEdicao();
+
+        Integer idTrilha = trilhaClient.cadastrar(TrilhaDataFactory.trilhaComTodosOsCampos())
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .extract().as(TrilhaResponseDTO.class).getIdTrilha();
+
+        // A2: VINCULAR TRILHAS
+        edicaoClient.vincularTrilha(idEdicao, idTrilha)
+                .then()
+                .statusCode(HttpStatus.SC_OK);
+
+        // A3: CRIAR ESTAGIÁRIO
+
+        EstagiarioRequestDTO bodyRequest = EstagiarioFactory.estagiarioValido(idTrilha, idEdicao);
+
+        return cadastrar(bodyRequest);
     }
 
     public Response buscarTudoSemToken() {
