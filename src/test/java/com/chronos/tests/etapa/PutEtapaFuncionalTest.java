@@ -4,6 +4,7 @@ import client.EdicaoClient;
 import client.EtapaClient;
 import data.factory.EdicaoFactory;
 import data.factory.EtapaDataFactory;
+import io.qameta.allure.*;
 import model.EtapaRequestDTO;
 import model.EtapaResponseDTO;
 import model.edicao.EdicaoRequestDTO;
@@ -48,6 +49,10 @@ public class PutEtapaFuncionalTest {
                 .statusCode(204);
     }
 
+    @Feature("Etapa")
+    @Story("Editar uma etapa com sucesso")
+    @Description("Testa se a requisição consegue editar uma etapa deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testEditarEtapaComTodosOsCamposValidosComSucesso() {
         EtapaRequestDTO etapaParaAtualizar = EtapaDataFactory.etapaComTodosOsCampos();
@@ -56,6 +61,10 @@ public class PutEtapaFuncionalTest {
                         .statusCode(200);
     }
 
+    @Feature("Etapa")
+    @Story("Editar uma etapa sem sucesso")
+    @Description("Testa se a requisição consegue editar uma etapa deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testEditarEtapaComTodosOsCamposValidosSemAuthSemSucesso() {
         EtapaRequestDTO etapaParaAtualizar = EtapaDataFactory.etapaComTodosOsCampos();
@@ -64,6 +73,10 @@ public class PutEtapaFuncionalTest {
                         .statusCode(403);
     }
 
+    @Feature("Etapa")
+    @Story("Editar uma etapa sem sucesso")
+    @Description("Testa se a requisição consegue editar uma etapa deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testEditarEtapaSemCamposObrigatoriosSemSucesso() {
         EtapaRequestDTO etapaParaAtualizar = EtapaDataFactory.etapaSemCamposObrigatoriosPreenchidos();
@@ -72,6 +85,10 @@ public class PutEtapaFuncionalTest {
                 .statusCode(400);
     }
 
+    @Feature("Etapa")
+    @Story("Editar uma etapa sem sucesso")
+    @Description("Testa se a requisição consegue editar uma etapa deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testEditarEtapaComCampoNomeComCaracterAMaisSemSucesso() {
         EtapaRequestDTO etapaParaAtualizar = EtapaDataFactory.etapaComCampoNomeComCaracterAMais();
@@ -80,6 +97,10 @@ public class PutEtapaFuncionalTest {
                 .statusCode(400);
     }
 
+    @Feature("Etapa")
+    @Story("Editar uma etapa sem sucesso")
+    @Description("Testa se a requisição consegue editar uma etapa deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testEditarEtapaetapaComCampoDuracaoDiaUtilNegativoSemSucesso() {
         EtapaRequestDTO etapaParaAtualizar = EtapaDataFactory.etapaComCampoDuracaoDiaUtilNegativo();

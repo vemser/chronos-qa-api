@@ -4,6 +4,7 @@ import client.EdicaoClient;
 import client.EtapaClient;
 import data.factory.EdicaoFactory;
 import data.factory.EtapaDataFactory;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import model.EtapaRequestDTO;
 import model.EtapaResponseDTO;
@@ -52,6 +53,10 @@ public class GetEtapaFuncionalTest {
                 .statusCode(204);
     }
 
+    @Feature("Etapa")
+    @Story("Buscar uma etapa com sucesso")
+    @Description("Testa se a requisição consegue buscar uma etapa deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarTodasAsEtapasComSucesso() {
         Response response =
@@ -65,6 +70,10 @@ public class GetEtapaFuncionalTest {
         Assertions.assertFalse(etapas.isEmpty());
     }
 
+    @Feature("Etapa")
+    @Story("Buscar uma etapa sem sucesso")
+    @Description("Testa se a requisição consegue buscar uma etapa deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarTodasAsEtapasSemAutorizacaoSemSucesso() {
                 etapaClient.buscarTudoSemAuth()
@@ -72,6 +81,11 @@ public class GetEtapaFuncionalTest {
                         .statusCode(403);
     }
 
+
+    @Feature("Etapa")
+    @Story("Buscar uma etapa com sucesso")
+    @Description("Testa se a requisição consegue buscar uma etapa deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarTodasAsEtapasPorEdicaoComSucesso() {
         Response response =
@@ -86,6 +100,11 @@ public class GetEtapaFuncionalTest {
     }
 
 
+
+    @Feature("Etapa")
+    @Story("Buscar uma etapa sem sucesso")
+    @Description("Testa se a requisição consegue buscar uma etapa deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarTodasAsEtapasPorEdicaoSemAutorizacaoSemSucesso() {
                 etapaClient.buscarTudoPorEdicaoSemAuth(idEdicaoCadastrado)
@@ -93,6 +112,10 @@ public class GetEtapaFuncionalTest {
                         .statusCode(403);
     }
 
+    @Feature("Etapa")
+    @Story("Buscar uma etapa com sucesso")
+    @Description("Testa se a requisição consegue buscar uma etapa deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarEtapaEspecificaPorIdComSucesso() {
         EtapaResponseDTO etapaBuscada =
@@ -108,6 +131,10 @@ public class GetEtapaFuncionalTest {
 
     }
 
+    @Feature("Etapa")
+    @Story("Buscar uma etapa sem sucesso")
+    @Description("Testa se a requisição consegue buscar uma etapa deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarEtapaEspecificaPorIdSemAutorizacaoSemSucesso() {
                 etapaClient.buscarPorIDSemAuth(idEtapaCadastrada)

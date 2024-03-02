@@ -4,6 +4,7 @@ import client.EdicaoClient;
 import client.EtapaClient;
 import data.factory.EdicaoFactory;
 import data.factory.EtapaDataFactory;
+import io.qameta.allure.*;
 import model.EtapaRequestDTO;
 import model.EtapaResponseDTO;
 import model.edicao.EdicaoRequestDTO;
@@ -40,6 +41,11 @@ public class DeleteEtapaFuncionalTest {
 
         idEtapaCadastrada = etapaCadastrada.getIdEtapa();
     }
+
+    @Feature("Etapa")
+    @Story("Deletar uma etapa com sucesso")
+    @Description("Testa se a requisição consegue deletar uma etapa deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testDeletarEtapaEspecificoPorIdComSucesso() {
         etapaClient.deletar(idEtapaCadastrada)
@@ -47,6 +53,10 @@ public class DeleteEtapaFuncionalTest {
                 .statusCode(204);
     }
 
+    @Feature("Etapa")
+    @Story("Deletar uma etapa sem sucesso")
+    @Description("Testa se a requisição consegue deletar uma etapa deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testDeletarModuloEspecificoPorIdSemAutorizacaoSemSucesso() {
         etapaClient.deletarSemAuth(idEtapaCadastrada)

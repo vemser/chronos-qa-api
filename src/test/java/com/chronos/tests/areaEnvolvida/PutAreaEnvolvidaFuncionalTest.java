@@ -3,6 +3,7 @@ package com.chronos.tests.areaEnvolvida;
 import client.AreaEnvolvidaClient;
 import data.factory.AreaEnvovidaDataFactory;
 import data.factory.TokenFactory;
+import io.qameta.allure.*;
 import model.AreaEnvolvidaRequestDTO;
 import model.AreaEnvolvidaResponseDTO;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,10 @@ public class PutAreaEnvolvidaFuncionalTest {
     AreaEnvolvidaClient areaEnvolvidaClient = new AreaEnvolvidaClient();
 
 
+    @Feature("Area Envolvida")
+    @Story("Atualizar uma area envolvida com sucesso")
+    @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarAreaEnvolvidaComSucesso() {
         areaEnvolvidaClient.setTOKEN(TokenFactory.getTokenAdmin());
@@ -34,6 +39,10 @@ public class PutAreaEnvolvidaFuncionalTest {
 
     }
 
+    @Feature("Area Envolvida")
+    @Story("Atualizar uma area envolvida com nome repetido sem sucesso")
+    @Description("Testa se a requisição não consegue atualizar uma area envolvida deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarAreaEnvolvidaComNomeRepetido() {
         areaEnvolvidaClient.setTOKEN(TokenFactory.getTokenAdmin());
@@ -62,6 +71,10 @@ public class PutAreaEnvolvidaFuncionalTest {
 
     }
 
+    @Feature("Area Envolvida")
+    @Story("Atualizar uma area envolvida sem sucesso com nome vazio")
+    @Description("Testa se a requisição não consegue atualizar uma area envolvida deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
 @Test
     public void testTentarAtualizarAreaEnvolvidaComNomeVazio() {
         areaEnvolvidaClient.setTOKEN(TokenFactory.getTokenAdmin());

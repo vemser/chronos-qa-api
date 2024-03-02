@@ -2,6 +2,7 @@ package com.chronos.tests.modulo;
 
 import client.ModuloClient;
 import data.factory.ModuloDataFactory;
+import io.qameta.allure.*;
 import model.ModuloRequestDTO;
 import model.ModuloResponseDTO;
 import org.junit.jupiter.api.AfterEach;
@@ -34,6 +35,10 @@ public class PutModuloFuncionalTest {
         }
     }
 
+    @Feature("Modulo")
+    @Story("Atualizar um modulo sem sucesso")
+    @Description("Testa se a requisição consegue atualizar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testEditarModuloComTodosOsCamposValidosComSucesso() {
         ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloComTodosOsCampos();
@@ -42,6 +47,11 @@ public class PutModuloFuncionalTest {
                         .statusCode(200);
     }
 
+
+    @Feature("Modulo")
+    @Story("Atualizar um modulo sem sucesso")
+    @Description("Testa se a requisição consegue atualizar um modulo deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testEditarModuloComTodosOsCamposObrigatoriosValidosComSucesso() {
         ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloSemCamposNaoObrigatoriosPreenchidos();
@@ -50,6 +60,10 @@ public class PutModuloFuncionalTest {
                 .statusCode(400);
     }
 
+    @Feature("Modulo")
+    @Story("Atualizar modulo sem sucesso")
+    @Description("Testa se a requisição consegue atualizar um modulo deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testEditarModuloComTodosOsCamposNaoObrigatoriosValidosSemObrigatoriosSemSucesso() {
         ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloSemCamposObrigatoriosPreenchidos();
@@ -58,6 +72,10 @@ public class PutModuloFuncionalTest {
                 .statusCode(400);
     }
 
+    @Feature("Modulo")
+    @Story("Atualizar um modulo sem sucesso")
+    @Description("Testa se a requisição consegue atualizar um modulo deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testEditarModuloComCampoNomeComCaracteresAMenosSemSucesso() {
         ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloComNomeComCaracterAMenos();
@@ -66,6 +84,10 @@ public class PutModuloFuncionalTest {
                 .statusCode(400);
     }
 
+    @Feature("Modulo")
+    @Story("Atualizar um modulo sem sucesso")
+    @Description("Testa se a requisição consegue atualizar um modulo deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testEditarModuloComCampoNomeComCaracteresAMaisSemSucesso() {
         ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloComNomeComCaracterAMais();
@@ -74,6 +96,10 @@ public class PutModuloFuncionalTest {
                 .statusCode(400);
     }
 
+    @Feature("Modulo")
+    @Story("Atualizar um modulo sem sucesso")
+    @Description("Testa se a requisição consegue atualizar um modulo deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testEditarModuloComCampoConteudoProgramaticoComCaracteresAMenosSemSucesso() {
         ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloComConteudoProgramaticoComCaracterAMenos();
@@ -82,6 +108,10 @@ public class PutModuloFuncionalTest {
                 .statusCode(400);
     }
 
+    @Feature("Modulo")
+    @Story("Atualizar um modulo sem sucesso")
+    @Description("Testa se a requisição consegue atualizar um modulo deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testEditarModuloComCampoConteudoProgramaticoComCaracteresAMaisSemSucesso() {
         ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloComConteudoProgramaticoComCaracterAMais();
@@ -90,6 +120,10 @@ public class PutModuloFuncionalTest {
                 .statusCode(400);
     }
 
+    @Feature("Modulo")
+    @Story("Atualizar um modulo sem sucesso")
+    @Description("Testa se a requisição consegue atualizar um modulo deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testEditarModuloComTodosOsCamposSemAutorizacaoSemSucesso() {
         ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloComTodosOsCampos();
@@ -98,6 +132,10 @@ public class PutModuloFuncionalTest {
                 .statusCode(403);
     }
 
+    @Feature("Modulo")
+    @Story("Atualizar um modulo sem sucesso")
+    @Description("Testa se a requisição consegue atualizar um modulo deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testDeletarModuloEspecificoPorIdInvalidoSemSucesso() {
         ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloComTodosOsCampos();

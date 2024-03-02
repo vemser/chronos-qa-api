@@ -19,9 +19,9 @@ pipeline {
         stage('Publish Allure Report') {
             steps {
                 script {
-                    bat 'allure generate target/allure-results -o target/allure-report'
+                    bat 'allure generate allure-results -o allure-report'
 
-                    archiveArtifacts 'target/allure-report/**'
+                    archiveArtifacts 'allure-report/**'
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
             allure(
                 includeProperties: false,
                 jdk: '',
-                results: [[path: 'target/allure-results']]
+                results: [[path: 'allure-results']]
             )
             script {
                 def buildUrl = env.BUILD_URL
