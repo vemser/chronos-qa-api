@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     echo 'Iniciando etapa de teste para o primeiro repositório...'
-
+                    bat 'mvn -e clean test -Dmaven.test.failure.ignore=true'
                 }
             }
         }
@@ -37,6 +37,7 @@ pipeline {
         stage('Publish Allure Report') {
             steps {
                 script {
+                    try {
                     bat 'allure generate -o allure-results'
 
                     archiveArtifacts 'allure-report/**'
@@ -45,7 +46,9 @@ pipeline {
                             bat "allure generate -o allure-results"
                             def resultAPI = currentBuild.result
                         }
-
+                    } catch (e) {
+                    echo "Erro ao executar Allure Report: ${e.message}"
+                    }
                     echo 'Arquivos de relatório Allure arquivados.'
                 }
             }
