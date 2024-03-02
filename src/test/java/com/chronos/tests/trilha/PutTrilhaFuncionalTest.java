@@ -6,11 +6,10 @@ import data.factory.ModuloDataFactory;
 import data.factory.TokenFactory;
 import data.factory.TrilhaDataFactory;
 import io.qameta.allure.*;
-import model.ModuloRequestDTO;
-import model.ModuloResponseDTO;
+import model.modulo.ModuloRequestDTO;
+import model.modulo.ModuloResponseDTO;
 import model.trilha.TrilhaRequestDTO;
 import model.trilha.TrilhaResponseDTO;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

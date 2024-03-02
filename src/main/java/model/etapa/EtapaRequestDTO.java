@@ -1,19 +1,16 @@
-package model;
+package model.etapa;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class EtapaResponseDTO {
-    private Integer idEtapa;
+public class EtapaRequestDTO {
     private String nome;
     private Integer ordemExecucao;
     private Integer duracaoDiaUtil;
-    private List<AreaEnvolvidaResponseDTO> areaEnvolvidaDTO;
 }

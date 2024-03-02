@@ -1,4 +1,4 @@
-package model;
+package model.areaEnvolvida;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

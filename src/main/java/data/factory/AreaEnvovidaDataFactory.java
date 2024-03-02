@@ -1,8 +1,6 @@
 package data.factory;
 
-import model.AreaEnvolvidaRequestDTO;
-import model.trilha.TrilhaRequestDTO;
-import net.datafaker.Faker;
+import model.areaEnvolvida.AreaEnvolvidaRequestDTO;
 
 public class AreaEnvovidaDataFactory {
 

@@ -4,7 +4,6 @@ import client.DiaNaoUtilClient;
 import data.factory.TokenFactory;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
-import model.ModuloResponseDTO;
 import model.diaNaoUtil.DiaNaoUtilResposeDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

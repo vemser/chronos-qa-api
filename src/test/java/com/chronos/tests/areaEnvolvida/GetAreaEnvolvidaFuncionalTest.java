@@ -4,8 +4,7 @@ import client.AreaEnvolvidaClient;
 import data.factory.TokenFactory;
 import io.qameta.allure.*;
 import io.restassured.response.Response;
-import model.AreaEnvolvidaResponseDTO;
-import model.trilha.TrilhaResponseDTO;
+import model.areaEnvolvida.AreaEnvolvidaResponseDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

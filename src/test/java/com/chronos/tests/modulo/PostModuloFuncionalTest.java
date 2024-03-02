@@ -3,8 +3,8 @@ package com.chronos.tests.modulo;
 import client.ModuloClient;
 import data.factory.ModuloDataFactory;
 import io.qameta.allure.*;
-import model.ModuloRequestDTO;
-import model.ModuloResponseDTO;
+import model.modulo.ModuloRequestDTO;
+import model.modulo.ModuloResponseDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 

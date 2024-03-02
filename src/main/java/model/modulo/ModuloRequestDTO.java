@@ -1,17 +1,17 @@
-package model;
+package model.modulo;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ModuloResponseDTO {
-    private Integer idModulo;
+public class ModuloRequestDTO {
     private String nome;
-    private String nomeResponsavel;
+    private String loginResponsavel;
     private String conteudoProgramatico;
     private String status;
-    private String cargoResponsavel;
 }
