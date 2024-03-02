@@ -8,7 +8,7 @@ public class AreaEnvovidaDataFactory {
 
     public static AreaEnvolvidaRequestDTO areaEnvolvidaComSucesso(){
         AreaEnvolvidaRequestDTO areaEnvolvidaRequestDTO = new AreaEnvolvidaRequestDTO();
-        areaEnvolvidaRequestDTO.setNome("Area envolvida" + Factory.FAKER.number().digits(10));
+        areaEnvolvidaRequestDTO.setNome("Area envolvida " + Factory.FAKER.number().digits(10));
 
 
         return areaEnvolvidaRequestDTO;
