@@ -1,17 +1,13 @@
 pipeline {
     agent any
 
-        tools {
-            maven "MAVEN"
-            nodejs "NODE"
-            git "GIT"
-        }
+
 
     stages {
         stage('Checkout') {
             steps {
                 script {
-                     checkout([$class: 'GitSCM', branches: [[name: 'dev']], userRemoteConfigs: [[url: 'https://github.com/vemser/chronos-qa-api.git']]])
+                    checkout scm
                 }
             }
         }
