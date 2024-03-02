@@ -1,8 +1,6 @@
 package client;
 
 import io.restassured.response.Response;
-import lombok.Data;
-import lombok.Getter;
 import lombok.Setter;
 import model.diaNaoUtil.DiaNaoUtilRequestDTO;
 import specs.InicialSpecs;
