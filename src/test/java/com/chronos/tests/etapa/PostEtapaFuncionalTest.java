@@ -23,22 +23,23 @@ public class PostEtapaFuncionalTest {
 
     @BeforeEach
     public void setUp() {
-        EdicaoRequestDTO edicaoACadastrar = EdicaoFactory.edicaoValida();
-        edicaoCadastrada =
-                edicaoClient.cadastrarEdicao(edicaoACadastrar)
-                        .then()
-                        .log().all()
-                        .statusCode(200)
-                        .extract().as(EdicaoResponseDTO.class);
-
-        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
+//        EdicaoRequestDTO edicaoACadastrar = EdicaoFactory.edicaoValida();
+//        edicaoCadastrada =
+//                edicaoClient.cadastrarEdicao(edicaoACadastrar)
+//                        .then()
+//                        .log().all()
+//                        .statusCode(200)
+//                        .extract().as(EdicaoResponseDTO.class);
+//
+//        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
+        idEdicaoCadastrado = 229;
     }
-    @AfterEach
-    public void cleanUp() {
-        edicaoClient.deletarPorID(idEdicaoCadastrado)
-                .then()
-                .statusCode(204);
-    }
+//    @AfterEach
+//    public void cleanUp() {
+//        edicaoClient.deletarPorID(idEdicaoCadastrado)
+//                .then()
+//                .statusCode(204);
+//    }
 
 
     @Feature("Etapa")
