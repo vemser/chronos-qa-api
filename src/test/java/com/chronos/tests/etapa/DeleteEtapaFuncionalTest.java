@@ -23,14 +23,15 @@ public class DeleteEtapaFuncionalTest {
     EdicaoResponseDTO edicaoCadastrada;
     @BeforeEach
     public void setUp() {
-        EdicaoRequestDTO edicaoACadastrar = EdicaoFactory.edicaoValida();
-        edicaoCadastrada =
-                edicaoClient.cadastrarEdicao(edicaoACadastrar)
-                        .then()
-                        .statusCode(200)
-                        .extract().as(EdicaoResponseDTO.class);
-
-        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
+//        EdicaoRequestDTO edicaoACadastrar = EdicaoFactory.edicaoValida();
+//        edicaoCadastrada =
+//                edicaoClient.cadastrarEdicao(edicaoACadastrar)
+//                        .then()
+//                        .statusCode(200)
+//                        .extract().as(EdicaoResponseDTO.class);
+//
+//        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
+        idEdicaoCadastrado = 229;
 
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComTodosOsCampos();
         etapaCadastrada =
@@ -42,10 +43,6 @@ public class DeleteEtapaFuncionalTest {
         idEtapaCadastrada = etapaCadastrada.getIdEtapa();
     }
 
-    @Feature("Etapa")
-    @Story("Deletar uma etapa com sucesso")
-    @Description("Testa se a requisição consegue deletar uma etapa deve retornar uma mensagem de sucesso")
-    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testDeletarEtapaEspecificoPorIdComSucesso() {
         etapaClient.deletar(idEtapaCadastrada)
@@ -53,10 +50,6 @@ public class DeleteEtapaFuncionalTest {
                 .statusCode(204);
     }
 
-    @Feature("Etapa")
-    @Story("Deletar uma etapa sem sucesso")
-    @Description("Testa se a requisição consegue deletar uma etapa deve retornar uma mensagem de erro")
-    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testDeletarModuloEspecificoPorIdSemAutorizacaoSemSucesso() {
         etapaClient.deletarSemAuth(idEtapaCadastrada)

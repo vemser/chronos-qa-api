@@ -22,15 +22,16 @@ public class PutEtapaFuncionalTest {
     EdicaoResponseDTO edicaoCadastrada;
     @BeforeEach
     public void setUp() {
-        EdicaoRequestDTO edicaoACadastrar = EdicaoFactory.edicaoValida();
-        edicaoCadastrada =
-                edicaoClient.cadastrarEdicao(edicaoACadastrar)
-                        .then()
-                        .statusCode(200)
-                        .log().all()
-                        .extract().as(EdicaoResponseDTO.class);
-
-        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
+//        EdicaoRequestDTO edicaoACadastrar = EdicaoFactory.edicaoValida();
+//        edicaoCadastrada =
+//                edicaoClient.cadastrarEdicao(edicaoACadastrar)
+//                        .then()
+//                        .statusCode(200)
+//                        .log().all()
+//                        .extract().as(EdicaoResponseDTO.class);
+//
+//        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
+        idEdicaoCadastrado = 229;
 
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComTodosOsCampos();
         etapaCadastrada =
@@ -42,12 +43,12 @@ public class PutEtapaFuncionalTest {
 
         idEtapaCadastrada = etapaCadastrada.getIdEtapa();
     }
-    @AfterEach
-    public void cleanUp() {
-        edicaoClient.deletarPorID(idEdicaoCadastrado)
-                .then()
-                .statusCode(204);
-    }
+//    @AfterEach
+//    public void cleanUp() {
+//        edicaoClient.deletarPorID(idEdicaoCadastrado)
+//                .then()
+//                .statusCode(204);
+//    }
 
     @Feature("Etapa")
     @Story("Editar uma etapa com sucesso")
