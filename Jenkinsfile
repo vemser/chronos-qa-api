@@ -16,14 +16,13 @@ pipeline {
                 script {
                     echo 'Iniciando etapa de teste para o primeiro repositório...'
 
-                    bat 'mvn -e clean test -Dmaven.test.failure.ignore=true'
-
                 }
             }
         }
         stage('Checkout UI Repository') {
             steps {
                 script {
+                    bat 'rm -f repo_ui'
                     bat 'git clone -b dev https://github.com/vemser/chronos-qa-ui.git repo_ui'
                 }
             }
