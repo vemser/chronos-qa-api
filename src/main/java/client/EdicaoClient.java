@@ -88,7 +88,7 @@ public class EdicaoClient {
                 .put(PATH_EDICAO_ATUALIZAR_STATUS);
     }
 
-    public Response vincularTrilha( Integer idEdicao, Integer idTrilha) {
+    public Response vincularTrilha(Integer idEdicao, Integer idTrilha) {
         return given()
                     .spec(AuthSpec.setup())
                 .pathParam("idEdicao", idEdicao)

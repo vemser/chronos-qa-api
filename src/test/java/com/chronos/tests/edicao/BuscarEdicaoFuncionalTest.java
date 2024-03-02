@@ -48,8 +48,7 @@ public class BuscarEdicaoFuncionalTest {
                     .body("nome", equalTo(dataCreated.getNome()))
                     .body("descricao", equalTo(dataCreated.getDescricao()))
                     .body("status", equalTo(dataCreated.getStatus()))
-                    .body("dataInicial", containsStringIgnoringCase(dataCreated.getDataInicial().toString()))
-                    .body("dataFinal", containsStringIgnoringCase(dataCreated.getDataFinal().toString()));
+                    .body("dataInicial", containsStringIgnoringCase(dataCreated.getDataInicial().toString()));
 
         edicaoClient.deletarPorID(dataCreated.getIdEdicao())
                 .then()

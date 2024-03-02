@@ -6,7 +6,6 @@ public class EdicaoMapper {
         return EdicaoRequestDTO.builder()
                 .nome(responseDTO.getNome())
                 .dataInicial(responseDTO.getDataInicial())
-                .dataFinal(responseDTO.getDataFinal())
                 .descricao(responseDTO.getDescricao())
                 .status(responseDTO.getStatus())
                 .build();

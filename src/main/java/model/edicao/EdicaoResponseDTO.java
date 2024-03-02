@@ -15,10 +15,10 @@ import java.util.List;
 public class EdicaoResponseDTO {
     private String nome;
     private LocalDate dataInicial;
-    private LocalDate dataFinal;
     private String descricao;
-    private Integer idEdicao;
     private String status;
+    private Integer idEdicao;
+    private LocalDate dataFinal;
     private List etapas;
     private List trilhas;
     private List estagiarios;

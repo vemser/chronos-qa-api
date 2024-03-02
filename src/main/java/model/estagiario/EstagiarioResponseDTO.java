@@ -1,17 +1,20 @@
-package model;
+package model.estagiario;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import model.edicao.EdicaoResponseDTO;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class EstagiarioRequestDTO {
+public class EstagiarioResponseDTO {
+    private Integer idEstagiario;
     private String cpf;
     private String nome;
     private String telefone;
@@ -26,6 +29,6 @@ public class EstagiarioRequestDTO {
     private String linkedin;
     private String status;
     private String observacao;
-    private Integer idEdicao;
-    private Integer idTrilha;
+    private TrilhaEstagiarioResponseDTO trilha;
+    private EdicaoEstagiarioResponseDTO edicao;
 }

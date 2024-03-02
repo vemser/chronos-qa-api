@@ -11,7 +11,7 @@ public class TrilhaDataFactory {
         TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
         trilhaReq.setNome("Trilha " + Factory.FAKER.number().digits(10));
         trilhaReq.setDescricao(Factory.FAKER.lorem().sentence());
-        trilhaReq.setStatus("INATIVO");
+        trilhaReq.setStatus("ATIVO");
 
         return trilhaReq;
 

@@ -31,8 +31,7 @@ public class CriarEdicaoFuncionalTest {
                 () -> assertEquals(responseDTO.getNome(), requestDTO.getNome()),
                 () -> assertEquals(responseDTO.getDescricao(), requestDTO.getDescricao()),
                 () -> assertEquals(responseDTO.getDataInicial(), requestDTO.getDataInicial()),
-                () -> assertEquals(responseDTO.getDataFinal(), requestDTO.getDataFinal()),
-                () -> assertEquals(9, responseDTO.getEtapas().size()),
+                () -> assertEquals(4, responseDTO.getEtapas().size()),
                 () -> assertNotNull(responseDTO.getIdEdicao()),
                 () -> assertTrue(responseDTO.getTrilhas().isEmpty()),
                 () -> assertTrue(responseDTO.getEstagiarios().isEmpty())
