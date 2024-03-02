@@ -4,19 +4,34 @@ pipeline {
 
 
     stages {
-        stage('Checkout') {
+        stage('Checkout API Repository') {
             steps {
                 script {
                     checkout scm
                 }
             }
         }
-        stage('Test') {
+       stage('Test API Repository') {
             steps {
                 script {
-                    echo 'Iniciando etapa de teste...'
+                    echo 'Iniciando etapa de teste para o primeiro repositório...'
+
                     bat 'mvn -e clean test -Dmaven.test.failure.ignore=true'
-                    echo 'Testes concluídos.'
+
+                }
+            }
+        }
+        stage('Checkout UI Repository') {
+            steps {
+                script {
+                    bat 'git clone -b dev https://github.com/vemser/chronos-qa-ui.git repo_ui'
+                }
+            }
+        }
+        stage('Test UI Repository') {
+            steps {
+                script {
+                    bat 'cd repo_ui && mvn -e clean test'
                 }
             }
         }
@@ -24,9 +39,13 @@ pipeline {
             steps {
                 script {
                     bat 'allure generate allure-results -o allure-report'
-
                     archiveArtifacts 'allure-report/**'
-                    echo 'Arquivo de relatório Allure arquivado.'
+
+                    bat 'allure generate repo_ui/allure-results -o allure-report-ui'
+
+                    archiveArtifacts 'allure-report-ui/**'
+
+                    echo 'Arquivos de relatório Allure arquivados.'
                 }
             }
         }
@@ -37,7 +56,8 @@ pipeline {
             allure(
                 includeProperties: false,
                 jdk: '',
-                results: [[path: 'allure-results']]
+                results: [[path: 'allure-results']],
+               [path: 'repo_ui/allure-results']]
             )
             echo 'Pós-processamento concluído.'
             script {
