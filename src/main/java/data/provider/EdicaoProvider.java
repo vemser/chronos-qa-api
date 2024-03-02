@@ -1,8 +1,7 @@
 package data.provider;
 
 import data.factory.EdicaoFactory;
-import data.factory.Factory;
-import org.apache.commons.lang3.StringUtils;
+import data.factory.TrilhaDataFactory;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.params.provider.Arguments;
 
@@ -21,9 +20,11 @@ public class EdicaoProvider {
 
     private static Stream<Arguments> criarEdicaoSemSucessoProvider() {
         return Stream.of(
-                Arguments.of(StringUtils.EMPTY, Factory.dataInicial(), Factory.dataFinal(), Factory.descricao(), HttpStatus.SC_BAD_REQUEST),
-                Arguments.of("123", Factory.dataInicial(), Factory.dataFinal(), Factory.descricao(), HttpStatus.SC_BAD_REQUEST),
-                Arguments.of("123", Factory.dataInicial(), Factory.dataFinal(), Factory.descricao256(), HttpStatus.SC_BAD_REQUEST)
+                Arguments.of(EdicaoFactory.edicaoComNomeVazio(), HttpStatus.SC_BAD_REQUEST),
+                Arguments.of(EdicaoFactory.edicaoComNomeTamanhoTres(), HttpStatus.SC_BAD_REQUEST),
+                Arguments.of(EdicaoFactory.edicaoComDescricao256(), HttpStatus.SC_BAD_REQUEST),
+                Arguments.of(EdicaoFactory.edicaoComDataInicialNulo(), HttpStatus.SC_BAD_REQUEST),
+                Arguments.of(EdicaoFactory.edicaoComNomeJaExistente(), HttpStatus.SC_CONFLICT)
         );
     }
 

@@ -2,11 +2,12 @@ package com.chronos.tests.modulo;
 
 import client.ModuloClient;
 import data.factory.ModuloDataFactory;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import model.ModuloRequestDTO;
 import model.ModuloResponseDTO;
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -16,29 +17,34 @@ public class GetModuloFuncionalTest {
     Integer idModuloCadastrado = 0;
     ModuloClient moduloClient = new ModuloClient();
     ModuloResponseDTO moduloCadastrado;
-    @Before
+    @BeforeEach
     public void setUp() {
         ModuloRequestDTO moduloACadastrar = ModuloDataFactory.moduloComTodosOsCampos();
         moduloCadastrado =
                 moduloClient.cadastrar(moduloACadastrar)
                         .then()
-                        .statusCode(200)
+                        .statusCode(201)
                         .extract().as(ModuloResponseDTO.class);
 
         idModuloCadastrado = moduloCadastrado.getIdModulo();
     }
-    @After
+    @AfterEach
     public void cleanUp() {
         moduloClient.deletar(idModuloCadastrado)
                 .then()
                 .statusCode(204);
     }
+
+    @Feature("Modulo")
+    @Story("Busca um modulo com sucesso")
+    @Description("Testa se a requisição consegue buscar um modulo deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarTodosOsModulosComSucesso() {
         Response response =
                 moduloClient.buscarTudo()
                         .then()
-                        .statusCode(201)
+                        .statusCode(200)
                         .extract().response();
         List<ModuloResponseDTO> modulos = response.jsonPath().getList("content", ModuloResponseDTO.class);
 
@@ -46,6 +52,10 @@ public class GetModuloFuncionalTest {
         Assertions.assertFalse(modulos.isEmpty());
     }
 
+    @Feature("Modulo")
+    @Story("Busca um modulo sem sucesso, sem auth")
+    @Description("Testa se a requisição não consegue buscar um modulo deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarTodosOsModulosSemAutorizacao() {
                 moduloClient.buscarTudoSemAuth()
@@ -53,6 +63,10 @@ public class GetModuloFuncionalTest {
                         .statusCode(403);
     }
 
+    @Feature("Modulo")
+    @Story("Busca um modulo com sucesso")
+    @Description("Testa se a requisição  consegue buscar um modulo deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarPorModuloEspecificoIDValido() {
         ModuloResponseDTO moduloBuscado =
@@ -69,6 +83,10 @@ public class GetModuloFuncionalTest {
         Assertions.assertEquals(moduloBuscado.getConteudoProgramatico(), moduloCadastrado.getConteudoProgramatico());
     }
 
+    @Feature("Modulo")
+    @Story("Busca um modulo sem sucesso")
+    @Description("Testa se a requisição não consegue buscar um modulo deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarPorModuloEspecificoIDInvalido() {
                 moduloClient.buscarPorID(0)
@@ -76,6 +94,11 @@ public class GetModuloFuncionalTest {
                         .statusCode(400);
     }
 
+
+    @Feature("Modulo")
+    @Story("Busca um modulo sem sucesso, sem auth")
+    @Description("Testa se a requisição não consegue buscar um modulo deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarPorModuloEspecificoIDValidoSemAutorizacao() {
                 moduloClient.buscarPorIDSemAuth(idModuloCadastrado)
