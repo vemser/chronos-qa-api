@@ -19,5 +19,7 @@ public class TrilhaResponseDTO extends TrilhaRequestDTO {
     private String descricao;
     private String message;
     private List<ModuloResponseDTO> modulos;
+    private String timestamp;
+    private String errors;
 
 }

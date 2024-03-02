@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 public class ModuloDataFactory {
     public static ModuloRequestDTO moduloComTodosOsCampos(){
         ModuloRequestDTO moduloReq = new ModuloRequestDTO();
-        moduloReq.setNome(Factory.FAKER.name().firstName());
+        moduloReq.setNome("Modulo " + Factory.FAKER.number().digits(3));
         moduloReq.setLoginResponsavel("admin.teste");
         moduloReq.setConteudoProgramatico(Factory.FAKER.lorem().sentence(11));
         moduloReq.setStatus("ATIVO");
@@ -24,7 +24,7 @@ public class ModuloDataFactory {
 
     public static ModuloRequestDTO moduloSemCamposNaoObrigatoriosPreenchidos() {
         ModuloRequestDTO moduloReq = new ModuloRequestDTO();
-        moduloReq.setNome(Factory.FAKER.name().firstName());
+        moduloReq.setNome("Modulo " + Factory.FAKER.number().digits(3));
         moduloReq.setLoginResponsavel("");
         moduloReq.setConteudoProgramatico("");
         moduloReq.setStatus("ATIVO");

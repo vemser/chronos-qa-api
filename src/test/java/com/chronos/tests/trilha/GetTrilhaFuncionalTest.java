@@ -1,6 +1,7 @@
 package com.chronos.tests.trilha;
 import client.TrilhaClient;
 import data.factory.TokenFactory;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import model.ModuloResponseDTO;
 import model.trilha.TrilhaRequestDTO;
@@ -15,7 +16,10 @@ public class GetTrilhaFuncionalTest {
 
     private final TrilhaClient trilhaClient = new TrilhaClient();
 
-
+    @Feature("Trilha")
+    @Story("Buscar uma trilha com sucesso")
+    @Description("Testa se a requisição consegue buscar uma trilha deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarTrilhaComSucesso() {
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());

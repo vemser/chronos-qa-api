@@ -3,6 +3,7 @@ package com.chronos.tests.trilha;
 import client.TrilhaClient;
 import data.factory.TokenFactory;
 import data.factory.TrilhaDataFactory;
+import io.qameta.allure.*;
 import model.trilha.TrilhaRequestDTO;
 import model.trilha.TrilhaResponseDTO;
 import org.junit.jupiter.api.Test;
@@ -14,19 +15,25 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class PostTrilhaFuncionalTest {
     private final TrilhaClient trilhaClient = new TrilhaClient();
 
-
+    @Feature("Trilha")
+    @Story("Cadastrar uma trilha com sucesso")
+    @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarUmaTrilhaComSucesso() {
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComTodosOsCampos();
         TrilhaResponseDTO trilhaResponseDTO = trilhaClient.cadastrar(trilhaRequestDTO)
-                .then()
+                .then().log().all()
                 .statusCode(200).extract().as(TrilhaResponseDTO.class);
 
         trilhaClient.deletar(trilhaResponseDTO.getIdTrilha()).then().statusCode(204);
 
     }
-
+    @Feature("Trilha")
+    @Story("Cadastrar uma trilha com sucesso")
+    @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarUmaTrilhaSemPreencherOsCamposObrigatorios(){
 
@@ -36,7 +43,10 @@ public class PostTrilhaFuncionalTest {
                 .statusCode(400);
 
     }
-
+    @Feature("Trilha")
+    @Story("Cadastrar uma trilha com sucesso")
+    @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarUmaTrilhaPreenchendoApenasOsCamposObrigatorios(){
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
@@ -48,7 +58,10 @@ public class PostTrilhaFuncionalTest {
 
         trilhaClient.deletar(trilhaResponseDTO.getIdTrilha()).then().statusCode(204);
     }
-
+    @Feature("Trilha")
+    @Story("Cadastrar uma trilha com sucesso")
+    @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarUmaTrilhaPreenchendoOCampoNomeCom51Caracteres(){
 
@@ -57,7 +70,10 @@ public class PostTrilhaFuncionalTest {
                 .then()
                 .statusCode(400);
     }
-
+    @Feature("Trilha")
+    @Story("Cadastrar uma trilha com sucesso")
+    @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarUmaTrilhaPreenchendoOCampoNomeCom1Caracter(){
 
@@ -67,7 +83,10 @@ public class PostTrilhaFuncionalTest {
                 .statusCode(400);
 
     }
-
+    @Feature("Trilha")
+    @Story("Cadastrar uma trilha com sucesso")
+    @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
 
     @Test
     public void testTentarCriarTrilhaComNomeRepetido(){
@@ -90,7 +109,10 @@ public class PostTrilhaFuncionalTest {
         trilhaClient.deletar(trilhaResponseDTO.getIdTrilha()).then().statusCode(204);
     }
 
-
+    @Feature("Trilha")
+    @Story("Cadastrar uma trilha com sucesso")
+    @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarUmaTrilhaPreenchendoOCampoDescricaoCom255Caracteres(){
 
@@ -111,7 +133,10 @@ public class PostTrilhaFuncionalTest {
 
     }
 
-
+    @Feature("Trilha")
+    @Story("Cadastrar uma trilha com sucesso")
+    @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarUmaTrilhaPreenchendoOCampoDescricaovazio(){
 
@@ -130,7 +155,10 @@ public class PostTrilhaFuncionalTest {
         trilhaClient.deletar(trilhaResponseDTO.getIdTrilha()).then().statusCode(204);
 
     }
-
+    @Feature("Trilha")
+    @Story("Cadastrar uma trilha com sucesso")
+    @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarUmaTrilhaPreenchendoOCampoNomeCom256Caracteres(){
 
