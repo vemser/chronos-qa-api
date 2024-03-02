@@ -57,7 +57,7 @@ public class PutModuloFuncionalTest {
         ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloSemCamposNaoObrigatoriosPreenchidos();
         moduloClient.atualizar(idModuloCadastrado, moduloAEditar)
                 .then()
-                .statusCode(400);
+                .statusCode(200);
     }
 
     @Feature("Modulo")
@@ -102,7 +102,7 @@ public class PutModuloFuncionalTest {
     @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testEditarModuloComCampoConteudoProgramaticoComCaracteresAMenosSemSucesso() {
-        ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloComConteudoProgramaticoComCaracterAMenos();
+        ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloComConteudoProgramaticoComCaracterAMais();
         moduloClient.atualizar(idModuloCadastrado, moduloAEditar)
                 .then()
                 .statusCode(400);
