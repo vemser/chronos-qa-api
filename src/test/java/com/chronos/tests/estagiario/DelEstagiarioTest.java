@@ -27,8 +27,8 @@ public class DelEstagiarioTest {
     private final TrilhaClient trilhaClient = new TrilhaClient();
 
     @Feature("Estagiario")
-    @Story("Atualizar um Estagiario com sucesso")
-    @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
+    @Story("Deletar um Estagiario com sucesso")
+    @Description("Testa se a requisição consegue deletar um estagiário retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testExcluirEstagiario() {
@@ -69,8 +69,8 @@ public class DelEstagiarioTest {
     }
 
     @Feature("Estagiario")
-    @Story("Atualizar um Estagiario com sucesso")
-    @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
+    @Story("Deletar um Estagiario sem sucesso")
+    @Description("Testa se a requisição consegue deletar um estagiário retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testExcluirEstagiarioSemToken() {
