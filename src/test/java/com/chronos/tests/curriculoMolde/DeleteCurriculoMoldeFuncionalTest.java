@@ -5,6 +5,7 @@ import client.CurriculoMoldeClient;
 import data.factory.CurriculoMoldeDataFactory;
 import data.factory.TokenFactory;
 import data.factory.TrilhaDataFactory;
+import io.qameta.allure.*;
 import model.curriculoMolde.CurriculoMoldeDOCXResponseDTO;
 import model.curriculoMolde.CurriculoMoldeRequestDTO;
 import model.curriculoMolde.CurriculoMoldeResponseDTO;
@@ -53,12 +54,20 @@ public class DeleteCurriculoMoldeFuncionalTest {
                         .statusCode(201);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Deletar um curriculo molde com sucesso")
+    @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testDeletarCurriculoEspecificoPorIdPorTrilhaComSucesso() {
         curriculoMoldeClient.deletarCurriculoEspecificoPorTrilha(idTrilhaCadastrada)
                 .then()
                 .statusCode(200);
     }
+    @Feature("Curriculo Molde")
+    @Story("Deletar um curriculo molde sem sucesso")
+    @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testDeletarCurriculoEspecificoPorIdPorTrilhaSemAuthSemSucesso() {
         curriculoMoldeClient.deletarCurriculoEspecificoPorTrilhaSemAuth(idTrilhaCadastrada)
@@ -66,12 +75,20 @@ public class DeleteCurriculoMoldeFuncionalTest {
                 .statusCode(403);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Deletar um curriculo molde, arquivo DOCX, com sucesso")
+    @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testDeletarCurriculoArquivoEspecificoPorIdPorTrilhaComSucesso() {
         curriculoMoldeClient.deletarCurriculoArquivoEspecificoPorTrilha(idTrilhaCadastrada)
                 .then()
                 .statusCode(204);
     }
+    @Feature("Curriculo Molde")
+    @Story("Deletar um curriculo molde sem sucesso, sem autorização")
+    @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testDeletarCurriculoArquivoEspecificoPorIdPorTrilhaSemAuthSemSucesso() {
         curriculoMoldeClient.deletarCurriculoArquivoEspecificoPorTrilhaSemAuth(idTrilhaCadastrada)

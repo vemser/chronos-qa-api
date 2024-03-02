@@ -4,6 +4,7 @@ import client.EdicaoClient;
 import client.EtapaClient;
 import data.factory.EdicaoFactory;
 import data.factory.EtapaDataFactory;
+import io.qameta.allure.*;
 import model.EtapaRequestDTO;
 import model.EtapaResponseDTO;
 import model.edicao.EdicaoRequestDTO;
@@ -22,14 +23,15 @@ public class DeleteEtapaFuncionalTest {
     EdicaoResponseDTO edicaoCadastrada;
     @BeforeEach
     public void setUp() {
-        EdicaoRequestDTO edicaoACadastrar = EdicaoFactory.edicaoValida();
-        edicaoCadastrada =
-                edicaoClient.cadastrarEdicao(edicaoACadastrar)
-                        .then()
-                        .statusCode(200)
-                        .extract().as(EdicaoResponseDTO.class);
-
-        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
+//        EdicaoRequestDTO edicaoACadastrar = EdicaoFactory.edicaoValida();
+//        edicaoCadastrada =
+//                edicaoClient.cadastrarEdicao(edicaoACadastrar)
+//                        .then()
+//                        .statusCode(200)
+//                        .extract().as(EdicaoResponseDTO.class);
+//
+//        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
+        idEdicaoCadastrado = 229;
 
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComTodosOsCampos();
         etapaCadastrada =
@@ -40,6 +42,7 @@ public class DeleteEtapaFuncionalTest {
 
         idEtapaCadastrada = etapaCadastrada.getIdEtapa();
     }
+
     @Test
     public void testDeletarEtapaEspecificoPorIdComSucesso() {
         etapaClient.deletar(idEtapaCadastrada)

@@ -5,6 +5,7 @@ import client.TrilhaClient;
 import data.factory.CurriculoMoldeDataFactory;
 import data.factory.TokenFactory;
 import data.factory.TrilhaDataFactory;
+import io.qameta.allure.*;
 import model.trilha.TrilhaRequestDTO;
 import model.trilha.TrilhaResponseDTO;
 import model.curriculoMolde.CurriculoMoldeDOCXResponseDTO;
@@ -51,12 +52,20 @@ public class GetCurriculoMoldeFuncionalTest {
                         .statusCode(201);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Buscar um curriculo molde com sucesso")
+    @Description("Testa se a requisição consegue buscar um curriculo molde deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarCurriculoPorIdTrilhaComSucesso() {
         curriculoMoldeClient.buscarCurriculoEspecificoPorTrilha(idTrilhaCadastrada)
                 .then()
                 .statusCode(200);
     }
+    @Feature("Curriculo Molde")
+    @Story("Buscar um curriculo molde sem sucesso, sem auth")
+    @Description("Testa se a requisição consegue buscar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarCurriculoPorIdTrilhaSemAuthSemSucesso() {
         curriculoMoldeClient.buscarCurriculoEspecificoPorTrilhaSemAuth(idTrilhaCadastrada)
@@ -64,6 +73,10 @@ public class GetCurriculoMoldeFuncionalTest {
                 .statusCode(403);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Buscar um curriculo molde com sucesso")
+    @Description("Testa se a requisição consegue buscar um curriculo molde deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testbuscarCurriculoArquivoEspecificoPorTrilhaComSucesso() {
         curriculoMoldeClient.buscarCurriculoArquivoEspecificoPorTrilha(idTrilhaCadastrada)
@@ -71,6 +84,10 @@ public class GetCurriculoMoldeFuncionalTest {
                 .statusCode(200);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Buscar um curriculo molde sem sucesso, sem auth")
+    @Description("Testa se a requisição consegue buscar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testbuscarCurriculoArquivoEspecificoPorTrilhaSemAuthSemSucesso() {
         curriculoMoldeClient.buscarCurriculoArquivoEspecificoPorTrilhaSemAuth(idTrilhaCadastrada)

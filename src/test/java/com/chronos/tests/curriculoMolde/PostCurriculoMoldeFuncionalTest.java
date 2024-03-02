@@ -5,6 +5,7 @@ import client.TrilhaClient;
 import data.factory.CurriculoMoldeDataFactory;
 import data.factory.TokenFactory;
 import data.factory.TrilhaDataFactory;
+import io.qameta.allure.*;
 import model.trilha.TrilhaRequestDTO;
 import model.trilha.TrilhaResponseDTO;
 import model.curriculoMolde.CurriculoMoldeDOCXResponseDTO;
@@ -38,6 +39,10 @@ public class PostCurriculoMoldeFuncionalTest {
         idTrilhaCadastrada = 93;
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Criar um curriculo molde com sucesso")
+    @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarCurriculoMoldeComTodosOsCamposValidosComSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCampos();
@@ -50,6 +55,10 @@ public class PostCurriculoMoldeFuncionalTest {
         idCurriculoMoldeCadastrado = curriculoMoldeCadastrado.getIdCurriculoMolde();
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Criar um curriculo molde sem sucesso, sem auth")
+    @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarCurriculoMoldeComTodosOsCamposValidosSemAuthSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCampos();
@@ -58,6 +67,10 @@ public class PostCurriculoMoldeFuncionalTest {
                         .statusCode(403);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Criar um curriculo molde sem sucesso")
+    @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarCurriculoMoldeComTodosOsCamposECampoQualificacoesComCaracteresAMaisSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCamposECampoQualificacoesComCaracteresAMais();
@@ -66,6 +79,10 @@ public class PostCurriculoMoldeFuncionalTest {
                         .statusCode(409);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Criar um curriculo molde sem sucesso")
+    @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testGerarCurriculoMoldeComTodosOsCamposECampoEmpresaComCaracteresAMaisSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCamposECampoEmpresaComCaracteresAMais();
@@ -74,6 +91,10 @@ public class PostCurriculoMoldeFuncionalTest {
                         .statusCode(409);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Criar um curriculo molde sem sucesso")
+    @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testGerarCurriculoMoldeComTodosOsCamposECampoDescricaoComCaracteresAMaisSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCamposECampoDescricaoComCaracteresAMais();
@@ -82,6 +103,10 @@ public class PostCurriculoMoldeFuncionalTest {
                         .statusCode(409);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Criar um curriculo molde sem sucesso")
+    @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testGerarCurriculoMoldeComTodosOsCamposECampoConhecimentoComCaracteresAMaisSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCamposECampoConhecimentoComCaracteresAMais();
@@ -90,6 +115,10 @@ public class PostCurriculoMoldeFuncionalTest {
                         .statusCode(409);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Criar um curriculo molde sem sucesso")
+    @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testGerarCurriculoMoldeComTodosOsCamposECampoCargoComCaracteresAMais() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCamposECampoCargoComCaracteresAMais();
@@ -98,6 +127,10 @@ public class PostCurriculoMoldeFuncionalTest {
                         .statusCode(409);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Criar um curriculo molde sem sucesso")
+    @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testGerarCurriculoMoldeVazioSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeVazio();
@@ -106,6 +139,10 @@ public class PostCurriculoMoldeFuncionalTest {
                         .statusCode(500);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Criar um curriculo molde sem sucesso")
+    @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarCurriculoMoldeArquivoComTodosOsCamposValidosComSucesso() {
                 curriculoMoldeClient.cadastrarArquivo(idTrilhaCadastrada, CurriculoMoldeDataFactory.gerarCurriculoDOCX())
@@ -113,6 +150,10 @@ public class PostCurriculoMoldeFuncionalTest {
                         .statusCode(201);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Criar um curriculo molde sem sucesso")
+    @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarCurriculoMoldeArquivoComTodosOsCamposValidosSemAuthSemSucesso() {
                 curriculoMoldeClient.cadastrarArquivoSemAuth(idTrilhaCadastrada, CurriculoMoldeDataFactory.gerarCurriculoDOCX())

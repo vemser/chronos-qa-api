@@ -5,6 +5,7 @@ import client.TrilhaClient;
 import data.factory.CurriculoMoldeDataFactory;
 import data.factory.TokenFactory;
 import data.factory.TrilhaDataFactory;
+import io.qameta.allure.*;
 import model.trilha.TrilhaRequestDTO;
 import model.trilha.TrilhaResponseDTO;
 import model.curriculoMolde.CurriculoMoldeDOCXResponseDTO;
@@ -51,6 +52,10 @@ public class PutCurriculoMoldeFuncionalTest {
                         .statusCode(201);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Atualiza um curriculo molde com sucesso")
+    @Description("Testa se a requisição não consegue atualizar um curriculo molde deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarCurriculoMoldeComTodosOsCamposValidosComSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCampos();
@@ -63,6 +68,10 @@ public class PutCurriculoMoldeFuncionalTest {
         idCurriculoMoldeCadastrado = curriculoMoldeCadastrado.getIdCurriculoMolde();
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Atualiza um curriculo molde sem sucesso")
+    @Description("Testa se a requisição não consegue atualizar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarCurriculoMoldeComTodosOsCamposValidosSemAuthSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCampos();
@@ -71,6 +80,10 @@ public class PutCurriculoMoldeFuncionalTest {
                         .statusCode(403);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Atualiza um curriculo molde sem sucesso")
+    @Description("Testa se a requisição não consegue atualizar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarCurriculoMoldeComTodosOsCamposECampoQualificacoesComCaracteresAMaisSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCamposECampoQualificacoesComCaracteresAMais();
@@ -79,6 +92,11 @@ public class PutCurriculoMoldeFuncionalTest {
                         .statusCode(409);
     }
 
+
+    @Feature("Curriculo Molde")
+    @Story("Atualiza um curriculo molde sem sucesso")
+    @Description("Testa se a requisição não consegue atualizar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarCurriculoMoldeComTodosOsCamposECampoEmpresaComCaracteresAMaisSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCamposECampoEmpresaComCaracteresAMais();
@@ -87,6 +105,11 @@ public class PutCurriculoMoldeFuncionalTest {
                         .statusCode(409);
     }
 
+
+    @Feature("Curriculo Molde")
+    @Story("Atualiza um curriculo molde sem sucesso")
+    @Description("Testa se a requisição não consegue atualizar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarCurriculoMoldeComTodosOsCamposECampoDescricaoComCaracteresAMaisSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCamposECampoDescricaoComCaracteresAMais();
@@ -95,6 +118,10 @@ public class PutCurriculoMoldeFuncionalTest {
                         .statusCode(409);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Atualiza um curriculo molde sem sucesso")
+    @Description("Testa se a requisição não consegue atualizar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarCurriculoMoldeComTodosOsCamposECampoConhecimentoComCaracteresAMaisSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCamposECampoConhecimentoComCaracteresAMais();
@@ -103,6 +130,10 @@ public class PutCurriculoMoldeFuncionalTest {
                         .statusCode(409);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Atualiza um curriculo molde sem sucesso")
+    @Description("Testa se a requisição não consegue atualizar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarCurriculoMoldeComTodosOsCamposECampoCargoComCaracteresAMais() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCamposECampoCargoComCaracteresAMais();
@@ -111,6 +142,10 @@ public class PutCurriculoMoldeFuncionalTest {
                         .statusCode(409);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Atualiza um curriculo molde sem sucesso")
+    @Description("Testa se a requisição não consegue atualizar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarCurriculoMoldeVazioSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeVazio();
@@ -119,6 +154,10 @@ public class PutCurriculoMoldeFuncionalTest {
                         .statusCode(500);
     }
 
+    @Feature("Curriculo Molde")
+    @Story("Atualiza um curriculo molde com sucesso")
+    @Description("Testa se a requisição consegue atualizar um curriculo molde deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarrCurriculoMoldeArquivoComTodosOsCamposValidosComSucesso() {
                 curriculoMoldeClient.atualizarArquivo(idTrilhaCadastrada, CurriculoMoldeDataFactory.gerarCurriculoDOCX())
@@ -126,6 +165,11 @@ public class PutCurriculoMoldeFuncionalTest {
                         .statusCode(201);
     }
 
+
+    @Feature("Curriculo Molde")
+    @Story("Atualiza um curriculo molde sem sucesso")
+    @Description("Testa se a requisição não consegue atualizar um curriculo molde deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testAtualizarCurriculoMoldeArquivoComTodosOsCamposValidosSemAuthSemSucesso() {
                 curriculoMoldeClient.atualizarArquivoSemAuth(idTrilhaCadastrada, CurriculoMoldeDataFactory.gerarCurriculoDOCX())

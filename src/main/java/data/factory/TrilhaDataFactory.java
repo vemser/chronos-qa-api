@@ -6,9 +6,10 @@ import org.apache.commons.lang3.StringUtils;
 public class TrilhaDataFactory {
 
 
+
     public static TrilhaRequestDTO trilhaComTodosOsCampos(){
         TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
-        trilhaReq.setNome(Factory.FAKER.animal().name() + Factory.FAKER.name().fullName());
+        trilhaReq.setNome("Trilha " + Factory.FAKER.number().digits(2));
         trilhaReq.setDescricao(Factory.FAKER.lorem().sentence());
         trilhaReq.setStatus("ATIVO");
 
@@ -27,7 +28,7 @@ public class TrilhaDataFactory {
     }
     public static  TrilhaRequestDTO trilhaComCamposObrigatoriosPreenchidos(){
         TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
-        trilhaReq.setNome(Factory.FAKER.name().firstName());
+        trilhaReq.setNome("Trilha " + Factory.FAKER.number().digits(3));
         trilhaReq.setDescricao(Factory.FAKER.lorem().sentence());
         trilhaReq.setStatus("ATIVO");
 
@@ -56,7 +57,7 @@ public class TrilhaDataFactory {
 
     public static  TrilhaRequestDTO trilhaComCampoDescricaoCom256Caracteres(){
         TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
-        trilhaReq.setNome(Factory.FAKER.name().firstName());
+        trilhaReq.setNome("Trilha " + Factory.FAKER.number().digits(3));
         trilhaReq.setDescricao(Factory.FAKER.number().digits(256));
         trilhaReq.setStatus("ATIVO");
 
@@ -67,7 +68,7 @@ public class TrilhaDataFactory {
    }
     public static  TrilhaRequestDTO trilhaComCampoDescricaoCom255(){
         TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
-        trilhaReq.setNome(Factory.FAKER.name().firstName());
+        trilhaReq.setNome("Trilha " + Factory.FAKER.number().digits(3));
         trilhaReq.setDescricao(Factory.FAKER.number().digits(255));
         trilhaReq.setStatus("ATIVO");
 
@@ -76,7 +77,7 @@ public class TrilhaDataFactory {
 
     public static  TrilhaRequestDTO trilhaComCampoDescricaoVazio(){
         TrilhaRequestDTO trilhaReq = new TrilhaRequestDTO();
-        trilhaReq.setNome(Factory.FAKER.name().firstName());
+        trilhaReq.setNome("Trilha " + Factory.FAKER.number().digits(3));
         trilhaReq.setDescricao("");
         trilhaReq.setStatus("ATIVO");
 

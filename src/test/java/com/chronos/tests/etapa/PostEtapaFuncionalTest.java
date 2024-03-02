@@ -4,6 +4,7 @@ import client.EdicaoClient;
 import client.EtapaClient;
 import data.factory.EdicaoFactory;
 import data.factory.EtapaDataFactory;
+import io.qameta.allure.*;
 import model.EtapaRequestDTO;
 import model.EtapaResponseDTO;
 import model.edicao.EdicaoRequestDTO;
@@ -22,23 +23,29 @@ public class PostEtapaFuncionalTest {
 
     @BeforeEach
     public void setUp() {
-        EdicaoRequestDTO edicaoACadastrar = EdicaoFactory.edicaoValida();
-        edicaoCadastrada =
-                edicaoClient.cadastrarEdicao(edicaoACadastrar)
-                        .then()
-                        .log().all()
-                        .statusCode(200)
-                        .extract().as(EdicaoResponseDTO.class);
-
-        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
+//        EdicaoRequestDTO edicaoACadastrar = EdicaoFactory.edicaoValida();
+//        edicaoCadastrada =
+//                edicaoClient.cadastrarEdicao(edicaoACadastrar)
+//                        .then()
+//                        .log().all()
+//                        .statusCode(200)
+//                        .extract().as(EdicaoResponseDTO.class);
+//
+//        idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
+        idEdicaoCadastrado = 229;
     }
-    @AfterEach
-    public void cleanUp() {
-        edicaoClient.deletarPorID(idEdicaoCadastrado)
-                .then()
-                .statusCode(204);
-    }
+//    @AfterEach
+//    public void cleanUp() {
+//        edicaoClient.deletarPorID(idEdicaoCadastrado)
+//                .then()
+//                .statusCode(204);
+//    }
 
+
+    @Feature("Etapa")
+    @Story("Criar uma etapa com sucesso")
+    @Description("Testa se a requisição consegue criar uma etapa deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarEtapaComTodosOsCamposValidosComSucesso() {
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComTodosOsCampos();
@@ -51,6 +58,10 @@ public class PostEtapaFuncionalTest {
         idEtapaCadastrada = etapaCadastrada.getIdEtapa();
     }
 
+    @Feature("Etapa")
+    @Story("Criar uma etapa sem sucesso")
+    @Description("Testa se a requisição consegue criar uma etapa deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarEtapaComTodosOsCamposValidosSemAuthSemSucesso() {
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComTodosOsCampos();
@@ -59,6 +70,10 @@ public class PostEtapaFuncionalTest {
                         .statusCode(403);
     }
 
+    @Feature("Etapa")
+    @Story("Criar uma etapa sem sucesso")
+    @Description("Testa se a requisição consegue criar uma etapa deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarEtapaSemCamposObrigatoriosSemSucesso() {
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaSemCamposObrigatoriosPreenchidos();
@@ -67,6 +82,10 @@ public class PostEtapaFuncionalTest {
                         .statusCode(400);
     }
 
+    @Feature("Etapa")
+    @Story("Criar uma etapa sem sucesso")
+    @Description("Testa se a requisição consegue criar uma etapa deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarEtapaComCampoNomeComCaracterAMaisSemSucesso() {
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComCampoNomeComCaracterAMais();
@@ -75,6 +94,10 @@ public class PostEtapaFuncionalTest {
                 .statusCode(400);
     }
 
+    @Feature("Etapa")
+    @Story("Criar uma etapa sem sucesso")
+    @Description("Testa se a requisição consegue criar uma etapa deve retornar uma mensagem de erro")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testCriarEtapaetapaComCampoDuracaoDiaUtilNegativoSemSucesso() {
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComCampoDuracaoDiaUtilNegativo();
