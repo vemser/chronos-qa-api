@@ -2,16 +2,16 @@ package client;
 
 
 import io.restassured.response.Response;
-import lombok.Setter;
 import model.EstagiarioRequestDTO;
 import specs.AuthSpec;
 import specs.InicialSpecs;
+import specs.NoAuthSpec;
 
 import static io.restassured.RestAssured.given;
 
 
 public class EstagiarioClient implements ClientInterface<Integer, EstagiarioRequestDTO> {
-        private static final String PATH_ESTAGIARIO_POST = "/estagiario";
+        private static final String PATH_ESTAGIARIO = "/estagiario";
 
         private static final String PATH_ID_ESTAGIARIO = "/estagiario" + "/{idEstagiario}";
 
@@ -23,22 +23,21 @@ public class EstagiarioClient implements ClientInterface<Integer, EstagiarioRequ
 
         public Response cadastrar(EstagiarioRequestDTO body) {
             return given()
-                    .spec(AuthSpec.setup())
-                    .body(body)
-                    .when()
-                    .post(PATH_ESTAGIARIO_POST);
+                        .spec(AuthSpec.setup())
+                        .body(body)
+                        .when()
+                    .post(PATH_ESTAGIARIO);
         }
         public void setToken(String token) {
             this.TOKEN = token;
         }
 
         public Response cadastrarSemToken(EstagiarioRequestDTO body) {
-            return
-                    given()
-                            .spec(InicialSpecs.setup())
-                            .body(body)
-                            .when()
-                            .post(PATH_ESTAGIARIO_POST);
+            return given()
+                        .spec(NoAuthSpec.setup())
+                        .body(body)
+                        .when()
+                    .post(PATH_ESTAGIARIO);
         }
 
 
@@ -47,7 +46,7 @@ public class EstagiarioClient implements ClientInterface<Integer, EstagiarioRequ
                     given()
                             .spec(AuthSpec.setup())
                             .when()
-                            .post(PATH_ESTAGIARIO_POST);
+                            .post(PATH_ESTAGIARIO);
         }
 
     @Override
@@ -57,10 +56,10 @@ public class EstagiarioClient implements ClientInterface<Integer, EstagiarioRequ
 
     public Response buscarTudoSemToken() {
             return
-                    given()
-                            .spec(InicialSpecs.setup())
-                            .when()
-                            .post(PATH_ESTAGIARIO_POST);
+                given()
+                        .spec(InicialSpecs.setup())
+                        .when()
+                        .post(PATH_ESTAGIARIO);
         }
 
     public Response listarPorId(Integer idEstagiario) {
