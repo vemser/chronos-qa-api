@@ -82,7 +82,7 @@ post {
                                     echo "Erro ao extrair o link da saída do comando: ${e.message}"
                                 }
 
-                                def message = "# Relatorio de Testes/API Chronos\n"
+                                def message = "# Relatorio de Testes/API e UI/Chronos\n"
                                 message += "**Branch:** RELEASE\n"
                                 message += "**Build:** ${buildNumber}\n"
                                 message += "**Status:** ${buildResult}\n"
