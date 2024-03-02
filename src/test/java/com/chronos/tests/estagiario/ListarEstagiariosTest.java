@@ -12,8 +12,8 @@ import static org.hamcrest.Matchers.notNullValue;
 public class ListarEstagiariosTest {
     private final EstagiarioClient estagiarioClient = new EstagiarioClient();
 
-    @Feature("Area Envolvida")
-    @Story("Atualizar uma area envolvida com sucesso")
+    @Feature("Estagiario")
+    @Story("Atualizar um Estagiario com sucesso")
     @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
@@ -26,8 +26,8 @@ public class ListarEstagiariosTest {
                 .statusCode(200 );
     }
 
-    @Feature("Area Envolvida")
-    @Story("Atualizar uma area envolvida com sucesso")
+    @Feature("Estagiario")
+    @Story("Atualizar um Estagiario com sucesso")
     @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
@@ -40,8 +40,8 @@ public class ListarEstagiariosTest {
                 .statusCode(403 );
     }
 
-    @Feature("Area Envolvida")
-    @Story("Atualizar uma area envolvida com sucesso")
+    @Feature("Estagiario")
+    @Story("Atualizar um Estagiario com sucesso")
     @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
@@ -58,8 +58,8 @@ public class ListarEstagiariosTest {
     }
 
 
-    @Feature("Area Envolvida")
-    @Story("Atualizar uma area envolvida com sucesso")
+    @Feature("Estagiario")
+    @Story("Atualizar um Estagiario com sucesso")
     @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
