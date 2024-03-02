@@ -14,7 +14,9 @@ pipeline {
         stage('Test') {
             steps {
                 script {
+                    echo 'Iniciando etapa de teste...'
                     bat 'mvn -e clean test -Dmaven.test.failure.ignore=true'
+                    echo 'Testes concluídos.'
                 }
             }
         }
@@ -24,6 +26,7 @@ pipeline {
                     bat 'allure generate allure-results -o allure-report'
 
                     archiveArtifacts 'allure-report/**'
+                    echo 'Arquivo de relatório Allure arquivado.'
                 }
             }
         }
@@ -36,6 +39,7 @@ pipeline {
                 jdk: '',
                 results: [[path: 'allure-results']]
             )
+            echo 'Pós-processamento concluído.'
             script {
                 try {
                 def buildUrl = env.BUILD_URL
@@ -63,7 +67,7 @@ pipeline {
                                     image: "${link}",
                                     webhookURL: "https://discord.com/api/webhooks/1212489472399118366/VtMuLFS2tdu_Qd7KWFiHDc3wSf3XF2E4bm6oSiEarIZk3hgV1Rne-VO-owSTeJiRLG0e"
                 } catch (e) {
-
+                    echo "Erro ao executar notificação para o Discord: ${e.message}"
                 }
             }
         }
