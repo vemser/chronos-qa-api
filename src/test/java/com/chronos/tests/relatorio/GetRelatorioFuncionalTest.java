@@ -5,6 +5,7 @@ import client.RelatorioClient;
 import data.factory.EdicaoFactory;
 import data.factory.TokenFactory;
 
+import io.qameta.allure.*;
 import model.edicao.EdicaoRequestDTO;
 import model.edicao.EdicaoResponseDTO;
 import model.relatorio.*;
@@ -17,7 +18,10 @@ import org.junit.jupiter.api.Test;
 public class GetRelatorioFuncionalTest {
     RelatorioClient relatorioClient = new RelatorioClient();
     EdicaoClient edicaoClient = new EdicaoClient();
-
+    @Feature("Relatorio")
+    @Story("Buscar relatorio com sucesso")
+    @Description("Testa se a requisição consegue buscar uma relatorio deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarQuantidadeDeEstagiarios() {
         EdicaoRequestDTO edicaoResponseDTO = EdicaoFactory.edicaoValida();
@@ -41,7 +45,10 @@ public class GetRelatorioFuncionalTest {
     }
 
 
-
+    @Feature("Relatorio")
+    @Story("Buscar relatorio com sucesso")
+    @Description("Testa se a requisição consegue buscar uma relatorio deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarTrilhaPorDesligamento() {
         EdicaoRequestDTO edicaoResponseDTO = EdicaoFactory.edicaoValida();
@@ -63,7 +70,10 @@ public class GetRelatorioFuncionalTest {
         Assertions.assertFalse(response.getQuantidade() < 0);
 
     }
-
+    @Feature("Relatorio")
+    @Story("Buscar relatorio com sucesso")
+    @Description("Testa se a requisição consegue buscar uma relatorio deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarTrilhaPorRegiao() {
         EdicaoRequestDTO edicaoResponseDTO = EdicaoFactory.edicaoValida();
@@ -91,7 +101,10 @@ public class GetRelatorioFuncionalTest {
 
 
     }
-
+    @Feature("Relatorio")
+    @Story("Buscar relatorio com sucesso")
+    @Description("Testa se a requisição consegue buscar uma relatorio deve retornar uma mensagem de sucesso")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void testBuscarTrilhaGeral() {
 
