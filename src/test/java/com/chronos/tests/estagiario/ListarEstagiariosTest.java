@@ -27,7 +27,6 @@ public class ListarEstagiariosTest {
 
         EstagiarioResponseDTO responseDTO = estagiarioClient.criarMassaDeDados()
                         .then()
-                        .statusCode(HttpStatus.SC_OK)
                         .extract().as(EstagiarioResponseDTO.class);
 
         estagiarioClient.buscarTudo()
@@ -40,25 +39,28 @@ public class ListarEstagiariosTest {
                 .then()
                 .statusCode(HttpStatus.SC_NO_CONTENT);
 
-        estagiarioClient.deletar(responseDTO.getIdEstagiario())
-                .then()
-                .statusCode(HttpStatus.SC_NO_CONTENT);
-
 
     }
 
     @Feature("Estagiario")
-    @Story("Atualizar um Estagiario com sucesso")
-    @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
+    @Story("Buscar um Estagiario com base na sua edição com sucesso")
+    @Description("Testa se a requisição consegue buscar um estagiários com base na edição escolhida")
     @Severity(SeverityLevel.CRITICAL)
     @Test
-    public void testListarEstagiariosSemToken() {
-        given()
-                .spec(InicialSpecs.setup())
-                .when()
-                .get("/estagiario")
+    public void testDeveRetornarEstagiariosComBaseNaEdicaoComSucesso() {
+
+        EstagiarioResponseDTO responseDTO = estagiarioClient.criarMassaDeDados()
                 .then()
-                .statusCode(403 );
+                .extract().as(EstagiarioResponseDTO.class);
+
+        estagiarioClient.buscarPorEdicao(responseDTO.getEdicao().getIdEdicao())
+                .then()
+                .contentType(ContentType.JSON)
+                .statusCode(HttpStatus.SC_OK)
+                .body("totalElements", equalTo(1))
+                .body("content.size()", greaterThan(0));
+
+        trilhaClient.deletar(responseDTO.getTrilha().getIdTrilha());
     }
 
     @Feature("Estagiario")
@@ -68,14 +70,17 @@ public class ListarEstagiariosTest {
     @Test
     public void testBuscarEstagiarioPorID() {
 
-        int estagiarioID = 1;
-
-        given()
-                .spec(AuthSpec.setup())
-                .when()
-                .get("/estagiario/" + estagiarioID)
+        EstagiarioResponseDTO responseDTO = estagiarioClient.criarMassaDeDados()
                 .then()
-                .statusCode(200);
+                .extract().as(EstagiarioResponseDTO.class);
+
+        estagiarioClient.buscarPorId(responseDTO.getIdEstagiario())
+                .then()
+                .contentType(ContentType.JSON)
+                .statusCode(HttpStatus.SC_OK)
+                .body("content[0].idEstagiario", equalTo(responseDTO.getIdEstagiario()));
+
+        trilhaClient.deletar(responseDTO.getTrilha().getIdTrilha());
     }
 
 
@@ -86,14 +91,12 @@ public class ListarEstagiariosTest {
     @Test
     public void testBuscarEstagiarioPorIDComTokenInvalido() {
 
-        int estagiarioID = 1;
-
-        given()
-                .spec(InicialSpecs.setup())
-                .when()
-                .get("/estagiario/" + estagiarioID)
+        estagiarioClient.buscarSemToken()
                 .then()
-                .statusCode(403);
+                .contentType(ContentType.JSON)
+                .statusCode(HttpStatus.SC_FORBIDDEN)
+                .body("status", equalTo(HttpStatus.SC_FORBIDDEN))
+                .body("error", equalTo("Forbidden"));
     }
 
 }

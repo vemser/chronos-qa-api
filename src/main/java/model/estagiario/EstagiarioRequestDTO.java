@@ -1,4 +1,4 @@
-package model;
+package model.estagiario;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

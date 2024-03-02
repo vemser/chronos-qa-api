@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import model.ModuloResponseDTO;
+import model.foto.FotoResponseDTO;
 import model.trilha.TrilhaRequestDTO;
 
 import java.util.List;
@@ -21,6 +22,6 @@ public class TrilhaResponseDTO extends TrilhaRequestDTO {
     private List<ModuloResponseDTO> modulos;
     private String timestamp;
     private String errors;
-    private String foto;
+    private FotoResponseDTO foto;
 
 }

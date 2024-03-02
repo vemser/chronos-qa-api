@@ -8,7 +8,7 @@ import data.factory.EstagiarioFactory;
 import data.factory.TrilhaDataFactory;
 import io.qameta.allure.*;
 import io.restassured.http.ContentType;
-import model.EstagiarioRequestDTO;
+import model.estagiario.EstagiarioRequestDTO;
 import model.edicao.EdicaoResponseDTO;
 import model.estagiario.EstagiarioResponseDTO;
 import model.trilha.TrilhaResponseDTO;
@@ -117,11 +117,12 @@ public class CriarEstagiarioTest {
 
         estagiarioClient.cadastrarSemToken(EstagiarioFactory.estagiarioComCpfNulo())
                 .then()
-                    .log().body()
                     .contentType(ContentType.JSON)
                     .statusCode(HttpStatus.SC_FORBIDDEN)
                     .body("status", equalTo(HttpStatus.SC_FORBIDDEN))
                     .body("error", equalTo("Forbidden"));
 
     }
+
+
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import model.foto.FotoResponseDTO;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,5 +23,5 @@ public class EdicaoResponseDTO {
     private List etapas;
     private List trilhas;
     private List estagiarios;
-    private String foto;
+    private FotoResponseDTO foto;
 }
