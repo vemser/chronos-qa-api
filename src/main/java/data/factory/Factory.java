@@ -30,6 +30,17 @@ public class Factory {
     public static String nomeTamanhoTres() {
         return FAKER.letterify("???");
     }
+    public static String telefone() {
+        return FAKER.numerify("???????????");
+    }
+    public static String cpf() {
+        return FAKER.cpf().valid(false);
+    }
+
+    public static String email() {
+        return FAKER.internet().emailAddress();
+    }
+
     public static String evento() { return FAKER.letterify("??????????"); }
     public static LocalDate dataInicial() { return LocalDate.now(); }
     public static LocalDate dataFinal() { return LocalDate.now().plusMonths(2); }

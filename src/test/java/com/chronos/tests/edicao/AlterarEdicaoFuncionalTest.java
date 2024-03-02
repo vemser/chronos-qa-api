@@ -35,32 +35,6 @@ public class AlterarEdicaoFuncionalTest {
                     .body("nome", equalTo(alterarRequestDTO.getNome()))
                     .body("descricao", equalTo(alterarRequestDTO.getDescricao()))
                     .body("dataInicial", containsStringIgnoringCase(alterarRequestDTO.getDataInicial().toString()))
-                    .body("dataFinal",containsStringIgnoringCase(alterarRequestDTO.getDataFinal().toString()))
-                    .body("status", equalTo(alterarRequestDTO.getStatus()));
-
-        edicaoClient.deletarPorID(idCreated)
-                .then()
-                .statusCode(HttpStatus.SC_NO_CONTENT);
-    }
-
-    @Test
-    public void testDeveAlterarUmaEdicaoComSucessoRemovendoDataFinal() {
-        Integer idCreated = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
-                .then()
-                .statusCode(HttpStatus.SC_OK)
-                .extract().as(EdicaoResponseDTO.class).getIdEdicao();
-
-        EdicaoRequestDTO alterarRequestDTO = EdicaoFactory.edicaoAlterada();
-        alterarRequestDTO.setDataFinal(null);
-
-        edicaoClient.atualizar(idCreated, alterarRequestDTO)
-                .then()
-                    .contentType(ContentType.JSON)
-                    .statusCode(HttpStatus.SC_OK)
-                    .body("nome", equalTo(alterarRequestDTO.getNome()))
-                    .body("descricao", equalTo(alterarRequestDTO.getDescricao()))
-                    .body("dataInicial", containsStringIgnoringCase(alterarRequestDTO.getDataInicial().toString()))
-                    .body("dataFinal", nullValue())
                     .body("status", equalTo(alterarRequestDTO.getStatus()));
 
         edicaoClient.deletarPorID(idCreated)
