@@ -6,6 +6,7 @@ import io.qameta.allure.*;
 import model.modulo.ModuloRequestDTO;
 import model.modulo.ModuloResponseDTO;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 
@@ -28,6 +29,7 @@ public class PostModuloFuncionalTest {
     @Description("Testa se a requisição consegue criar um modulo deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarModuloComTodosOsCamposValidosComSucesso() {
         ModuloRequestDTO moduloACadastrar = ModuloDataFactory.moduloComTodosOsCampos();
         moduloCadastrado =
@@ -45,6 +47,7 @@ public class PostModuloFuncionalTest {
     @Description("Testa se a requisição consegue criar um modulo deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarModuloComTodosOsCamposObrigatoriosValidosComSucesso() {
         ModuloRequestDTO moduloACadastrar = ModuloDataFactory.moduloSemCamposNaoObrigatoriosPreenchidos();
                 moduloClient.cadastrar(moduloACadastrar)
@@ -83,6 +86,7 @@ public class PostModuloFuncionalTest {
     @Description("Testa se a requisição não consegue criar um modulo deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarModuloComCampoNomeComCaracteresAMaisSemSucesso() {
         ModuloRequestDTO moduloACadastrar = ModuloDataFactory.moduloComNomeComCaracterAMais();
                 moduloClient.cadastrar(moduloACadastrar)
@@ -123,6 +127,7 @@ public class PostModuloFuncionalTest {
     @Description("Testa se a requisição não consegue criar um modulo deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarModuloComTodosOsCamposSemAutorizacaoSemSucesso() {
         ModuloRequestDTO moduloACadastrar = ModuloDataFactory.moduloComTodosOsCampos();
         moduloClient.cadastrarSemAuth(moduloACadastrar)

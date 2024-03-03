@@ -7,6 +7,7 @@ import model.modulo.ModuloRequestDTO;
 import model.modulo.ModuloResponseDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class PutModuloFuncionalTest {
@@ -40,6 +41,7 @@ public class PutModuloFuncionalTest {
     @Description("Testa se a requisição consegue atualizar um curriculo molde deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testEditarModuloComTodosOsCamposValidosComSucesso() {
         ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloComTodosOsCampos();
                 moduloClient.atualizar(idModuloCadastrado, moduloAEditar)
@@ -53,6 +55,7 @@ public class PutModuloFuncionalTest {
     @Description("Testa se a requisição consegue atualizar um modulo deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testEditarModuloComTodosOsCamposObrigatoriosValidosComSucesso() {
         ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloSemCamposNaoObrigatoriosPreenchidos();
         moduloClient.atualizar(idModuloCadastrado, moduloAEditar)
@@ -65,6 +68,7 @@ public class PutModuloFuncionalTest {
     @Description("Testa se a requisição consegue atualizar um modulo deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testEditarModuloComTodosOsCamposNaoObrigatoriosValidosSemObrigatoriosSemSucesso() {
         ModuloRequestDTO moduloAEditar = ModuloDataFactory.moduloSemCamposObrigatoriosPreenchidos();
         moduloClient.atualizar(idModuloCadastrado, moduloAEditar)

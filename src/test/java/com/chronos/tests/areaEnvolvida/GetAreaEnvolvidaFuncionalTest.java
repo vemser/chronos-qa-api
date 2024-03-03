@@ -6,6 +6,7 @@ import io.qameta.allure.*;
 import io.restassured.response.Response;
 import model.areaEnvolvida.AreaEnvolvidaResponseDTO;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class GetAreaEnvolvidaFuncionalTest {
     @Description("Testa se a requisição consegue buscar uma area envolvida deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarTrilhaComSucesso() {
         areaEnvolvidaClient.setTOKEN(TokenFactory.getTokenAdmin());
         Response response =

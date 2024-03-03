@@ -6,6 +6,7 @@ import data.factory.FotoFactory;
 import io.restassured.http.ContentType;
 import model.foto.FotoResponseDTO;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -49,6 +50,7 @@ public class CriarFotoFuncionalTest {
     }
 
     @Test
+    @Tag("Fumaca")
     public void testNaoDeveCriarFotoPoisTokenNaoEnviado() {
         fotoClient.cadastrarFotoSemToken(FotoFactory.gerarJPG(), ImageTypes.JPG, Factory.nome())
                 .then()

@@ -6,6 +6,7 @@ import data.factory.FotoFactory;
 import io.restassured.http.ContentType;
 import model.foto.FotoResponseDTO;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -17,6 +18,7 @@ public class AlterarFotoFuncionalTest {
 
 
     @Test
+    @Tag("Fumaca")
     public void testDeveAlterarFotoComSucesso() {
         FotoResponseDTO massaCriada = fotoClient.cadastrarFotoComSucesso(FotoFactory.gerarJPG(), "image/jpg", Factory.nome())
                 .then()
@@ -41,6 +43,7 @@ public class AlterarFotoFuncionalTest {
     }
 
     @Test
+    @Tag("Fumaca")
     public void testNaoDeveAlterarFotoPoisIDInvalido() {
         fotoClient.alterarFoto(-1, FotoFactory.gerarPNG(), "image/png", Factory.nome())
                 .then()

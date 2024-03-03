@@ -15,6 +15,7 @@ import model.trilha.TrilhaResponseDTO;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -35,6 +36,7 @@ public class CriarEstagiarioTest {
     @Severity(SeverityLevel.CRITICAL)
     @Test
     @DisplayName("Deve criar um Estagiário com sucesso e retornar 201")
+    @Tag("Fumaca")
     public void testCriarNovoEstagiario() {
         // A1: CRIAR MASSAS
         Integer idEdicao = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
@@ -113,6 +115,7 @@ public class CriarEstagiarioTest {
     @Description("Testa se a requisição consegue invalidar a criação de um estagiário por falta de autenticação")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testNaoDeveCadastrarEstagiarioPoisTokenInvalido() {
 
         estagiarioClient.cadastrarSemToken(EstagiarioFactory.estagiarioComCpfNulo())

@@ -6,6 +6,7 @@ import data.factory.TokenFactory;
 import io.qameta.allure.*;
 import model.diaNaoUtil.DiaNaoUtilRequestDTO;
 import model.diaNaoUtil.DiaNaoUtilResposeDTO;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class PutDiaNaoUtilFuncionalTest {
@@ -17,6 +18,7 @@ public class PutDiaNaoUtilFuncionalTest {
     @Description("Testa se a requisição consegue atualizar uma dia não util deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testTentarEdiarDiaNaoUtil() {
         diaNaoUtilClient.setTOKEN((TokenFactory.getTokenAdmin()));
 
@@ -39,6 +41,7 @@ public class PutDiaNaoUtilFuncionalTest {
     @Description("Testa se a requisição consegue atualizar uma dia não util deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testTentarEditarUmDiaNaoUtilApenasComCamposObrigatorios(){
         diaNaoUtilClient.setTOKEN((TokenFactory.getTokenAdmin()));
 
@@ -61,6 +64,7 @@ public class PutDiaNaoUtilFuncionalTest {
     @Description("Testa se a requisição consegue atualizar uma dia não util deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
 @Test
+    @Tag("Fumaca")
     public void testTentarEditarUmDiaUtilJaCriado(){
         diaNaoUtilClient.setTOKEN((TokenFactory.getTokenAdmin()));
 

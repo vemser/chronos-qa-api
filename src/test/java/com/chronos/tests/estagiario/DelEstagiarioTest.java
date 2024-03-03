@@ -14,6 +14,7 @@ import model.estagiario.EstagiarioResponseDTO;
 import model.trilha.TrilhaResponseDTO;
 import org.apache.http.HttpStatus;
 import org.junit.Test;
+import org.junit.jupiter.api.Tag;
 import specs.AuthSpec;
 import specs.NoAuthSpec;
 
@@ -31,6 +32,7 @@ public class DelEstagiarioTest {
     @Description("Testa se a requisição consegue deletar um estagiário retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testExcluirEstagiario() {
         Integer idEdicao = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
                 .then()

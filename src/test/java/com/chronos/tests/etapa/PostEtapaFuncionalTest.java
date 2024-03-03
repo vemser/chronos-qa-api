@@ -11,6 +11,7 @@ import model.edicao.EdicaoRequestDTO;
 import model.edicao.EdicaoResponseDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class PostEtapaFuncionalTest {
@@ -46,6 +47,7 @@ public class PostEtapaFuncionalTest {
     @Description("Testa se a requisição consegue criar uma etapa deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarEtapaComTodosOsCamposValidosComSucesso() {
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComTodosOsCampos();
         etapaCadastrada =
@@ -62,6 +64,7 @@ public class PostEtapaFuncionalTest {
     @Description("Testa se a requisição consegue criar uma etapa deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarEtapaComTodosOsCamposValidosSemAuthSemSucesso() {
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComTodosOsCampos();
                 etapaClient.cadastrarSemAuth(idEdicaoCadastrado, etapaACadastrar)
@@ -98,6 +101,7 @@ public class PostEtapaFuncionalTest {
     @Description("Testa se a requisição consegue criar uma etapa deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarEtapaetapaComCampoDuracaoDiaUtilNegativoSemSucesso() {
         EtapaRequestDTO etapaACadastrar = EtapaDataFactory.etapaComCampoDuracaoDiaUtilNegativo();
         etapaClient.cadastrar(idEdicaoCadastrado, etapaACadastrar)

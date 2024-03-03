@@ -6,6 +6,7 @@ import model.edicao.EdicaoRequestDTO;
 import model.edicao.EdicaoResponseDTO;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -20,6 +21,7 @@ public class CriarEdicaoFuncionalTest {
     @ParameterizedTest
     @MethodSource("data.provider.EdicaoProvider#criarEdicaoComSucessoProvider")
     @DisplayName("Teste: Deve criar uma nova edição com sucesso")
+    @Tag("Fumaca")
     public void testDeveCriarUmEdicaoComSucesso(EdicaoRequestDTO requestDTO, Integer responseExpected) {
 
         EdicaoResponseDTO responseDTO = edicaoClient.cadastrarEdicao(requestDTO)
@@ -52,6 +54,7 @@ public class CriarEdicaoFuncionalTest {
     }
 
     @Test
+    @Tag("Fumaca")
     public void testNaoDeveCadastrarEdicaoPoisTokenInvalido() {
         edicaoClient.cadastrarEdicaoSemToken(EdicaoFactory.edicaoValida())
                 .then()

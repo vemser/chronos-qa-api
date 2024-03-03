@@ -7,6 +7,7 @@ import io.restassured.http.ContentType;
 import model.estagiario.EstagiarioResponseDTO;
 import org.apache.http.HttpStatus;
 import org.junit.Test;
+import org.junit.jupiter.api.Tag;
 import specs.AuthSpec;
 import specs.InicialSpecs;
 
@@ -23,6 +24,7 @@ public class ListarEstagiariosTest {
     @Description("Testa se a requisição consegue retornar uma paginação de usuários e deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testDeveListarEstagiariosComSucesso() {
 
         EstagiarioResponseDTO responseDTO = estagiarioClient.criarMassaDeDados()
@@ -68,6 +70,7 @@ public class ListarEstagiariosTest {
     @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarEstagiarioPorID() {
 
         EstagiarioResponseDTO responseDTO = estagiarioClient.criarMassaDeDados()

@@ -6,10 +6,7 @@ import io.qameta.allure.*;
 import io.restassured.response.Response;
 import model.modulo.ModuloRequestDTO;
 import model.modulo.ModuloResponseDTO;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.*;
 
 import java.util.List;
 
@@ -40,6 +37,7 @@ public class GetModuloFuncionalTest {
     @Description("Testa se a requisição consegue buscar um modulo deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarTodosOsModulosComSucesso() {
         Response response =
                 moduloClient.buscarTudo()
@@ -57,6 +55,7 @@ public class GetModuloFuncionalTest {
     @Description("Testa se a requisição não consegue buscar um modulo deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarTodosOsModulosSemAutorizacao() {
                 moduloClient.buscarTudoSemAuth()
                         .then()
@@ -88,6 +87,7 @@ public class GetModuloFuncionalTest {
     @Description("Testa se a requisição não consegue buscar um modulo deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarPorModuloEspecificoIDInvalido() {
                 moduloClient.buscarPorID(0)
                         .then()
@@ -100,6 +100,7 @@ public class GetModuloFuncionalTest {
     @Description("Testa se a requisição não consegue buscar um modulo deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarPorModuloEspecificoIDValidoSemAutorizacao() {
                 moduloClient.buscarPorIDSemAuth(idModuloCadastrado)
                         .then()
