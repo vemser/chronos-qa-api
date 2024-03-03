@@ -13,13 +13,9 @@ import model.estagiario.EstagiarioRequestDTO;
 import model.estagiario.EstagiarioResponseDTO;
 import model.trilha.TrilhaResponseDTO;
 import org.apache.http.HttpStatus;
-import org.junit.Test;
 import org.junit.jupiter.api.Tag;
-import specs.AuthSpec;
-import specs.NoAuthSpec;
+import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.useRelaxedHTTPSValidation;
 import static org.hamcrest.Matchers.equalTo;
 
 public class DelEstagiarioTest {
@@ -66,7 +62,6 @@ public class DelEstagiarioTest {
 
         trilhaClient.deletar(idTrilha)
                 .then()
-                .log().body()
                 .statusCode(HttpStatus.SC_NO_CONTENT);
     }
 

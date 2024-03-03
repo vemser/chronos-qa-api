@@ -6,12 +6,9 @@ import io.qameta.allure.*;
 import io.restassured.http.ContentType;
 import model.estagiario.EstagiarioResponseDTO;
 import org.apache.http.HttpStatus;
-import org.junit.Test;
 import org.junit.jupiter.api.Tag;
-import specs.AuthSpec;
-import specs.InicialSpecs;
+import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
 public class ListarEstagiariosTest {

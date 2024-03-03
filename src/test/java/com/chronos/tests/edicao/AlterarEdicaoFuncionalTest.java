@@ -21,30 +21,6 @@ public class AlterarEdicaoFuncionalTest {
     private final TrilhaClient trilhaClient = new TrilhaClient();
 
     @Test
-    @Tag("Fumaca")
-    public void testDeveAlterarUmaEdicaoComSucesso() {
-        Integer idCreated = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
-                .then()
-                .statusCode(HttpStatus.SC_OK)
-                .extract().as(EdicaoResponseDTO.class).getIdEdicao();
-
-        EdicaoRequestDTO alterarRequestDTO = EdicaoFactory.edicaoAlterada();
-
-        edicaoClient.atualizar(idCreated, alterarRequestDTO)
-                .then()
-                    .contentType(ContentType.JSON)
-                    .statusCode(HttpStatus.SC_OK)
-                    .body("nome", equalTo(alterarRequestDTO.getNome()))
-                    .body("descricao", equalTo(alterarRequestDTO.getDescricao()))
-                    .body("dataInicial", containsStringIgnoringCase(alterarRequestDTO.getDataInicial().toString()))
-                    .body("status", equalTo(alterarRequestDTO.getStatus()));
-
-        edicaoClient.deletarPorID(idCreated)
-                .then()
-                .statusCode(HttpStatus.SC_NO_CONTENT);
-    }
-
-    @Test
     public void testNaoDeveAlterarEdicaoPoisNomeUsadoJaExiste() {
         // CRIAR MASSA
         EdicaoResponseDTO dataCreated = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
@@ -79,8 +55,34 @@ public class AlterarEdicaoFuncionalTest {
 
     }
 
-    @Test
+
     @Tag("Fumaca")
+    @Test
+    public void testDeveAlterarUmaEdicaoComSucesso() {
+        Integer idCreated = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .extract().as(EdicaoResponseDTO.class).getIdEdicao();
+
+        EdicaoRequestDTO alterarRequestDTO = EdicaoFactory.edicaoAlterada();
+
+        edicaoClient.atualizar(idCreated, alterarRequestDTO)
+                .then()
+                .contentType(ContentType.JSON)
+                .statusCode(HttpStatus.SC_OK)
+                .body("nome", equalTo(alterarRequestDTO.getNome()))
+                .body("descricao", equalTo(alterarRequestDTO.getDescricao()))
+                .body("dataInicial", containsStringIgnoringCase(alterarRequestDTO.getDataInicial().toString()))
+                .body("status", equalTo(alterarRequestDTO.getStatus()));
+
+        edicaoClient.deletarPorID(idCreated)
+                .then()
+                .statusCode(HttpStatus.SC_NO_CONTENT);
+    }
+
+
+    @Tag("Fumaca")
+    @Test
     public void testNaoDeveAlterarEdicaoPoisTokenInvalido() {
         Integer idCreated = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
                 .then()
@@ -97,8 +99,9 @@ public class AlterarEdicaoFuncionalTest {
         edicaoClient.deletarPorID(idCreated);
     }
 
+    @Tag("Fumaca")
     @Test
-    public void deveAlterarStatusEdicaoParaInativo() {
+    public void testDeveAlterarStatusEdicaoParaInativo() {
         Integer idCreated = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
                 .then()
                    .extract().as(EdicaoResponseDTO.class).getIdEdicao();
@@ -119,7 +122,7 @@ public class AlterarEdicaoFuncionalTest {
     }
 
     @Test
-    public void deveAlterarStatusEdicaoParaAtivo(){
+    public void testDeveAlterarStatusEdicaoParaAtivo(){
         Integer idCreated = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
                 .then()
                 .extract().as(EdicaoResponseDTO.class).getIdEdicao();
@@ -146,7 +149,7 @@ public class AlterarEdicaoFuncionalTest {
     }
 
     @Test
-    public void deveVincularUmaTrilhaAEdicaoComSucesso() {
+    public void testDeveVincularUmaTrilhaAEdicaoComSucesso() {
         TrilhaResponseDTO trilhaCriada = trilhaClient.cadastrar(TrilhaDataFactory.trilhaComTodosOsCampos())
                 .then()
                     .statusCode(HttpStatus.SC_OK)
