@@ -11,8 +11,8 @@ public class FotoProvider {
 
     private static Stream<Arguments> providerCadastrarFoto() {
         return Stream.of(
-                Arguments.of(FotoFactory.gerarPNG(), ImageTypes.PNG, Factory.nome()),
-                Arguments.of(FotoFactory.gerarJPG(), ImageTypes.JPG, Factory.nome())
+                Arguments.of(FotoFactory.gerarPNG(), ImageTypes.PNG, "png"),
+                Arguments.of(FotoFactory.gerarJPG(), ImageTypes.JPG, "jpg")
         );
     }
 

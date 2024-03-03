@@ -1,48 +1,61 @@
 package com.chronos.tests.foto;
 
+import client.EdicaoClient;
 import client.FotoClient;
+import data.factory.EdicaoFactory;
 import data.factory.Factory;
 import data.factory.FotoFactory;
 import io.restassured.http.ContentType;
+import model.edicao.EdicaoResponseDTO;
+import model.estagiario.EstagiarioResponseDTO;
 import model.foto.FotoResponseDTO;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+import utils.image.ImageTypes;
+
+import java.awt.*;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class AlterarFotoFuncionalTest {
     private FotoClient fotoClient = new FotoClient();
-
+    private EdicaoClient edicaoClient = new EdicaoClient();
 
     @Test
     public void testDeveAlterarFotoComSucesso() {
-        FotoResponseDTO massaCriada = fotoClient.cadastrarFotoComSucesso(FotoFactory.gerarJPG(), "image/jpg", Factory.nome())
-                .then()
-                .extract().as(FotoResponseDTO.class);
 
-        FotoResponseDTO responseDTO = fotoClient.alterarFoto(massaCriada.getIdFoto(), FotoFactory.gerarPNG(), "image/png", Factory.nome())
+        Integer idEdicao = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida()).then().extract().as(EdicaoResponseDTO.class).getIdEdicao();
+
+        FotoResponseDTO massaCriada = fotoClient.cadastrarFotoComEdicaoComSucesso(FotoFactory.gerarJPG(), ImageTypes.JPG, idEdicao)
                 .then()
-                .contentType(ContentType.JSON)
-                .statusCode(HttpStatus.SC_OK)
-                .extract().as(FotoResponseDTO.class);
+                .extract()
+                .as(FotoResponseDTO.class);
+
+        FotoResponseDTO responseDTO = fotoClient.alterarFoto(massaCriada.getIdFoto(), FotoFactory.gerarPNG(), ImageTypes.PNG)
+                .then()
+                    .contentType(ContentType.JSON)
+                    .statusCode(HttpStatus.SC_OK)
+                    .extract().as(FotoResponseDTO.class);
 
         assertAll("responseDTO",
-                () -> Assertions.assertEquals(massaCriada.getIdFoto(), responseDTO.getIdFoto()),
+                () -> Assertions.assertEquals(responseDTO.getIdFoto(), massaCriada.getIdFoto()),
                 () -> Assertions.assertNotEquals(responseDTO.getArquivo(), massaCriada.getArquivo()),
                 () -> Assertions.assertNotEquals(responseDTO.getTipo(), massaCriada.getTipo()),
                 () -> Assertions.assertNotEquals(responseDTO.getNome(), massaCriada.getNome())
         );
 
-        fotoClient.deletarFotoPorId(massaCriada.getIdFoto())
+        edicaoClient.deletarPorID(idEdicao)
                 .then()
                 .statusCode(HttpStatus.SC_NO_CONTENT);
+
     }
 
     @Test
     public void testNaoDeveAlterarFotoPoisIDInvalido() {
-        fotoClient.alterarFoto(-1, FotoFactory.gerarPNG(), "image/png", Factory.nome())
+
+        fotoClient.alterarFoto(-1, FotoFactory.gerarPNG(), ImageTypes.PNG)
                 .then()
                     .contentType(ContentType.JSON)
                     .statusCode(HttpStatus.SC_BAD_REQUEST)
@@ -51,15 +64,10 @@ public class AlterarFotoFuncionalTest {
     }
 
     @Test
-    public void testNaoDeveAlterarFotoPoisNomeNaoEnviado() {
-        fotoClient.alterarFotoSemNome()
-                .then()
-                .statusCode(HttpStatus.SC_BAD_REQUEST);
-    }
-    @Test
     public void testNaoDeveAlterarFotoPoisTokenNaoEnviado() {
         fotoClient.alterarFotoSemToken()
                 .then()
-                .statusCode(HttpStatus.SC_FORBIDDEN);
+                .statusCode(HttpStatus.SC_FORBIDDEN)
+                .body("error", equalTo("Forbidden"));
     }
 }
