@@ -65,7 +65,7 @@ public class PutAreaEnvolvidaFuncionalTest {
                 .then()
                 .statusCode(409).extract().jsonPath().getString("message");
 
-        assertEquals("Restrição de valor único violada - nome.",message);
+        assertEquals("Erro na validação dos seguintes campos: nome.",message);
 
         areaEnvolvidaClient.deletar(areaEnvolvidaResponseDTO.getIdAreaEnvolvida()).then().statusCode(204);
 
