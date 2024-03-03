@@ -6,6 +6,7 @@ import io.qameta.allure.*;
 import io.restassured.response.Response;
 import model.diaNaoUtil.DiaNaoUtilResposeDTO;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -18,6 +19,7 @@ DiaNaoUtilClient diaNaoUtilClient = new DiaNaoUtilClient();
     @Description("Testa se a requisição consegue buscar uma dia não util deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarDiaNaoUtilComSucesso() {
         diaNaoUtilClient.setTOKEN((TokenFactory.getTokenAdmin()));
         Response response =

@@ -5,6 +5,7 @@ import data.factory.EdicaoFactory;
 import io.restassured.http.ContentType;
 import model.edicao.EdicaoResponseDTO;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.*;
@@ -14,6 +15,7 @@ public class BuscarEdicaoFuncionalTest {
     private EdicaoClient edicaoClient = new EdicaoClient();
 
     @Test
+    @Tag("Fumaca")
     public void testDeveRetornarUmaPaginacaoDeEdicao() {
 
         // CRIAR MASSA
@@ -34,6 +36,7 @@ public class BuscarEdicaoFuncionalTest {
     }
 
     @Test
+    @Tag("Fumaca")
     public void testDeveRetornarUmaEdicaoPorID() {
         EdicaoResponseDTO dataCreated = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
                 .then()

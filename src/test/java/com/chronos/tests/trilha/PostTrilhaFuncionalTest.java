@@ -6,6 +6,7 @@ import data.factory.TrilhaDataFactory;
 import io.qameta.allure.*;
 import model.trilha.TrilhaRequestDTO;
 import model.trilha.TrilhaResponseDTO;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -20,6 +21,7 @@ public class PostTrilhaFuncionalTest {
     @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarUmaTrilhaComSucesso() {
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComTodosOsCampos();
@@ -35,6 +37,7 @@ public class PostTrilhaFuncionalTest {
     @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarUmaTrilhaSemPreencherOsCamposObrigatorios(){
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaSemCampoObrigatorioPreenchido();
@@ -48,6 +51,7 @@ public class PostTrilhaFuncionalTest {
     @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarUmaTrilhaPreenchendoApenasOsCamposObrigatorios(){
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
@@ -63,6 +67,7 @@ public class PostTrilhaFuncionalTest {
     @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarUmaTrilhaPreenchendoOCampoNomeCom51Caracteres(){
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCampoNomeCom51Caracteres();
@@ -75,6 +80,7 @@ public class PostTrilhaFuncionalTest {
     @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarUmaTrilhaPreenchendoOCampoNomeCom1Caracter(){
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCampoNomeCom1Caracter();
@@ -87,8 +93,8 @@ public class PostTrilhaFuncionalTest {
     @Story("Cadastrar uma trilha com sucesso")
     @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
-
     @Test
+    @Tag("Fumaca")
     public void testTentarCriarTrilhaComNomeRepetido(){
 
         TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComTodosOsCampos();
@@ -103,7 +109,7 @@ public class PostTrilhaFuncionalTest {
                 .then()
                 .statusCode(409).extract().jsonPath().getString("message");
 
-        assertEquals("Restrição de valor único violada - nome.",message);
+        assertEquals("Erro na validação dos seguintes campos: nome.",message);
 
 
         trilhaClient.deletar(trilhaResponseDTO.getIdTrilha()).then().statusCode(204);
@@ -114,6 +120,7 @@ public class PostTrilhaFuncionalTest {
     @Description("Testa se a requisição consegue cadastrar uma trilha deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarUmaTrilhaPreenchendoOCampoDescricaoCom255Caracteres(){
 
        TrilhaRequestDTO trilhaRequestDTO = TrilhaDataFactory.trilhaComCampoDescricaoCom255();

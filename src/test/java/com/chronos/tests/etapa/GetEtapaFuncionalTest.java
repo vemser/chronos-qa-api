@@ -10,8 +10,10 @@ import model.etapa.EtapaRequestDTO;
 import model.etapa.EtapaResponseDTO;
 import model.edicao.EdicaoRequestDTO;
 import model.edicao.EdicaoResponseDTO;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -45,18 +47,19 @@ public class GetEtapaFuncionalTest {
 
         idEtapaCadastrada = etapaCadastrada.getIdEtapa();
     }
-//    @AfterEach
-//    public void cleanUp() {
-//        edicaoClient.deletarPorID(idEdicaoCadastrado)
-//                .then()
-//                .statusCode(204);
-//    }
+    @AfterEach
+    public void cleanUp() {
+        edicaoClient.deletarPorID(idEdicaoCadastrado)
+                .then()
+                .statusCode(204);
+    }
 
     @Feature("Etapa")
     @Story("Buscar uma etapa com sucesso")
     @Description("Testa se a requisição consegue buscar uma etapa deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarTodasAsEtapasComSucesso() {
         Response response =
                 etapaClient.buscarTudo()
@@ -74,6 +77,7 @@ public class GetEtapaFuncionalTest {
     @Description("Testa se a requisição consegue buscar uma etapa deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarTodasAsEtapasSemAutorizacaoSemSucesso() {
                 etapaClient.buscarTudoSemAuth()
                         .then()
@@ -116,6 +120,7 @@ public class GetEtapaFuncionalTest {
     @Description("Testa se a requisição consegue buscar uma etapa deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarEtapaEspecificaPorIdComSucesso() {
         EtapaResponseDTO etapaBuscada =
         etapaClient.buscarPorID(idEtapaCadastrada)
@@ -135,6 +140,7 @@ public class GetEtapaFuncionalTest {
     @Description("Testa se a requisição consegue buscar uma etapa deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarEtapaEspecificaPorIdSemAutorizacaoSemSucesso() {
                 etapaClient.buscarPorIDSemAuth(idEtapaCadastrada)
                         .then()

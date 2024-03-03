@@ -6,6 +6,7 @@ import data.factory.TokenFactory;
 import io.qameta.allure.*;
 import model.areaEnvolvida.AreaEnvolvidaRequestDTO;
 import model.areaEnvolvida.AreaEnvolvidaResponseDTO;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -21,6 +22,7 @@ public class PutAreaEnvolvidaFuncionalTest {
     @Description("Testa se a requisição consegue atualizar uma area envolvida deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testAtualizarAreaEnvolvidaComSucesso() {
         areaEnvolvidaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
@@ -44,6 +46,7 @@ public class PutAreaEnvolvidaFuncionalTest {
     @Description("Testa se a requisição não consegue atualizar uma area envolvida deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testAtualizarAreaEnvolvidaComNomeRepetido() {
         areaEnvolvidaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
@@ -65,7 +68,7 @@ public class PutAreaEnvolvidaFuncionalTest {
                 .then()
                 .statusCode(409).extract().jsonPath().getString("message");
 
-        assertEquals("Restrição de valor único violada - nome.",message);
+        assertEquals("Erro na validação dos seguintes campos: nome.",message);
 
         areaEnvolvidaClient.deletar(areaEnvolvidaResponseDTO.getIdAreaEnvolvida()).then().statusCode(204);
 
@@ -76,6 +79,7 @@ public class PutAreaEnvolvidaFuncionalTest {
     @Description("Testa se a requisição não consegue atualizar uma area envolvida deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
 @Test
+    @Tag("Fumaca")
     public void testTentarAtualizarAreaEnvolvidaComNomeVazio() {
         areaEnvolvidaClient.setTOKEN(TokenFactory.getTokenAdmin());
 

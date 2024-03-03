@@ -7,6 +7,7 @@ import model.modulo.ModuloRequestDTO;
 import model.modulo.ModuloResponseDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class DeleteModuloFuncionalTest {
@@ -36,6 +37,7 @@ public class DeleteModuloFuncionalTest {
     @Description("Testa se a requisição consegue deletar um modulo deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testDeletarModuloEspecificoPorIdComSucesso() {
         moduloClient.desabilitar(idModuloCadastrado)
                 .then()
@@ -47,6 +49,7 @@ public class DeleteModuloFuncionalTest {
     @Description("Testa se a requisição não consegue deletar um modulo deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testDeletarModuloEspecificoPorIdSemAutorizacaoSemSucesso() {
         moduloClient.desabilitarSemAuth(idModuloCadastrado)
                 .then()

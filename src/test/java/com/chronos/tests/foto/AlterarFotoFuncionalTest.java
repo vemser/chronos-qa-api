@@ -10,6 +10,7 @@ import model.edicao.EdicaoResponseDTO;
 import model.estagiario.EstagiarioResponseDTO;
 import model.foto.FotoResponseDTO;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import utils.image.ImageTypes;
@@ -24,6 +25,7 @@ public class AlterarFotoFuncionalTest {
     private EdicaoClient edicaoClient = new EdicaoClient();
 
     @Test
+    @Tag("Fumaca")
     public void testDeveAlterarFotoComSucesso() {
 
         Integer idEdicao = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida()).then().extract().as(EdicaoResponseDTO.class).getIdEdicao();
@@ -53,6 +55,7 @@ public class AlterarFotoFuncionalTest {
     }
 
     @Test
+    @Tag("Fumaca")
     public void testNaoDeveAlterarFotoPoisIDInvalido() {
 
         fotoClient.alterarFoto(-1, FotoFactory.gerarPNG(), ImageTypes.PNG)

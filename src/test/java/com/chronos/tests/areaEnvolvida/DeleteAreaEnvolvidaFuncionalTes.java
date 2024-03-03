@@ -6,6 +6,7 @@ import data.factory.TokenFactory;
 import io.qameta.allure.*;
 import model.areaEnvolvida.AreaEnvolvidaRequestDTO;
 import model.areaEnvolvida.AreaEnvolvidaResponseDTO;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class DeleteAreaEnvolvidaFuncionalTes {
@@ -17,6 +18,7 @@ public class DeleteAreaEnvolvidaFuncionalTes {
     @Description("Testa se a requisição consegue deletar uma area envolvida deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testDeletarAreaEnvolvidaComSucesso() {
         areaEnvolvidaClient.setTOKEN(TokenFactory.getTokenAdmin());
 

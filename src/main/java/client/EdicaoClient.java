@@ -21,6 +21,7 @@ public class EdicaoClient {
         return given()
                 .spec(AuthSpec.setup())
                     .body(body)
+                .log().all()
                 .when()
                     .post(PATH_EDICAO);
     }

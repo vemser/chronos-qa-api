@@ -13,6 +13,7 @@ import model.curriculoMolde.CurriculoMoldeRequestDTO;
 import model.curriculoMolde.CurriculoMoldeResponseDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class GetCurriculoMoldeFuncionalTest {
@@ -64,6 +65,7 @@ public class GetCurriculoMoldeFuncionalTest {
     @Description("Testa se a requisição consegue buscar um curriculo molde deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarCurriculoPorIdTrilhaComSucesso() {
         curriculoMoldeClient.buscarCurriculoEspecificoPorTrilha(idTrilhaCadastrada)
                 .then()
@@ -74,6 +76,7 @@ public class GetCurriculoMoldeFuncionalTest {
     @Description("Testa se a requisição consegue buscar um curriculo molde deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarCurriculoPorIdTrilhaSemAuthSemSucesso() {
         curriculoMoldeClient.buscarCurriculoEspecificoPorTrilhaSemAuth(idTrilhaCadastrada)
                 .then()

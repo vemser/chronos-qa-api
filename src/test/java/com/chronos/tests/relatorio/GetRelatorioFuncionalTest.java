@@ -11,6 +11,7 @@ import model.edicao.EdicaoResponseDTO;
 import model.relatorio.*;
 import org.junit.jupiter.api.Assertions;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 
@@ -23,6 +24,7 @@ public class GetRelatorioFuncionalTest {
     @Description("Testa se a requisição consegue buscar uma relatorio deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarQuantidadeDeEstagiarios() {
         EdicaoRequestDTO edicaoResponseDTO = EdicaoFactory.edicaoValida();
 
@@ -50,6 +52,7 @@ public class GetRelatorioFuncionalTest {
     @Description("Testa se a requisição consegue buscar uma relatorio deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarTrilhaPorDesligamento() {
         EdicaoRequestDTO edicaoResponseDTO = EdicaoFactory.edicaoValida();
 
@@ -75,6 +78,7 @@ public class GetRelatorioFuncionalTest {
     @Description("Testa se a requisição consegue buscar uma relatorio deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarTrilhaPorRegiao() {
         EdicaoRequestDTO edicaoResponseDTO = EdicaoFactory.edicaoValida();
 
@@ -106,6 +110,7 @@ public class GetRelatorioFuncionalTest {
     @Description("Testa se a requisição consegue buscar uma relatorio deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarTrilhaGeral() {
 
         EdicaoRequestDTO edicaoResponseDTO = EdicaoFactory.edicaoValida();

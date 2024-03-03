@@ -5,6 +5,7 @@ import data.factory.EdicaoFactory;
 import io.restassured.http.ContentType;
 import model.edicao.EdicaoResponseDTO;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -13,6 +14,7 @@ public class DeletarEdicaoFuncionalTest {
     private final EdicaoClient edicaoClient = new EdicaoClient();
 
     @Test
+    @Tag("Fumaca")
     public void testDeveDeletarUmaEdicaoComSucesso() {
         Integer idEdicao = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
                 .then()

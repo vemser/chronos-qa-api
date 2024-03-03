@@ -8,7 +8,9 @@ import model.etapa.EtapaRequestDTO;
 import model.etapa.EtapaResponseDTO;
 import model.edicao.EdicaoRequestDTO;
 import model.edicao.EdicaoResponseDTO;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class DeleteEtapaFuncionalTest {
@@ -40,7 +42,15 @@ public class DeleteEtapaFuncionalTest {
         idEtapaCadastrada = etapaCadastrada.getIdEtapa();
     }
 
+    @AfterEach
+    public void cleanUp() {
+        edicaoClient.deletarPorID(idEdicaoCadastrado)
+                .then()
+                .statusCode(204);
+    }
+
     @Test
+    @Tag("Fumaca")
     public void testDeletarEtapaEspecificoPorIdComSucesso() {
         etapaClient.deletar(idEtapaCadastrada)
                 .then()

@@ -10,6 +10,7 @@ import model.edicao.EdicaoRequestDTO;
 import model.edicao.EdicaoResponseDTO;
 import model.trilha.TrilhaResponseDTO;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.Matchers.*;
@@ -20,6 +21,7 @@ public class AlterarEdicaoFuncionalTest {
     private final TrilhaClient trilhaClient = new TrilhaClient();
 
     @Test
+    @Tag("Fumaca")
     public void testDeveAlterarUmaEdicaoComSucesso() {
         Integer idCreated = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
                 .then()
@@ -78,6 +80,7 @@ public class AlterarEdicaoFuncionalTest {
     }
 
     @Test
+    @Tag("Fumaca")
     public void testNaoDeveAlterarEdicaoPoisTokenInvalido() {
         Integer idCreated = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
                 .then()

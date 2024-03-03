@@ -8,10 +8,12 @@ import io.restassured.http.ContentType;
 import model.edicao.EdicaoResponseDTO;
 import model.foto.FotoResponseDTO;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.image.ImageTypes;
 
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -22,7 +24,13 @@ public class BuscarFotoFuncionalTest {
     private final EdicaoClient edicaoClient = new EdicaoClient();
 
     @Test
+    @Tag("smoke")
     public void testDeveRetornarUmaFotoPeloIDComSucesso() {
+        // CRIAR MASSA
+        FotoResponseDTO responseDTO = fotoClient.cadastrarFotoComSucesso(FotoFactory.gerarPNG(), ImageTypes.PNG, Factory.nome())
+                        .then()
+                            .statusCode(HttpStatus.SC_CREATED)
+                            .extract().as(FotoResponseDTO.class);
 
         Integer idEdicao = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
                 .then()

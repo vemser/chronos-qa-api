@@ -11,6 +11,7 @@ import model.edicao.EdicaoResponseDTO;
 import model.foto.FotoResponseDTO;
 import model.trilha.TrilhaResponseDTO;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -92,6 +93,7 @@ public class CriarFotoFuncionalTest {
     }
 
     @Test
+    @Tag("Fumaca")
     public void testNaoDeveCriarFotoComTrilhaPoisTokenNaoEnviado() {
         fotoClient.cadastrarFotoComTrilhaSemToken(FotoFactory.gerarJPG(), ImageTypes.JPG)
                 .then()
