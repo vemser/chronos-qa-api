@@ -31,4 +31,5 @@ public class EstagiarioResponseDTO {
     private String observacao;
     private TrilhaEstagiarioResponseDTO trilha;
     private EdicaoEstagiarioResponseDTO edicao;
+    private EdicaoResponseDTO foto;
 }

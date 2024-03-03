@@ -64,7 +64,7 @@ public class AlterarEdicaoFuncionalTest {
                     .contentType(ContentType.JSON)
                     .statusCode(HttpStatus.SC_CONFLICT)
                     .body("status", equalTo(HttpStatus.SC_CONFLICT))
-                    .body("message", equalTo("Restrição de valor único violada - nome."));
+                    .body("message", equalTo("Erro na validação dos seguintes campos: nome."));
 
         // DELETAR MASSAS
         edicaoClient.deletarPorID(dataCreated.getIdEdicao())
