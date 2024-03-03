@@ -31,6 +31,7 @@ public class CriarFotoFuncionalTest {
     private final TrilhaClient trilhaClient = new TrilhaClient();
 
 
+    @Tag("Fumaca")
     @ParameterizedTest
     @MethodSource("data.provider.FotoProvider#providerCadastrarFoto")
     @DisplayName("Testes: Deve cadastrar fotos asssociadas a uma EDIÇÃO com sucesso")
@@ -61,6 +62,7 @@ public class CriarFotoFuncionalTest {
                 .statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
+    @Tag("Fumaca")
     @ParameterizedTest
     @MethodSource("data.provider.FotoProvider#providerCadastrarFoto")
     @DisplayName("Testes: Deve cadastrar fotos asssociadas a uma TRILHA com sucesso")

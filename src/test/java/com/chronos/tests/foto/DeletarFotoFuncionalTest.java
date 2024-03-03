@@ -3,11 +3,11 @@ package com.chronos.tests.foto;
 import client.EdicaoClient;
 import client.FotoClient;
 import data.factory.EdicaoFactory;
-import data.factory.Factory;
 import data.factory.FotoFactory;
 import model.edicao.EdicaoResponseDTO;
 import model.foto.FotoResponseDTO;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import utils.image.ImageTypes;
 
@@ -17,6 +17,7 @@ public class DeletarFotoFuncionalTest {
     private final FotoClient fotoClient = new FotoClient();
     private final EdicaoClient edicaoClient = new EdicaoClient();
 
+    @Tag("Fumaca")
     @Test
     public void testDeveDeletarUmaFotoComSucesso() {
         Integer idEdicao = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida()).then().extract().as(EdicaoResponseDTO.class).getIdEdicao();
@@ -32,6 +33,7 @@ public class DeletarFotoFuncionalTest {
 
     }
 
+    @Tag("Fumaca")
     @Test
     public void testNaoDeveDeletarPoisIDNaoEncontrar() {
         fotoClient.deletarFotoPorId(-1)
@@ -41,6 +43,7 @@ public class DeletarFotoFuncionalTest {
                     .body("status", equalTo(HttpStatus.SC_BAD_REQUEST));
     }
 
+    @Tag("Fumaca")
     @Test
     public void testNaoDeveDeletarPoisTokenNaoEnviado() {
         fotoClient.deletarFotoPorIdSemToken(-1)

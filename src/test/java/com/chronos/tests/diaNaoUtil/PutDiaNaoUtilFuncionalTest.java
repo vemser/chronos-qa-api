@@ -63,7 +63,7 @@ public class PutDiaNaoUtilFuncionalTest {
     @Story("Atualizar uma dia não util com sucesso")
     @Description("Testa se a requisição consegue atualizar uma dia não util deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
-@Test
+    @Test
     @Tag("Fumaca")
     public void testTentarEditarUmDiaUtilJaCriado(){
         diaNaoUtilClient.setTOKEN((TokenFactory.getTokenAdmin()));
