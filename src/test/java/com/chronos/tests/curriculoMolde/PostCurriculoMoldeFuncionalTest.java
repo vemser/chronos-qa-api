@@ -13,6 +13,7 @@ import model.curriculoMolde.CurriculoMoldeRequestDTO;
 import model.curriculoMolde.CurriculoMoldeResponseDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class PostCurriculoMoldeFuncionalTest {
@@ -50,6 +51,7 @@ public class PostCurriculoMoldeFuncionalTest {
     @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarCurriculoMoldeComTodosOsCamposValidosComSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCampos();
         curriculoMoldeCadastrado =
@@ -66,6 +68,7 @@ public class PostCurriculoMoldeFuncionalTest {
     @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarCurriculoMoldeComTodosOsCamposValidosSemAuthSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCampos();
                 curriculoMoldeClient.cadastrarSemAuth(idTrilhaCadastrada, curriculoMoldeACadastrar)
@@ -78,6 +81,7 @@ public class PostCurriculoMoldeFuncionalTest {
     @Description("Testa se a requisição consegue criar um curriculo molde deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarCurriculoMoldeComTodosOsCamposECampoQualificacoesComCaracteresAMaisSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCamposECampoQualificacoesComCaracteresAMais();
                 curriculoMoldeClient.cadastrar(idTrilhaCadastrada, curriculoMoldeACadastrar)

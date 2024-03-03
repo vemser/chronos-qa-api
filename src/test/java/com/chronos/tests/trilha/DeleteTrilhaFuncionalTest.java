@@ -6,6 +6,7 @@ import data.factory.TrilhaDataFactory;
 import io.qameta.allure.*;
 import model.trilha.TrilhaRequestDTO;
 import model.trilha.TrilhaResponseDTO;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class DeleteTrilhaFuncionalTest {
@@ -16,6 +17,7 @@ public class DeleteTrilhaFuncionalTest {
     @Description("Testa se a requisição consegue deletar uma trilha deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testDeletarTrilhaComSucesso() {
         trilhaClient.setTOKEN(TokenFactory.getTokenAdmin());
 

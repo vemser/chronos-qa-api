@@ -11,6 +11,7 @@ import model.edicao.EdicaoRequestDTO;
 import model.edicao.EdicaoResponseDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class PutEtapaFuncionalTest {
@@ -54,6 +55,7 @@ public class PutEtapaFuncionalTest {
     @Description("Testa se a requisição consegue editar uma etapa deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testEditarEtapaComTodosOsCamposValidosComSucesso() {
         EtapaRequestDTO etapaParaAtualizar = EtapaDataFactory.etapaComTodosOsCampos();
                 etapaClient.atualizar(idEtapaCadastrada, etapaParaAtualizar)
@@ -66,6 +68,7 @@ public class PutEtapaFuncionalTest {
     @Description("Testa se a requisição consegue editar uma etapa deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testEditarEtapaComTodosOsCamposValidosSemAuthSemSucesso() {
         EtapaRequestDTO etapaParaAtualizar = EtapaDataFactory.etapaComTodosOsCampos();
                 etapaClient.atualizarSemAuth(idEtapaCadastrada, etapaParaAtualizar)
@@ -78,6 +81,7 @@ public class PutEtapaFuncionalTest {
     @Description("Testa se a requisição consegue editar uma etapa deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testEditarEtapaSemCamposObrigatoriosSemSucesso() {
         EtapaRequestDTO etapaParaAtualizar = EtapaDataFactory.etapaSemCamposObrigatoriosPreenchidos();
         etapaClient.atualizar(idEtapaCadastrada, etapaParaAtualizar)

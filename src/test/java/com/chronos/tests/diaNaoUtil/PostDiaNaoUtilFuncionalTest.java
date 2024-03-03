@@ -5,6 +5,7 @@ import data.factory.TokenFactory;
 import io.qameta.allure.*;
 import model.diaNaoUtil.DiaNaoUtilRequestDTO;
 import model.diaNaoUtil.DiaNaoUtilResposeDTO;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class PostDiaNaoUtilFuncionalTest {
@@ -15,6 +16,7 @@ public class PostDiaNaoUtilFuncionalTest {
     @Description("Testa se a requisição consegue cadastrar uma dia não util deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarUmDiaNaoUtilComSucesso() {
         diaNaoUtilClient.setTOKEN((TokenFactory.getTokenAdmin()));
         DiaNaoUtilRequestDTO diaNaoUtilRequestDTO  = DiaNaoUtilFactory.diaNaoUtilTodosOsCampos();
@@ -49,6 +51,7 @@ public class PostDiaNaoUtilFuncionalTest {
     @Description("Testa se a requisição consegue cadastrar uma dia não util deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testTentarCriarUmDiaUtilComCampoDataInvalido() {
         diaNaoUtilClient.setTOKEN((TokenFactory.getTokenAdmin()));
         DiaNaoUtilRequestDTO diaNaoUtilRequestDTO  = DiaNaoUtilFactory.dataComFormatoInvalido();
@@ -61,6 +64,7 @@ public class PostDiaNaoUtilFuncionalTest {
     @Description("Testa se a requisição consegue cadastrar uma dia não util deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testTentarCriarUmDiaUtilJaCriado(){
         diaNaoUtilClient.setTOKEN((TokenFactory.getTokenAdmin()));
         DiaNaoUtilRequestDTO diaNaoUtilRequestDTO  = DiaNaoUtilFactory.diaNaoUtilTodosOsCampos();
@@ -82,6 +86,7 @@ public class PostDiaNaoUtilFuncionalTest {
     @Description("Testa se a requisição consegue cadastrar uma dia não util deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testTentarCriarUmDiaUtilSomenteComCampoOpcionais(){
 
         diaNaoUtilClient.setTOKEN((TokenFactory.getTokenAdmin()));

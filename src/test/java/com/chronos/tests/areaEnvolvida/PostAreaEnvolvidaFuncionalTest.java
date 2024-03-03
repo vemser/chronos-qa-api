@@ -6,6 +6,7 @@ import data.factory.TokenFactory;
 import io.qameta.allure.*;
 import model.areaEnvolvida.AreaEnvolvidaRequestDTO;
 import model.areaEnvolvida.AreaEnvolvidaResponseDTO;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class PostAreaEnvolvidaFuncionalTest {
@@ -17,6 +18,7 @@ AreaEnvolvidaClient areaEnvolvidaClient = new AreaEnvolvidaClient();
     @Description("Testa se a requisição consegue criar uma area envolvida deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarUmaAreaEnvolvidaComSucesso() {
         areaEnvolvidaClient.setTOKEN(TokenFactory.getTokenAdmin());
 
@@ -35,6 +37,7 @@ AreaEnvolvidaClient areaEnvolvidaClient = new AreaEnvolvidaClient();
     @Description("Testa se a requisição não consegue criar uma area envolvida deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testCriarUmaAreaEnvolvidaComCampoNomeVazio() {
         areaEnvolvidaClient.setTOKEN(TokenFactory.getTokenAdmin());
 

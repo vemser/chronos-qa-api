@@ -13,6 +13,7 @@ import model.edicao.EdicaoRequestDTO;
 import model.edicao.EdicaoResponseDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -45,6 +46,7 @@ public class GetCalendarioGeralFuncionalTest {
     @Description("Testa se a requisição consegue gerar e buscar o calendario geral")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarEGerarCalendarioGeral() {
         Response response =
                 calendarioClient.buscarEGerarCalendarioGeral()
@@ -64,6 +66,7 @@ public class GetCalendarioGeralFuncionalTest {
     @Description("Testa se a requisição não consegue gerar e buscar o calendario geral sem auth")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarEGerarCalendarioGeralSemAuth() {
                 calendarioClient.buscarEGerarCalendarioGeralSemAuth()
                         .then()
@@ -75,6 +78,7 @@ public class GetCalendarioGeralFuncionalTest {
     @Description("Testa se a requisição consegue gerar e buscar o calendario geral filtrado por mês")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarEGerarCalendarioGeralPorMês() {
         Response response =
                 calendarioClient.buscarEGerarCalendarioGeralPorMes(CalendarioGeralDataFactory.gerarMesCalendario())
@@ -92,6 +96,7 @@ public class GetCalendarioGeralFuncionalTest {
     @Description("Testa se a requisição não consegue gerar e buscar o calendario geral filtrado por mês sem auth")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testBuscarEGerarCalendarioGeralPorMêsSemAuth() {
         calendarioClient.buscarEGerarCalendarioGeralPorMesSemAuth(CalendarioGeralDataFactory.gerarMesCalendario())
                 .then()

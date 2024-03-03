@@ -6,6 +6,7 @@ import data.factory.FotoFactory;
 import io.restassured.http.ContentType;
 import model.foto.FotoResponseDTO;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import utils.image.ImageTypes;
 
@@ -19,6 +20,7 @@ public class BuscarFotoFuncionalTest {
     private final FotoClient fotoClient = new FotoClient();
 
     @Test
+    @Tag("Fumaca")
     public void testDeveRetornarUmaListaDeFotos() {
         // CRIAR MASSA
         FotoResponseDTO responseDTO = fotoClient.cadastrarFotoComSucesso(FotoFactory.gerarPNG(), ImageTypes.PNG, Factory.nome())

@@ -9,6 +9,7 @@ import model.diaNaoUtil.DiaNaoUtilRequestDTO;
 import model.diaNaoUtil.DiaNaoUtilResposeDTO;
 import model.trilha.TrilhaRequestDTO;
 import model.trilha.TrilhaResponseDTO;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class DeleteDiaNaoUtilFuncionalTest {
@@ -19,6 +20,7 @@ DiaNaoUtilClient diaNaoUtilClient = new DiaNaoUtilClient();
     @Description("Testa se a requisição consegue deletar uma dia não util deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testDeletarDiaNaoUtilComSucesso() {
         diaNaoUtilClient.setTOKEN(TokenFactory.getTokenAdmin());
 
@@ -35,6 +37,7 @@ DiaNaoUtilClient diaNaoUtilClient = new DiaNaoUtilClient();
     @Description("Testa se a requisição consegue deletar uma dia não util deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testTentarDeletarDiaNaoUtilComIdInvalido() {
         diaNaoUtilClient.setTOKEN(TokenFactory.getTokenAdmin());
 

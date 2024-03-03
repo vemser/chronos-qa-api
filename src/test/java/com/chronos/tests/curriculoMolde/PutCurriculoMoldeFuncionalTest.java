@@ -13,6 +13,7 @@ import model.curriculoMolde.CurriculoMoldeRequestDTO;
 import model.curriculoMolde.CurriculoMoldeResponseDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class PutCurriculoMoldeFuncionalTest {
@@ -63,6 +64,7 @@ public class PutCurriculoMoldeFuncionalTest {
     @Description("Testa se a requisição não consegue atualizar um curriculo molde deve retornar uma mensagem de sucesso")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testAtualizarCurriculoMoldeComTodosOsCamposValidosComSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCampos();
         curriculoMoldeCadastrado =
@@ -79,6 +81,7 @@ public class PutCurriculoMoldeFuncionalTest {
     @Description("Testa se a requisição não consegue atualizar um curriculo molde deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testAtualizarCurriculoMoldeComTodosOsCamposValidosSemAuthSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCampos();
                 curriculoMoldeClient.atualizarSemAuth(idTrilhaCadastrada, curriculoMoldeACadastrar)
@@ -104,6 +107,7 @@ public class PutCurriculoMoldeFuncionalTest {
     @Description("Testa se a requisição não consegue atualizar um curriculo molde deve retornar uma mensagem de erro")
     @Severity(SeverityLevel.CRITICAL)
     @Test
+    @Tag("Fumaca")
     public void testAtualizarCurriculoMoldeComTodosOsCamposECampoEmpresaComCaracteresAMaisSemSucesso() {
         CurriculoMoldeRequestDTO curriculoMoldeACadastrar = CurriculoMoldeDataFactory.gerarCurriculoMoldeComTodosOsCamposECampoEmpresaComCaracteresAMais();
                 curriculoMoldeClient.atualizar(idTrilhaCadastrada, curriculoMoldeACadastrar)
