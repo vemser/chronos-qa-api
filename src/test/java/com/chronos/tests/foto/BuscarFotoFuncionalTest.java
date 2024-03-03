@@ -1,62 +1,61 @@
 package com.chronos.tests.foto;
 
+import client.EdicaoClient;
 import client.FotoClient;
-import data.factory.Factory;
+import data.factory.EdicaoFactory;
 import data.factory.FotoFactory;
 import io.restassured.http.ContentType;
+import model.edicao.EdicaoResponseDTO;
 import model.foto.FotoResponseDTO;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import utils.image.ImageTypes;
 
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class BuscarFotoFuncionalTest {
 
     private final FotoClient fotoClient = new FotoClient();
+    private final EdicaoClient edicaoClient = new EdicaoClient();
 
     @Test
-    @Tag("Fumaca")
-    public void testDeveRetornarUmaListaDeFotos() {
+    @Tag("smoke")
+    public void testDeveRetornarUmaFotoPeloIDComSucesso() {
         // CRIAR MASSA
         FotoResponseDTO responseDTO = fotoClient.cadastrarFotoComSucesso(FotoFactory.gerarPNG(), ImageTypes.PNG, Factory.nome())
                         .then()
                             .statusCode(HttpStatus.SC_CREATED)
                             .extract().as(FotoResponseDTO.class);
 
-        // BUSCAR MASSA
-        List buscarTotalResponseDTO = fotoClient.resgatarFotosComSucesso()
+        Integer idEdicao = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida())
                 .then()
-                    .contentType(ContentType.JSON)
-                    .statusCode(HttpStatus.SC_OK)
-                    .extract().as(List.class);
+                .statusCode(HttpStatus.SC_OK)
+                .extract().as(EdicaoResponseDTO.class).getIdEdicao();
 
-        assertFalse(buscarTotalResponseDTO.isEmpty());
-
-        fotoClient.deletarFotoPorId(responseDTO.getIdFoto());
-    }
-
-    @Test
-    public void testDeveRetornarUmaFotoPeloIDComSucesso() {
-
-        FotoResponseDTO responseDTO = fotoClient.cadastrarFotoComSucesso(FotoFactory.gerarJPG(), ImageTypes.JPG, Factory.nome())
+        FotoResponseDTO fotoGerada = fotoClient.cadastrarFotoComEdicaoComSucesso(FotoFactory.gerarJPG(), ImageTypes.JPG, idEdicao)
                 .then()
                 .extract().as(FotoResponseDTO.class);
 
-        fotoClient.resgatarFotoPorId(responseDTO.getIdFoto())
+
+        FotoResponseDTO fotoConsultada = fotoClient.resgatarFotoPorId(fotoGerada.getIdFoto())
                 .then()
                     .contentType(ContentType.JSON)
                     .statusCode(HttpStatus.SC_OK)
-                    .body("nome", equalTo(responseDTO.getNome()))
-                    .body("tipo", equalTo(responseDTO.getTipo()));
+                    .extract().as(FotoResponseDTO.class);
 
-        fotoClient.deletarFotoPorId(responseDTO.getIdFoto())
-                .then()
-                    .statusCode(HttpStatus.SC_NO_CONTENT);
+        assertAll("fotoConsultada",
+                () -> Assertions.assertEquals(fotoConsultada.getIdFoto(), fotoGerada.getIdFoto()),
+                () -> Assertions.assertEquals(fotoConsultada.getNome(), fotoGerada.getNome()),
+                () -> Assertions.assertEquals(fotoConsultada.getArquivo(), fotoGerada.getArquivo()),
+                () -> Assertions.assertEquals(fotoConsultada.getTipo(), fotoGerada.getTipo())
+        );
+
+       edicaoClient.deletarPorID(idEdicao).then().statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
     @Test

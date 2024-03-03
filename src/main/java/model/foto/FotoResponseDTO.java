@@ -15,5 +15,5 @@ public class FotoResponseDTO {
     private Integer idFoto;
     private String nome;
     private String tipo;
-    private List<String> arquivo;
+    private String arquivo;
 }

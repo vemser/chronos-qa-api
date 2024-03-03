@@ -14,40 +14,70 @@ import static io.restassured.RestAssured.given;
 
 public class FotoClient {
 
-    private static final String FOTO_PATH = "/foto";
-    private static final String FOTO_PATH_ID = "/foto/{idFoto}";
+    public static final String FOTO_PATH = "/foo/";
+    public static final String FOTO_PATH_ID = "/foto/{idFoto}";
+    public static final String FOTO_EDICAO_PATH_ID = "/foto/edicao/{idEdicao}";
+    public static final String FOTO_TRILHA_PATH_ID = "/foto/trilha/{idTrilha}";
 
-    public Response cadastrarFotoComSucesso(File file, String typeImage, String nome) {
+    public Response cadastrarFotoComSucesso(File file, String typeImage, Integer idEdicao) {
         return given()
                 .spec(FotoSpec.setup())
                     .multiPart("arquivo", file, typeImage)
-                    .queryParam("nome", nome)
+                    .pathParam("idEdicao", idEdicao)
                 .when()
                     .post(FOTO_PATH);
     }
 
-    public Response cadastrarFotoSemToken(File file, String typeImage, String nome) {
+    public Response cadastrarFotoComEdicaoComSucesso(File file, String typeImage, Integer idEdicao) {
+        return given()
+                    .spec(FotoSpec.setup())
+                    .multiPart("arquivo", file, typeImage)
+                    .pathParam("idEdicao", idEdicao)
+                    .when()
+                .post(FOTO_EDICAO_PATH_ID);
+    }
+
+    public Response cadastrarFotoComTrilhaComSucesso(File file, String typeImage, Integer idTrilha) {
+        return given()
+                    .spec(FotoSpec.setup())
+                    .multiPart("arquivo", file, typeImage)
+                    .pathParam("idTrilha", idTrilha)
+                    .when()
+                .post(FOTO_TRILHA_PATH_ID);
+    }
+
+    public Response cadastrarFotoComTrilhaSemToken(File file, String typeImage) {
         return given()
                 .spec(FotoSpec.setupWithoutToken())
                     .multiPart("arquivo", file, typeImage)
-                    .queryParam("nome", nome)
+                    .pathParam("idTrilha", -1)
                 .when()
-                    .post(FOTO_PATH);
+                    .post(FOTO_TRILHA_PATH_ID);
+    }
+    public Response cadastrarFotoComEdicaoSemToken(File file, String typeImage) {
+        return given()
+                .spec(FotoSpec.setupWithoutToken())
+                    .multiPart("arquivo", file, typeImage)
+                    .pathParam("idTrilha", -1)
+                .when()
+                    .post(FOTO_TRILHA_PATH_ID);
     }
 
-    public Response cadastrarFotoSemQuery(File file, String typeImage, String nome) {
+    public Response cadastrarFotoComTrilhaSemID(File file, String typeImage) {
         return given()
                 .spec(FotoSpec.setup())
                     .multiPart("arquivo", file, typeImage)
+                    .pathParam("idTrilha", -1)
                 .when()
-                    .post(FOTO_PATH);
+                    .post(FOTO_TRILHA_PATH_ID);
     }
-
-    public Response resgatarFotosComSucesso() {
+    public Response cadastrarFotoComEdicaoSemID(File file, String typeImage) {
         return given()
-                .spec(AuthSpec.setup())
-                    .when()
-                    .get(FOTO_PATH);
+                .spec(FotoSpec.setup())
+                    .multiPart("arquivo", file, typeImage)
+                    .pathParam("idEdicao", -1)
+                .when()
+                    .post(FOTO_EDICAO_PATH_ID);
     }
 
     public Response resgatarFotoPorId(Integer id) {
@@ -58,21 +88,11 @@ public class FotoClient {
                     .get(FOTO_PATH_ID);
     }
 
-    public Response alterarFoto(Integer idFoto, File file, String typeImage, String nome) {
+    public Response alterarFoto(Integer idFoto, File file, String typeImage) {
         return given()
                     .spec(FotoSpec.setup())
                     .multiPart("arquivo", file, typeImage)
                     .pathParam("idFoto", idFoto)
-                    .queryParam("nome", nome)
-                .when()
-                    .put(FOTO_PATH_ID);
-    }
-
-    public Response alterarFotoSemNome() {
-        return given()
-                    .spec(FotoSpec.setup())
-                    .multiPart("arquivo", FotoFactory.gerarPNG(), ImageTypes.PNG)
-                    .pathParam("idFoto", 3)
                 .when()
                     .put(FOTO_PATH_ID);
     }

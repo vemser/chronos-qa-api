@@ -1,8 +1,12 @@
 package com.chronos.tests.foto;
 
+import client.EdicaoClient;
 import client.FotoClient;
+import data.factory.EdicaoFactory;
 import data.factory.Factory;
 import data.factory.FotoFactory;
+import model.edicao.EdicaoResponseDTO;
+import model.foto.FotoResponseDTO;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 import utils.image.ImageTypes;
@@ -11,17 +15,20 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 public class DeletarFotoFuncionalTest {
     private final FotoClient fotoClient = new FotoClient();
+    private final EdicaoClient edicaoClient = new EdicaoClient();
 
     @Test
     public void testDeveDeletarUmaFotoComSucesso() {
-        Integer idMassa = fotoClient.cadastrarFotoComSucesso(FotoFactory.gerarPNG(), ImageTypes.PNG, Factory.nome())
-                .then()
-                    .extract()
-                    .path("idFoto");
+        Integer idEdicao = edicaoClient.cadastrarEdicao(EdicaoFactory.edicaoValida()).then().extract().as(EdicaoResponseDTO.class).getIdEdicao();
 
-        fotoClient.deletarFotoPorId(idMassa)
+        FotoResponseDTO massaCriada = fotoClient.cadastrarFotoComEdicaoComSucesso(FotoFactory.gerarJPG(), ImageTypes.JPG, idEdicao)
                 .then()
-                    .statusCode(HttpStatus.SC_NO_CONTENT);
+                .extract()
+                .as(FotoResponseDTO.class);
+
+        fotoClient.deletarFotoPorId(massaCriada.getIdFoto())
+                .then()
+                .statusCode(HttpStatus.SC_NO_CONTENT);
 
     }
 
@@ -38,7 +45,9 @@ public class DeletarFotoFuncionalTest {
     public void testNaoDeveDeletarPoisTokenNaoEnviado() {
         fotoClient.deletarFotoPorIdSemToken(-1)
                 .then()
-                    .statusCode(HttpStatus.SC_FORBIDDEN);
+                .log().body()
+                .statusCode(HttpStatus.SC_FORBIDDEN)
+                .body("error", equalTo("Forbidden"));
     }
 
 }
