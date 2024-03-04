@@ -58,6 +58,8 @@ public class CriarEstagiarioTest {
 
         EstagiarioRequestDTO bodyRequest = EstagiarioFactory.estagiarioValido(idTrilha, idEdicao);
 
+        System.out.println(bodyRequest.getTelefone());
+
         EstagiarioResponseDTO responseDTO = estagiarioClient.cadastrar(bodyRequest)
                 .then()
                     .contentType(ContentType.JSON)
@@ -89,6 +91,10 @@ public class CriarEstagiarioTest {
                 .statusCode(HttpStatus.SC_NO_CONTENT);
 
         trilhaClient.deletar(idTrilha)
+                .then()
+                .statusCode(HttpStatus.SC_NO_CONTENT);
+
+        edicaoClient.deletarPorID(idEdicao)
                 .then()
                 .statusCode(HttpStatus.SC_NO_CONTENT);
 

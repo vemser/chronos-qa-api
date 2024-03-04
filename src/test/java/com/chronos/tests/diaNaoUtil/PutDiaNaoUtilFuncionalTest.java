@@ -55,7 +55,7 @@ public class PutDiaNaoUtilFuncionalTest {
         diaNaoUtilRequestDTOEditado.setDataInicial(diaNaoUtilRequestDTO.getDataInicial());
 
         DiaNaoUtilResposeDTO diaNaoUtilResposeDTO = diaNaoUtilClient.cadastrar(diaNaoUtilRequestDTO)
-                .then().log().all()
+                .then()
                 .statusCode(200).extract().as(DiaNaoUtilResposeDTO.class);
 
         diaNaoUtilClient.cadastrar(diaNaoUtilRequestDTOEditado)

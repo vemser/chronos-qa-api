@@ -31,7 +31,7 @@ public class Factory {
         return FAKER.letterify("???");
     }
     public static String telefone() {
-        return FAKER.numerify("???????????");
+     return FAKER.numerify("8399#######");
     }
     public static String cpf() {
         return FAKER.cpf().valid(false);

@@ -3,6 +3,7 @@ package com.chronos.tests.curriculo;
 import client.CurriculoClient;
 import client.EdicaoClient;
 import client.EstagiarioClient;
+import client.TrilhaClient;
 import data.factory.CurriculoDataFactory;
 import io.qameta.allure.*;
 import io.restassured.http.ContentType;
@@ -19,6 +20,7 @@ public class DeletarCurriculoTest {
     EdicaoClient edicaoClient = new EdicaoClient();
     CurriculoClient curriculoClient = new CurriculoClient();
     EstagiarioClient estagiarioClient = new EstagiarioClient();
+    TrilhaClient trilhaClient = new TrilhaClient();
 
 
     @Feature("Curriculo")
@@ -39,6 +41,7 @@ public class DeletarCurriculoTest {
                 .statusCode(HttpStatus.SC_NO_CONTENT);
 
         estagiarioClient.deletar(estagiario.getIdEstagiario());
+        trilhaClient.deletar(estagiario.getTrilha().getIdTrilha());
         edicaoClient.deletarPorID(estagiario.getEdicao().getIdEdicao());
     }
 
@@ -60,6 +63,7 @@ public class DeletarCurriculoTest {
                 .statusCode(HttpStatus.SC_NO_CONTENT);
 
         estagiarioClient.deletar(estagiario.getIdEstagiario());
+        trilhaClient.deletar(estagiario.getTrilha().getIdTrilha());
         edicaoClient.deletarPorID(estagiario.getEdicao().getIdEdicao());
     }
 
