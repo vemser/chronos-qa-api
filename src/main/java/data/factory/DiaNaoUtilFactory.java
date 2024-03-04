@@ -30,9 +30,8 @@ public class DiaNaoUtilFactory {
         diaNaoUtilRequestDTO.setRepeticaoAnual("ATIVO");
 
         return diaNaoUtilRequestDTO;
-
-
     }
+
     public static DiaNaoUtilRequestDTO dataComFormatoInvalido(){
         DiaNaoUtilRequestDTO diaNaoUtilRequestDTO = new DiaNaoUtilRequestDTO();
         diaNaoUtilRequestDTO.setDescricao(Factory.FAKER.lorem().sentence());
@@ -40,8 +39,6 @@ public class DiaNaoUtilFactory {
         diaNaoUtilRequestDTO.setRepeticaoAnual("ATIVO");
 
         return diaNaoUtilRequestDTO;
-
-
     }
 
     public static DiaNaoUtilRequestDTO diaNaoUtilCampoOpcional(){

@@ -31,7 +31,6 @@ public class GetEtapaFuncionalTest {
         edicaoCadastrada =
                 edicaoClient.cadastrarEdicao(edicaoACadastrar)
                         .then()
-                        .log().all()
                         .statusCode(200)
                         .extract().as(EdicaoResponseDTO.class);
 
@@ -41,7 +40,6 @@ public class GetEtapaFuncionalTest {
         etapaCadastrada =
                 etapaClient.cadastrar(idEdicaoCadastrado, etapaACadastrar)
                         .then()
-                        .log().all()
                         .statusCode(200)
                         .extract().as(EtapaResponseDTO.class);
 

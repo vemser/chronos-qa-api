@@ -27,12 +27,17 @@ public class PutDiaNaoUtilFuncionalTest {
 
         DiaNaoUtilResposeDTO diaNaoUtilResposeDTO = diaNaoUtilClient.cadastrar(diaNaoUtilRequestDTO)
                 .then()
+                .log().all()
                 .statusCode(200).extract().as(DiaNaoUtilResposeDTO.class);
 
-        DiaNaoUtilResposeDTO diaNaoUtilResposeDTOEditado = diaNaoUtilClient.atualizar(diaNaoUtilResposeDTO.getIdDiaNaoUtil(), diaNaoUtilRequestDTOEditado).then()
+        DiaNaoUtilResposeDTO diaNaoUtilResposeDTOEditado = diaNaoUtilClient.atualizar(diaNaoUtilResposeDTO.getIdDiaNaoUtil(), diaNaoUtilRequestDTOEditado)
+                .then()
+                .log().all()
                 .statusCode(200).extract().as(DiaNaoUtilResposeDTO.class);
 
-        diaNaoUtilClient.deletar(diaNaoUtilResposeDTO.getIdDiaNaoUtil()).then().statusCode(204);
+        diaNaoUtilClient.deletar(diaNaoUtilResposeDTO.getIdDiaNaoUtil())
+                .then()
+                .statusCode(204);
 
     }
 
@@ -45,8 +50,8 @@ public class PutDiaNaoUtilFuncionalTest {
     public void testTentarEditarUmDiaNaoUtilApenasComCamposObrigatorios(){
         diaNaoUtilClient.setTOKEN((TokenFactory.getTokenAdmin()));
 
-        DiaNaoUtilRequestDTO diaNaoUtilRequestDTO  = DiaNaoUtilFactory.diaNaoUtilSemDataFinal();
-        DiaNaoUtilRequestDTO diaNaoUtilRequestDTOEditado  = DiaNaoUtilFactory.diaNaoUtilSemDataFinal();
+        DiaNaoUtilRequestDTO diaNaoUtilRequestDTO  = DiaNaoUtilFactory.diaNaoUtilTodosOsCampos();
+        DiaNaoUtilRequestDTO diaNaoUtilRequestDTOEditado  = DiaNaoUtilFactory.diaNaoUtilTodosOsCampos();
 
         DiaNaoUtilResposeDTO diaNaoUtilResposeDTO = diaNaoUtilClient.cadastrar(diaNaoUtilRequestDTO)
                 .then()

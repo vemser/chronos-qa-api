@@ -12,8 +12,8 @@ public class CalendarioClient {
     private static final String PATH_CALENDARIO_GERAL = "/calendario/geral";
     private static final String PATH_CALENDARIO_GERAL_MES = "/calendario/geral";
 
-    private static final String PATH_CALENDARIO_GERAL_EDICAO = "/calendario/edicao" + "/${idEdicao}";
-    private static final String PATH_CALENDARIO_GERAL_EXCEL = "/calendario/export/excel" + "/${idEdicao}";
+    private static final String PATH_CALENDARIO_GERAL_EDICAO = "/calendario/edicao" + "/{idEdicao}";
+    private static final String PATH_CALENDARIO_GERAL_EXCEL = "/calendario/export/excel" + "/{idEdicao}";
 
 
     public Response buscarEGerarCalendarioGeral() {
@@ -36,7 +36,6 @@ public class CalendarioClient {
         return
                 given()
                         .spec(AuthSpec.setup())
-                        .log().all()
                         .queryParam("mes", mes)
                         .when()
                         .get(PATH_CALENDARIO_GERAL_MES);
