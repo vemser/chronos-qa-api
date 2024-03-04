@@ -25,7 +25,7 @@ DiaNaoUtilClient diaNaoUtilClient = new DiaNaoUtilClient();
         Response response =
                 diaNaoUtilClient.buscarTudo()
                         .then()
-                        .statusCode(200).log().all() .extract().response();
+                        .statusCode(200).extract().response();
 
         List<DiaNaoUtilResposeDTO> diaNaoUtil = response.jsonPath().getList("content", DiaNaoUtilResposeDTO.class);
 
