@@ -11,6 +11,7 @@ import model.calendario.DiaCalendarioEdicaoResponseDTO;
 import model.calendario.DiaCalendarioGeralResponseDTO;
 import model.edicao.EdicaoRequestDTO;
 import model.edicao.EdicaoResponseDTO;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -37,6 +38,13 @@ public class GetCalendarioGeralFuncionalTest {
                         .extract().as(EdicaoResponseDTO.class);
 
         idEdicaoCadastrado = edicaoCadastrada.getIdEdicao();
+    }
+
+    @AfterEach
+    public void cleanUp() {
+        edicaoClient.deletarPorID(idEdicaoCadastrado)
+                .then()
+                .statusCode(204);
     }
 
     CalendarioClient calendarioClient = new CalendarioClient();
