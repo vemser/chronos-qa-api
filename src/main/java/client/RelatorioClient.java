@@ -21,7 +21,6 @@ public class RelatorioClient {
                  given()
                 .spec(AuthSpec.setup())
                 .pathParam("_id", integer)
-                         .log().all()
                 .when()
                 .get(PATH_RELATORIO_EESTAGIARIO);
     }
@@ -30,7 +29,6 @@ public class RelatorioClient {
                 given()
                         .spec(AuthSpec.setup())
                         .pathParam("_id", integer)
-                        .log().all()
                         .when()
                         .get(PATH_RELATORIO_TRILHA);
     }
@@ -57,7 +55,6 @@ public class RelatorioClient {
                 given()
                         .spec(AuthSpec.setup())
                         .pathParam("_id", integer)
-                        .log().all()
                         .when()
                         .get(PATH_RELATORIO_GERAL);
     }

@@ -21,7 +21,7 @@ public class AreaEnvolvidaClient implements ClientInterface<Integer, AreaEnvolvi
                         .header("Authorization", TOKEN)
                         .body(body)
 
-                        .when().log().all()
+                        .when()
                         .post(PATH_AREA_ENVOLVIDA);
     }
 
@@ -50,7 +50,7 @@ public class AreaEnvolvidaClient implements ClientInterface<Integer, AreaEnvolvi
                         .pathParam("id_area", integer)
                         .body(body)
 
-                        .when().log().all()
+                        .when()
                         .put(PATH_AREA_ENVOLVIDA_ID);
     }
 
@@ -60,7 +60,6 @@ public class AreaEnvolvidaClient implements ClientInterface<Integer, AreaEnvolvi
                 given()
                         .spec(InicialSpecs.setup())
                         .header("Authorization", TOKEN)
-                        .log().all()
                         .pathParam("id_area",integer)
                         .when()
                         .delete(PATH_AREA_ENVOLVIDA_ID);
@@ -73,7 +72,6 @@ public class AreaEnvolvidaClient implements ClientInterface<Integer, AreaEnvolvi
                         .header("Authorization", TOKEN)
                         .pathParam("id_area",integer)
                         .pathParam("id_etapa",idModulo)
-                        .log().all()
                         .when()
                         .put(PATH_AREA_ENVOLVIDA_ID_CONEXAO);
     }

@@ -20,7 +20,7 @@ public class DiaNaoUtilClient  implements ClientInterface<Integer, DiaNaoUtilReq
                 given()
                         .spec(InicialSpecs.setup())
                         .header("Authorization", TOKEN)
-                        .body(body).log().all()
+                        .body(body)
                         .when()
                         .post(PATH_DIA_NAO_UTIL);
     }
@@ -32,7 +32,6 @@ public class DiaNaoUtilClient  implements ClientInterface<Integer, DiaNaoUtilReq
                 given()
                 .spec(InicialSpecs.setup())
                 .header("Authorization", TOKEN)
-                        .log().all()
                 .when()
                 .get(PATH_DIA_NAO_UTIL);
     }

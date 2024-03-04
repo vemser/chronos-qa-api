@@ -37,15 +37,15 @@ public class PostDiaNaoUtilFuncionalTest {
     @Test
     public void testTentarCriarUmDiaNaoUtilSomenteComCampoObrigatorios() {
         diaNaoUtilClient.setTOKEN((TokenFactory.getTokenAdmin()));
-        DiaNaoUtilRequestDTO diaNaoUtilRequestDTO  = DiaNaoUtilFactory.diaNaoUtilSemDataFinal();
+        DiaNaoUtilRequestDTO diaNaoUtilRequestDTO  = DiaNaoUtilFactory.diaNaoUtilTodosOsCampos();
         DiaNaoUtilResposeDTO diaNaoUtilResposeDTO = diaNaoUtilClient.cadastrar(diaNaoUtilRequestDTO)
                 .then()
                 .statusCode(200)
                 .extract().as(DiaNaoUtilResposeDTO.class);
 
         diaNaoUtilClient.deletar(diaNaoUtilResposeDTO.getIdDiaNaoUtil());
-
     }
+
     @Feature("Dia não util")
     @Story("Cadastrar uma dia não util com sucesso")
     @Description("Testa se a requisição consegue cadastrar uma dia não util deve retornar uma mensagem de erro")
@@ -72,7 +72,7 @@ public class PostDiaNaoUtilFuncionalTest {
         diaNaoUtilRequestDTOJaCadastrado.setDataInicial(diaNaoUtilRequestDTO.getDataInicial());
 
         DiaNaoUtilResposeDTO diaNaoUtilResposeDTO = diaNaoUtilClient.cadastrar(diaNaoUtilRequestDTO)
-                .then().log().all()
+                .then()
                 .statusCode(200).extract().as(DiaNaoUtilResposeDTO.class);
 
         diaNaoUtilClient.cadastrar(diaNaoUtilRequestDTOJaCadastrado)

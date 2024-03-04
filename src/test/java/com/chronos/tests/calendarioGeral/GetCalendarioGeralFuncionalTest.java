@@ -145,7 +145,9 @@ public class GetCalendarioGeralFuncionalTest {
         Response response =
                 calendarioClient.buscarEGerarCalendarioGeralDaEdicao(idEdicaoCadastrado)
                         .then()
-                        .statusCode(200).extract().response();
+                        .log().all()
+                        .statusCode(200)
+                        .extract().response();
 
         List<DiaCalendarioEdicaoResponseDTO> calendarioGeralList = response.jsonPath().getList("", DiaCalendarioEdicaoResponseDTO.class);
 

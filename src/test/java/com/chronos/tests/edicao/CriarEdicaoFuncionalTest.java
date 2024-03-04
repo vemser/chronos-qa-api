@@ -61,4 +61,27 @@ public class CriarEdicaoFuncionalTest {
                 .statusCode(HttpStatus.SC_FORBIDDEN)
                 .body("error", equalTo("Forbidden"));
     }
+
+    @Test
+    @Tag("Fumaca")
+    public void testNaoDeveCadastrarEdicaoPoisNomeJaExistente() {
+        EdicaoRequestDTO massaDados = EdicaoFactory.edicaoValida();
+        EdicaoRequestDTO massaNomeExistente = EdicaoFactory.edicaoValida();
+
+        massaNomeExistente.setNome(massaDados.getNome());
+
+        Integer idEdicao = edicaoClient.cadastrarEdicao(massaDados)
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .extract().as(EdicaoResponseDTO.class).getIdEdicao();
+
+        edicaoClient.cadastrarEdicao(massaNomeExistente)
+                .then()
+                .log().all()
+                .statusCode(HttpStatus.SC_CONFLICT)
+                .body("message", equalTo("Erro na validação dos seguintes campos: nome."))
+                .body("status", equalTo(HttpStatus.SC_CONFLICT));
+
+        edicaoClient.deletarPorID(idEdicao);
+    }
 }
