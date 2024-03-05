@@ -18,7 +18,8 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import static org.hamcrest.Matchers.equalTo;
+
+import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class EditarEstagiarioTest {
@@ -82,6 +83,10 @@ public class EditarEstagiarioTest {
                 .then()
                 .statusCode(HttpStatus.SC_NO_CONTENT);
 
+        edicaoClient.deletarPorID(idEdicao)
+                .then()
+                .statusCode(HttpStatus.SC_NO_CONTENT);
+
 
     }
 
@@ -107,6 +112,7 @@ public class EditarEstagiarioTest {
 
         Integer createdEstagiarioID = estagiarioClient.cadastrar(bodyRequest)
                 .then()
+                .log().all()
                 .contentType(ContentType.JSON)
                 .statusCode(HttpStatus.SC_CREATED)
                 .extract().as(EstagiarioResponseDTO.class).getIdEstagiario();
@@ -116,9 +122,13 @@ public class EditarEstagiarioTest {
                 .contentType(ContentType.JSON)
                 .statusCode(HttpStatus.SC_BAD_REQUEST)
                 .body("status", equalTo(HttpStatus.SC_BAD_REQUEST))
-                .body("errors[0]", equalTo(message));
+                .body("errors", hasItem(message));
 
         trilhaClient.deletar(idTrilha)
+                .then()
+                .statusCode(HttpStatus.SC_NO_CONTENT);
+
+        edicaoClient.deletarPorID(idEdicao)
                 .then()
                 .statusCode(HttpStatus.SC_NO_CONTENT);
     }

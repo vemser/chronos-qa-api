@@ -56,7 +56,7 @@ public class EstagiarioClient {
     public Response buscarPorId(Integer id) {
         return given()
                 .spec(AuthSpec.setup())
-                .queryParam("id", id)
+                .queryParam("idEstagiario", id)
                 .when()
                 .get(PATH_ESTAGIARIO);
     }

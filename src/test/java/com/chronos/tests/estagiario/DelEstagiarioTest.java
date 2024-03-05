@@ -63,6 +63,10 @@ public class DelEstagiarioTest {
         trilhaClient.deletar(idTrilha)
                 .then()
                 .statusCode(HttpStatus.SC_NO_CONTENT);
+
+        edicaoClient.deletarPorID(idEdicao)
+                .then()
+                .statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
     @Feature("Estagiario")

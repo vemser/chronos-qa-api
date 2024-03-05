@@ -38,6 +38,10 @@ public class ListarEstagiariosTest {
                 .then()
                 .statusCode(HttpStatus.SC_NO_CONTENT);
 
+        edicaoClient.deletarPorID(responseDTO.getEdicao().getIdEdicao())
+                .then()
+                .statusCode(HttpStatus.SC_NO_CONTENT);
+
 
     }
 
@@ -60,6 +64,10 @@ public class ListarEstagiariosTest {
                 .body("content.size()", greaterThan(0));
 
         trilhaClient.deletar(responseDTO.getTrilha().getIdTrilha());
+
+        edicaoClient.deletarPorID(responseDTO.getEdicao().getIdEdicao())
+                .then()
+                .statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
     @Feature("Estagiario")
@@ -81,6 +89,10 @@ public class ListarEstagiariosTest {
                 .body("content[0].idEstagiario", equalTo(responseDTO.getIdEstagiario()));
 
         trilhaClient.deletar(responseDTO.getTrilha().getIdTrilha());
+
+        edicaoClient.deletarPorID(responseDTO.getEdicao().getIdEdicao())
+                .then()
+                .statusCode(HttpStatus.SC_NO_CONTENT);
     }
 
 

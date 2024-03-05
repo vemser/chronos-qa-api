@@ -31,7 +31,7 @@ public class Factory {
         return FAKER.letterify("???");
     }
     public static String telefone() {
-        return FAKER.numerify("???????????");
+     return FAKER.numerify("8399#######");
     }
     public static String cpf() {
         return FAKER.cpf().valid(false);
@@ -42,8 +42,8 @@ public class Factory {
     }
 
     public static String evento() { return FAKER.letterify("??????????"); }
-    public static LocalDate dataInicial() { return LocalDate.now(); }
-    public static LocalDate dataFinal() { return LocalDate.now().plusMonths(2); }
+    public static LocalDate dataInicial() { return LocalDate.now().plusMonths(2); }
+    public static LocalDate dataFinal() { return LocalDate.now().plusMonths(4); }
     public static String descricao() { return FAKER.lorem().sentence(); }
     public static String descricao256() { return FAKER.lorem().sentence(256); }
 
