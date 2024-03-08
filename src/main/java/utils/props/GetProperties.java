@@ -13,7 +13,7 @@ import java.util.Properties;
 public class GetProperties {
 
     public static String LOGIN_URI() {
-        return getProperties().getProperty("uri_usuarios_login_alt");
+        return getProperties().getProperty("uri_usuarios_login");
     }
 
     public static String BASE_URI() {

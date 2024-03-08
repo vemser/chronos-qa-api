@@ -20,6 +20,7 @@ public class ModuloClient {
                 given()
                         .spec(AuthSpec.setup())
                         .body(body)
+                        .log().all()
                         .when()
                         .post(PATH_MODULO);
     }
